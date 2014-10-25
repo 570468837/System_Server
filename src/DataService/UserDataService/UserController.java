@@ -3,7 +3,7 @@ package DataService.UserDataService;
 import PO.UserPO;
 import ResultMessage.ResultMessage;
 
-public class UserDataService_Stub implements UserDataService{
+public class UserController implements UserDataService {
 
 	@Override
 	public ResultMessage check(UserPO po) {
