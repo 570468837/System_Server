@@ -22,20 +22,22 @@ public class UserDataService_Stub implements UserDataService{
 	@Override
 	public ResultMessage delete(UserPO po) {
 		// TODO Auto-generated method stub
-		
-		return null;
+		System.out.println("delete success!");
+		return ResultMessage.delete_success;
 	}
 
 	@Override
 	public ResultMessage update(UserPO po) {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("update success!");
+		return ResultMessage.update_success;
 	}
 
 	@Override
 	public UserPO find(String userName) {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("Find success!");
+		return new UserPO();
 	}
 
 }
