@@ -22,7 +22,6 @@ public class SalesDataService_Driver {
 	public static void main(String [] args){
 		SalesDataService salesController=new SalesController();
 		new SalesDataService_Driver(salesController);
-		
 	}
 
 }
