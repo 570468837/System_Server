@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import PO.SalesReceiptPO;
 
-public interface SalesDataServie {
+public interface SalesDataService {
 
 	public void addReceipt(SalesReceiptPO po)throws RemoteException;
 	public void deleteReceipt(SalesReceiptPO po)throws RemoteException;

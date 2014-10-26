@@ -3,10 +3,9 @@ package DataService.SalesDataService;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import PO.PurchaseReceiptPO;
 import PO.SalesReceiptPO;
 
-public class SalesDataSerivce_Stub implements SalesDataService {
+public class SalesController implements SalesDataService{
 
 	@Override
 	public void addReceipt(SalesReceiptPO po) throws RemoteException {
@@ -35,5 +34,4 @@ public class SalesDataSerivce_Stub implements SalesDataService {
 		System.out.println("find successful");
 		return polist;
 	}
-
 }
