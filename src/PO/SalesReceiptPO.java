@@ -1,8 +1,8 @@
 package PO;
 
-import VO.CommodityVO;
-import VO.GoodsVO;
-import VO.UserVO;
+import PO.CommodityPO;
+import PO.GoodsPO;
+import PO.UserPO;
 
 public class SalesReceiptPO {
 	private String serialNumber;
@@ -10,14 +10,13 @@ public class SalesReceiptPO {
 	private String retailer;
 	//业务员
 	private String salesman;
-	private UserVO userVO;
-	private CommodityVO commodityVO;
-	private GoodsVO goodsVO;
+	private UserPO userPO;
+	private CommodityPO commodityPO;
+	private GoodsPO goodsPO;
 	private long priveBefore;
 	private long discout;
 	private long finalprice;
 	private String comment;
-	
 	public String getSerialNumber() {
 		return serialNumber;
 	}
@@ -36,23 +35,23 @@ public class SalesReceiptPO {
 	public void setSalesman(String salesman) {
 		this.salesman = salesman;
 	}
-	public UserVO getUserVO() {
-		return userVO;
+	public UserPO getUserPO() {
+		return userPO;
 	}
-	public void setUserVO(UserVO userVO) {
-		this.userVO = userVO;
+	public void setUserPO(UserPO userPO) {
+		this.userPO = userPO;
 	}
-	public CommodityVO getCommodityVO() {
-		return commodityVO;
+	public CommodityPO getCommodityPO() {
+		return commodityPO;
 	}
-	public void setCommodityVO(CommodityVO commodityVO) {
-		this.commodityVO = commodityVO;
+	public void setCommodityPO(CommodityPO commodityPO) {
+		this.commodityPO = commodityPO;
 	}
-	public GoodsVO getGoodsVO() {
-		return goodsVO;
+	public GoodsPO getGoodsPO() {
+		return goodsPO;
 	}
-	public void setGoodsVO(GoodsVO goodsVO) {
-		this.goodsVO = goodsVO;
+	public void setGoodsPO(GoodsPO goodsPO) {
+		this.goodsPO = goodsPO;
 	}
 	public long getPriveBefore() {
 		return priveBefore;
@@ -78,5 +77,7 @@ public class SalesReceiptPO {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+	
+	
 	
 }
