@@ -1,8 +1,5 @@
 package PO;
 
-import PO.CommodityPO;
-import PO.GoodsPO;
-import PO.UserPO;
 
 public class SalesReceiptPO {
 	private String serialNumber;
@@ -11,7 +8,7 @@ public class SalesReceiptPO {
 	//业务员
 	private String salesman;
 	private UserPO userPO;
-	private CommodityPO commodityPO;
+	private String commodityNum;
 	private GoodsPO goodsPO;
 	private long priveBefore;
 	private long discout;
@@ -41,11 +38,11 @@ public class SalesReceiptPO {
 	public void setUserPO(UserPO userPO) {
 		this.userPO = userPO;
 	}
-	public CommodityPO getCommodityPO() {
-		return commodityPO;
+	public String getCommodityPO() {
+		return commodityNum;
 	}
-	public void setCommodityPO(CommodityPO commodityPO) {
-		this.commodityPO = commodityPO;
+	public void setCommodityPO(String commodityNum) {
+		this.commodityNum = commodityNum;
 	}
 	public GoodsPO getGoodsPO() {
 		return goodsPO;
