@@ -2,9 +2,9 @@ package PO;
 /**
  * 
  * @author hutao
- *
+ * 
  */
-public class ReportCommodityPO {
+public class ReportCommodityPO extends CommodityBillPO {
 	private GoodsPO goodsPO;
 	private int num;
 	
