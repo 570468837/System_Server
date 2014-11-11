@@ -1,22 +1,24 @@
 package DataService.InfoDataService;
 
-import PO.ReceiptPO;
+import ResultMessage.ResultMessage;
 
 public class InfoDataService_Stub implements InfoDataService {
 
-	public ReceiptPO findReceipt(ReceiptPO receipt)  {
+	public ResultMessage findReceipt(String label)  {
 		// TODO Auto-generated method stub
-		if(receipt.getNumber().equals("0001")) {
+		if(label.equals("0001")) {
 			System.out.println("success") ;
+			return ResultMessage.Exist ;
 		}else{
 			System.out.println("fail") ;
+			return ResultMessage.Not_Exist ;
 		}
-		return new ReceiptPO() ;
+		
 	}
 
-	public void deletReceipt(ReceiptPO receipt) {
+	public void deletReceipt(String label) {
 		// TODO Auto-generated method stub
-		if(receipt.getNumber().equals("0001")) {
+		if(label.equals("0001")) {
 			System.out.println("success") ;
 		}else{
 			System.out.println("fail") ;

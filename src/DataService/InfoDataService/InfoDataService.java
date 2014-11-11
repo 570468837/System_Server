@@ -1,9 +1,9 @@
 package DataService.InfoDataService;
 
-import PO.ReceiptPO;
+import ResultMessage.ResultMessage;
 
 public interface InfoDataService {
-	public ReceiptPO findReceipt(ReceiptPO receipt)  ;
-	public void deletReceipt(ReceiptPO receipt) ;
+	public ResultMessage findReceipt(String label)  ;
+	public void deletReceipt(String label) ;
 	public String getSalesCondition(String time1 ,String time2) ;
 }

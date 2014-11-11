@@ -4,6 +4,6 @@ package PO;
  * @author hutao
  * 
  */
-public abstract class CommodityBillPO extends ReceiptPO {
+public abstract class CommodityBillPO {
 
 }
