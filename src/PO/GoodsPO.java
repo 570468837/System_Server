@@ -8,35 +8,32 @@ public class GoodsPO {
 	private String serialNumber;
 	private String name;
 	private String model;
-	private int quantity;
-	private long price;
-	private long totalPrice;
+	private double price;
+	private double totalPrice;
 	private String comment;
 	
-	
+	//记得加入commodityQuantity
 	private GoodsClassPO goodsClass;
-	private long salePrice;
-	private long latestPrice;
-	private long latestSalePrice;
+	private double salePrice;
+	private double latestPrice;
+	private double latestSalePrice;
 	
 	public GoodsPO() {}
 	public GoodsPO(String serialNumber, String name, String model, 
-			int quantity, long price, long totalPrice, String comment) {
+		 double price, double totalPrice, String comment) {
 		this.serialNumber = serialNumber;
 		this.name = name;
 		this.model = model;
-		this.quantity = quantity;
 		this.price = price;
 		this.totalPrice = totalPrice;
 		this.comment = comment;
 	};
 	public GoodsPO(String serialNumber, String name, String model, 
-			int quantity, long price, long salePrice, long latestPrice,
-			long latestSalePrice, GoodsClassPO goodsClass) {
+			 double price, double salePrice, double latestPrice,
+			double latestSalePrice, GoodsClassPO goodsClass) {
 		this.serialNumber = serialNumber;
 		this.name = name;
 		this.model = model;
-		this.quantity = quantity;
 		this.price = price;
 		this.salePrice = salePrice;
 		this.latestPrice = latestPrice;
@@ -46,7 +43,7 @@ public class GoodsPO {
 	
 	
 	
-	public long getTotalPrice() {
+	public double getTotalPrice() {
 		return totalPrice;
 	}
 	public String getSerialNumber() {
@@ -58,22 +55,20 @@ public class GoodsPO {
 	public String getModel() {
 		return model;
 	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public long getPrice() {
+	
+	public double getPrice() {
 		return price;
 	}
 	public String getComment() {
 		return comment;
 	}
-	public long getSalePrice() {
+	public double getSalePrice() {
 		return salePrice;
 	}
-	public long getLatestPrice() {
+	public double getLatestPrice() {
 		return latestPrice;
 	}
-	public long getLatestSalePrice() {
+	public double getLatestSalePrice() {
 		return latestSalePrice;
 	}
 	public GoodsClassPO getGoodsClass() {

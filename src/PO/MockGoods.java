@@ -5,13 +5,13 @@ package PO;
  * 类协作的桩程序
  */
 public class MockGoods extends GoodsPO{
-	long price;
-	public MockGoods(long price) {
+	double price;
+	public MockGoods(double price) {
 		this.price = price;
 	}
 	
-	public long getPrice() {
-		return price;
+	public double getPrice() {
+		return this.price;
 	}
 	
 	
