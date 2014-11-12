@@ -1,9 +1,18 @@
 package PO;
 
+import PO.AccountPO;
+
 public class TransferListItem {
 	AccountPO account;
 	double transferMoney ;
 	String remark ;
+	
+	public TransferListItem(AccountPO account, double transferMoney,
+			String remark) {
+		this.account = account;
+		this.transferMoney = transferMoney;
+		this.remark = remark;
+	}
 	public AccountPO getAccount() {
 		return account;
 	}

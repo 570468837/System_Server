@@ -7,28 +7,30 @@ public class CollectionPO{
 	String number ;
 	CustomerPO customer ;
 	UserPO user ;
-	ArrayList<TransferListItem> tfList = null ;//转账列表
-	double sum ;
-	public CollectionPO(String theNumber,CustomerPO theCustomer,UserPO theUser,double theSum){
-		number = theNumber ;
-		customer = theCustomer ;
-		user = theUser ;
-		sum = theSum ;
-	}
+	ArrayList<TransferListItem> tfList = new ArrayList<TransferListItem>() ;//转账列表
+	double total;
 	public CollectionPO(){
 		number = null ;
 	    customer = null ;
 	    user = null ;
-	    tfList = null ;
-	    sum = 0 ;
+	    total = 0 ;
 	}
-	public void addItem(TransferListItem theItem){
-		this.tfList.add(theItem) ;
+	
+	public CollectionPO(String theNumber,CustomerPO theCustomer,UserPO theUser,double theSum){
+		number = theNumber ;
+		customer = theCustomer ;
+		user = theUser ;
+		total = theSum ;
 	}
+	
+	public void add(TransferListItem theItem){
+		tfList.add(theItem) ;
+	}
+	
 	public double getTotal(){
 		double total = 0 ;
 		for(TransferListItem theItem : tfList){
-			total += theItem.getTransferMoney() ;
+			total += theItem.getTransferMoney();
 		}
 		return total ;
 	}
@@ -50,11 +52,6 @@ public class CollectionPO{
 	public void setUser(UserPO user) {
 		this.user = user;
 	}
-	public double getSum() {
-		return sum;
-	}
-	public void setSum(double sum) {
-		this.sum = sum;
-	}
+
 	
 }
