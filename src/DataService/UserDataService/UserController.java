@@ -34,7 +34,7 @@ public class UserController implements UserDataService {
 	public UserPO find(String userName) {
 		// TODO Auto-generated method stub
 		System.out.println("Find success!");
-		return new UserPO();
+		return new UserPO(null, null, 0);
 	}
 
 }

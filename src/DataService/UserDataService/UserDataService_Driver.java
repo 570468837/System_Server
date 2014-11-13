@@ -8,7 +8,7 @@ import ResultMessage.ResultMessage;
 
 public class UserDataService_Driver {
 	public void drive(UserDataService userdataservice){
-		UserPO po = new UserPO();
+		UserPO po = new UserPO(null, null, 0);
 		ResultMessage result;
 		result=userdataservice.check(po);
 		if(result==ResultMessage.login_success)

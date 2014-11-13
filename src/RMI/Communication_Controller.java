@@ -3,6 +3,7 @@ package RMI;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import PO.UserPO;
 import ResultMessage.ResultMessage;
 
 public class Communication_Controller extends UnicastRemoteObject implements Communication{
@@ -22,6 +23,5 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 	public ResultMessage messageCommand(String command, Object PO) throws RemoteException{
 		// TODO Auto-generated method stub
 		return null;
+		} 
 	}
-	
-}
