@@ -1,5 +1,7 @@
 package DataService.UserDataService;
 
+import java.util.ArrayList;
+
 import PO.UserPO;
 import ResultMessage.ResultMessage;
 
@@ -31,10 +33,10 @@ public class UserDataService_Stub implements UserDataService{
 	}
 
 	@Override
-	public UserPO find(String userName) {
+	public ArrayList<Object> find(String userName) {
 		// TODO Auto-generated method stub
 		System.out.println("Find success!");
-		return new UserPO(userName, userName, 0);
+		return null;
 	}
 
 }

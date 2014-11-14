@@ -1,5 +1,6 @@
 package DataService.UserDataService;
 
+import java.util.ArrayList;
 import PO.UserPO;
 import ResultMessage.ResultMessage;
 
@@ -8,33 +9,53 @@ public class UserController implements UserDataService {
 	@Override
 	public ResultMessage check(UserPO po) {
 		// TODO Auto-generated method stub
-		return ResultMessage.login_success;
+		if(po.getUserName().equals("0001"))
+			return ResultMessage.login_success;
+		else{
+			return ResultMessage.login_failure;
+		}
 	}
 
 	@Override
 	public ResultMessage add(UserPO po) {
 		// TODO Auto-generated method stub
-
-	    return ResultMessage.add_success;
+		if(po.getUserName().equals("0002")){
+			return ResultMessage.add_success;
+		}
+		else{
+			return ResultMessage.add_failure;
+		}
 	}
 
 	@Override
 	public ResultMessage delete(UserPO po) {
 		// TODO Auto-generated method stub
-		return ResultMessage.delete_success;
+		if(po.getUserName().equals("0003"))
+			return ResultMessage.delete_success;
+		else{
+			return ResultMessage.delete_failure;
+		}
 	}
 
 	@Override
 	public ResultMessage update(UserPO po) {
 		// TODO Auto-generated method stub
-		return ResultMessage.update_success;
+		if(po.getUserName().equals("0004")){
+			return ResultMessage.update_success;
+		}
+		else{
+			return ResultMessage.update_failure;
+		}
 	}
 
 	@Override
-	public UserPO find(String userName) {
+	public ArrayList<Object> find(String userName) {
 		// TODO Auto-generated method stub
-		System.out.println("Find success!");
-		return new UserPO(null, null, 0);
+		if(userName.equals("0005"));
+		ArrayList<Object> users=new ArrayList<Object>();
+		users.add(new UserPO("00051", " ", 0));
+		users.add(new UserPO("00052", " ", 0));
+		return users;
 	}
 
 }
