@@ -6,7 +6,7 @@ import ResultMessage.ResultMessage;
 
 public class PromotionDataService_Driver {
 	public void drive(PromotionDataService promotiondataservice){
-		PromotionPO po = new PromotionPO();
+		PromotionPO po = new PromotionPO(null, null, 0, 0, null, 0, null, null);
 		ResultMessage result;
 		
 		result=promotiondataservice.addPackage(po);
