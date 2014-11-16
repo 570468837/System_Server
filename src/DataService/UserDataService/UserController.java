@@ -53,8 +53,8 @@ public class UserController implements UserDataService {
 		// TODO Auto-generated method stub
 		if(userName.equals("0005"));
 		ArrayList<Object> users=new ArrayList<Object>();
-		users.add(new UserPO("00051", " ", 0));
-		users.add(new UserPO("00052", " ", 0));
+		users.add(new UserPO("00051", " ", null, 0));
+		users.add(new UserPO("00052", " ", null, 0));
 		return users;
 	}
 
