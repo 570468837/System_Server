@@ -8,41 +8,41 @@ import PO.CollectionPO;
 import PO.PaymentPO;
 import ResultMessage.ResultMessage;
 
-public class FinanceDataService_Stub implements FinanceDataService{
-
+public class FinanceController implements FinanceDataService {
+	ResultMessage result = null ;
 	@Override
 	public ResultMessage insertAccount(AccountPO account) throws RemoteException {
 		// TODO Auto-generated method stub
-		System.out.println("add success") ;
-		return null; 
+		if(account.getName().equals("0001")){
+			result = ResultMessage.add_success ;
+		}else{
+			result = ResultMessage.add_failure ;
+		}
+		return result ;
 	}
 
 	@Override
 	public void delet(AccountPO account) throws RemoteException {
 		// TODO Auto-generated method stub
-		System.out.println("delet success") ;
 		
 	}
 
 	@Override
 	public void update(AccountPO account) throws RemoteException {
 		// TODO Auto-generated method stub
-		System.out.println("update success") ;
+		
 	}
 
 	@Override
-	public AccountPO find(AccountPO account) throws RemoteException {
+	public AccountPO find(AccountPO accout) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(account.getName().equals("0001")){
-			System.out.println("find success") ;
-		}
-		return new AccountPO() ;
+		return null;
 	}
 
 	@Override
 	public void insertPayment(PaymentPO payment) throws RemoteException {
 		// TODO Auto-generated method stub
-		System.out.println("add success") ;
+		
 	}
 
 	@Override
@@ -54,13 +54,14 @@ public class FinanceDataService_Stub implements FinanceDataService{
 	@Override
 	public void insertCash(CashPO cash) throws RemoteException {
 		// TODO Auto-generated method stub
-		System.out.println("add success") ;
+		
 	}
 
 	@Override
 	public void finish() {
 		// TODO Auto-generated method stub
-		System.out.println("exit success") ;
+		
 	}
 	
+
 }

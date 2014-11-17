@@ -6,9 +6,10 @@ import PO.AccountPO;
 import PO.CashPO;
 import PO.CollectionPO;
 import PO.PaymentPO;
+import ResultMessage.ResultMessage;
 
 public interface FinanceDataService {
-	public void insertAccount(AccountPO account) throws RemoteException;
+	public ResultMessage insertAccount(AccountPO account) throws RemoteException;
 	public void delet(AccountPO account) throws RemoteException;
 	public void update(AccountPO account) throws RemoteException;
 	public AccountPO find(AccountPO accout) throws RemoteException;

@@ -4,14 +4,15 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import DataService.FinanceDataService.FinanceController;
 import DataService.UserDataService.UserController;
 import DataService.UserDataService.UserDataService;
+import PO.AccountPO;
 import PO.PromotionPO;
 import PO.UserPO;
 import ResultMessage.ResultMessage;
 
 public class Communication_Controller extends UnicastRemoteObject implements Communication{
-
 	protected Communication_Controller() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
@@ -38,7 +39,9 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("userUpdate")){
 			return new UserController().update((UserPO)PO);
 		}
-		
+		if(command.equals("accountAdd")){
+			return new FinanceController().insertAccount((AccountPO)PO) ;
+		}
 		else 
 			return null;
 		}
