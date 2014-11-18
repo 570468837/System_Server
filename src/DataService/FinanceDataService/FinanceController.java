@@ -22,15 +22,25 @@ public class FinanceController implements FinanceDataService {
 	}
 
 	@Override
-	public void delet(AccountPO account) throws RemoteException {
+	public ResultMessage delet(AccountPO account) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		if(account.getName().equals("0001")){
+			result = ResultMessage.delete_success ;
+		}else{
+			result = ResultMessage.delete_failure ;
+		}
+		return result ;
 	}
 
 	@Override
-	public void update(AccountPO account) throws RemoteException {
+	public ResultMessage update(AccountPO account) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		if(account.getName().equals("0001")){
+			result = ResultMessage.update_success ;
+		}else{
+			result = ResultMessage.update_failure ;
+		}
+		return result ;
 	}
 
 	@Override

@@ -6,9 +6,7 @@ import java.util.ArrayList;
 
 import DataService.FinanceDataService.FinanceController;
 import DataService.UserDataService.UserController;
-import DataService.UserDataService.UserDataService;
 import PO.AccountPO;
-import PO.PromotionPO;
 import PO.UserPO;
 import ResultMessage.ResultMessage;
 
@@ -42,7 +40,12 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("accountAdd")){
 			return new FinanceController().insertAccount((AccountPO)PO) ;
 		}
-		else 
+		if(command.equals("accountDelete")){
+			return new FinanceController().delet((AccountPO)PO);
+		}
+		if(command.equals("accountUpdate")){
+			return new FinanceController().update((AccountPO)PO);
+		}
 			return null;
 		}
 

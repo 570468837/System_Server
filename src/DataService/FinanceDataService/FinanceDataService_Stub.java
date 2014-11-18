@@ -18,16 +18,18 @@ public class FinanceDataService_Stub implements FinanceDataService{
 	}
 
 	@Override
-	public void delet(AccountPO account) throws RemoteException {
+	public ResultMessage delet(AccountPO account) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("delet success") ;
+		return null;
 		
 	}
 
 	@Override
-	public void update(AccountPO account) throws RemoteException {
+	public ResultMessage update(AccountPO account) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("update success") ;
+		return null ;
 	}
 
 	@Override

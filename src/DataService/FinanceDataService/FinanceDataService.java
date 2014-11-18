@@ -10,8 +10,8 @@ import ResultMessage.ResultMessage;
 
 public interface FinanceDataService {
 	public ResultMessage insertAccount(AccountPO account) throws RemoteException;
-	public void delet(AccountPO account) throws RemoteException;
-	public void update(AccountPO account) throws RemoteException;
+	public ResultMessage delet(AccountPO account) throws RemoteException;
+	public ResultMessage update(AccountPO account) throws RemoteException;
 	public AccountPO find(AccountPO accout) throws RemoteException;
 	public void insertPayment(PaymentPO payment) throws RemoteException ;
 	public void insertCollection(CollectionPO payment) throws RemoteException ;
