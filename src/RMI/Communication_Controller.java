@@ -5,8 +5,10 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import DataService.FinanceDataService.FinanceController;
+import DataService.PromotionDataService.PromotionController;
 import DataService.UserDataService.UserController;
 import PO.AccountPO;
+import PO.PromotionPO;
 import PO.UserPO;
 import ResultMessage.ResultMessage;
 
@@ -36,6 +38,18 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}
 		if(command.equals("userUpdate")){
 			return new UserController().update((UserPO)PO);
+		}
+		if(command.equals("PromotionAddPackage")){
+			return new PromotionController().addPackage((PromotionPO)PO);
+		}
+		if(command.equals("PromotionAddGift")){
+			return new PromotionController().addGift((PromotionPO)PO);
+		}
+		if(command.equals("PromotionAddVoucher")){
+			return new PromotionController().addVoucher((PromotionPO)PO);
+		}
+		if(command.equals("PromotionDelete")){
+			return new PromotionController().delete((PromotionPO)PO);
 		}
 		if(command.equals("accountAdd")){
 			return new FinanceController().insertAccount((AccountPO)PO) ;

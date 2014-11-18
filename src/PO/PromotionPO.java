@@ -1,50 +1,125 @@
 package PO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
+import Config.Level;
 
 public class PromotionPO implements Serializable{
 	 String promotionType;
      String goodsId;
      double leastPrice;
      double offPrice;
-     String presentGoodsId;
-     int presentNum;
+     ArrayList<GoodsPO> presents=new ArrayList<GoodsPO>();
+     int Voucher;
      String startTime;
    	 String endTime;
+   	 Level customer;
  	
    	 
      public PromotionPO(String promotionType, String goodsId, double leastPrice,
-			double offPrice, String presentGoodsId, int presentNum,
-			String startTime, String endTime) {
+			double offPrice,ArrayList<GoodsPO> presents,int Voucher,
+			String startTime, String endTime,Level customer) {
 		this.promotionType = promotionType;
 		this.goodsId = goodsId;
 		this.leastPrice = leastPrice;
 		this.offPrice = offPrice;
-		this.presentGoodsId = presentGoodsId;
-		this.presentNum = presentNum;
+		this.presents=presents;
+		this.Voucher=Voucher;
 		this.startTime = startTime;
 		this.endTime = endTime;
+		this.customer=customer;
 	}
+
+
+	public String getPromotionType() {
+		return promotionType;
+	}
+
+
+	public void setPromotionType(String promotionType) {
+		this.promotionType = promotionType;
+	}
+
+
 	public String getGoodsId() {
 		return goodsId;
 	}
+
+
+	public void setGoodsId(String goodsId) {
+		this.goodsId = goodsId;
+	}
+
+
 	public double getLeastPrice() {
 		return leastPrice;
 	}
+
+
+	public void setLeastPrice(double leastPrice) {
+		this.leastPrice = leastPrice;
+	}
+
+
 	public double getOffPrice() {
 		return offPrice;
 	}
-	public String getPresentGoodsId() {
-		return presentGoodsId;
+
+
+	public void setOffPrice(double offPrice) {
+		this.offPrice = offPrice;
 	}
-	public int getPresentNum() {
-		return presentNum;
+
+
+	public ArrayList<GoodsPO> getPresents() {
+		return presents;
 	}
+
+
+	public void setPresents(ArrayList<GoodsPO> presents) {
+		this.presents = presents;
+	}
+
+
+	public int getVoucher() {
+		return Voucher;
+	}
+
+
+	public void setVoucher(int voucher) {
+		Voucher = voucher;
+	}
+
+
 	public String getStartTime() {
 		return startTime;
 	}
+
+
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+
 	public String getEndTime() {
 		return endTime;
 	}
 
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+
+
+	public Level getCustomer() {
+		return customer;
+	}
+
+
+	public void setCustomer(Level customer) {
+		this.customer = customer;
+	}	
+
 }
+
