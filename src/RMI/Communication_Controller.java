@@ -39,16 +39,16 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("userUpdate")){
 			return new UserController().update((UserPO)PO);
 		}
-		if(command.equals("PromotionAddPackage")){
+		if(command.equals("promotionAddPackage")){
 			return new PromotionController().addPackage((PromotionPO)PO);
 		}
-		if(command.equals("PromotionAddGift")){
+		if(command.equals("promotionAddGift")){
 			return new PromotionController().addGift((PromotionPO)PO);
 		}
-		if(command.equals("PromotionAddVoucher")){
+		if(command.equals("promotionAddVoucher")){
 			return new PromotionController().addVoucher((PromotionPO)PO);
 		}
-		if(command.equals("PromotionDelete")){
+		if(command.equals("promotionDelete")){
 			return new PromotionController().delete((PromotionPO)PO);
 		}
 		if(command.equals("accountAdd")){
