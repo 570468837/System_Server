@@ -24,7 +24,6 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		
 	}
 
-	@Override
 	public ResultMessage messageCommand(String command, Object PO) throws RemoteException{
 		
 		if(command.equals("userLogin")){
