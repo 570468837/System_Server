@@ -1,11 +1,62 @@
 package DataService.UserDataService;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
 import PO.UserPO;
 import ResultMessage.ResultMessage;
 
 public class UserController implements UserDataService {
-
+	ArrayList<UserPO> users=new ArrayList<UserPO>(); 
+	
+	public UserController(){
+		read();
+		save();
+	}
+	
+	public void read(){
+		try {
+			FileInputStream fis;
+			fis = new FileInputStream("Datas\\UserPO.out");
+			ObjectInputStream oin;
+			oin = new ObjectInputStream(fis);
+			users=(ArrayList<UserPO>)oin.readObject();
+			} catch (FileNotFoundException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}          
+			catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+		     catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void save() {
+		try {
+			FileOutputStream fos;
+			ObjectOutputStream oos;
+			fos = new FileOutputStream("datas\\UserPO.out");
+			oos = new ObjectOutputStream(fos);
+			oos.writeObject(users);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}          
+		 catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+	}
+	
 	@Override
 	public ResultMessage check(UserPO po) {
 		// TODO Auto-generated method stub
@@ -19,12 +70,10 @@ public class UserController implements UserDataService {
 	@Override
 	public ResultMessage add(UserPO po) {
 		// TODO Auto-generated method stub
-		if(po.getUserName().equals("0002")){
-			return ResultMessage.add_success;
-		}
-		else{
-			return ResultMessage.add_failure;
-		}
+		read();
+		save();
+		
+		return null;
 	}
 
 	@Override
