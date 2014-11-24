@@ -8,8 +8,9 @@ import ResultMessage.ResultMessage;
 
 public class UserDataService_Driver {
 	public void drive(UserController userdataservice){
-		userdataservice.save();
-		userdataservice.read();
+		System.out.println(new UserController().add(new UserPO("nihao", null, null, 20)));
+		System.out.println(new UserController().add(new UserPO("nihao", null, null, 30)));
+		
 	}
 	
 	public static void main(String[] args){

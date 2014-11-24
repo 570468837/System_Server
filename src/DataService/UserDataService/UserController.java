@@ -1,5 +1,6 @@
 package DataService.UserDataService;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -22,9 +23,11 @@ public class UserController implements UserDataService {
 		try {
 			FileInputStream fis;
 			fis = new FileInputStream("Datas\\UserPO.out");
+			if(fis.available()>0){
 			ObjectInputStream oin;
 			oin = new ObjectInputStream(fis);
 			users=(ArrayList<UserPO>)oin.readObject();
+			}
 			} catch (FileNotFoundException e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
@@ -69,10 +72,22 @@ public class UserController implements UserDataService {
 	@Override
 	public ResultMessage add(UserPO po) {
 		// TODO Auto-generated method stub
-		read();
-		save();
-		
-		return null;
+		boolean exist=false;
+		if(!users.isEmpty()){
+		for(UserPO p:users){
+			if(p.getUserName().equals(po.getUserName())){
+				exist=true;
+				break;
+				}
+			}
+		}
+		if(!exist){
+			users.add(po);
+			save();
+			return ResultMessage.add_success;
+		}
+		else
+			return ResultMessage.add_failure;
 	}
 
 	@Override
