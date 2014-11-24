@@ -13,8 +13,7 @@ public class FinanceDataService_Driver {
 		financeDataService.delet(new AccountPO());
 		financeDataService.update(new AccountPO());
 		AccountPO account = new AccountPO() ;
-		account.setName("0001");
-		financeDataService.find(account);
+		financeDataService.find("0001");
 		financeDataService.insertCollection(new CollectionPO());
 		financeDataService.insertPayment(new PaymentPO());
 		financeDataService.insertCash(new CashPO());

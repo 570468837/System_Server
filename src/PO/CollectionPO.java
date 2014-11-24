@@ -1,13 +1,14 @@
 package PO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CollectionPO{
+public class CollectionPO implements Serializable{
 //�տ
 	String number ;
-	CustomerPO customer ;
-	UserPO user ;
-	ArrayList<TransferListItem> tfList = new ArrayList<TransferListItem>() ;//转账列表
+	String customer ;
+	String user ;
+	ArrayList<TransferListItemPO> tfList = new ArrayList<TransferListItemPO>() ;//转账列表
 	double total;
 	public CollectionPO(){
 		number = null ;
@@ -16,20 +17,20 @@ public class CollectionPO{
 	    total = 0 ;
 	}
 	
-	public CollectionPO(String theNumber,CustomerPO theCustomer,UserPO theUser,double theSum){
+	public CollectionPO(String theNumber,String theCustomer,String theUser,double theSum){
 		number = theNumber ;
 		customer = theCustomer ;
 		user = theUser ;
 		total = theSum ;
 	}
 	
-	public void add(TransferListItem theItem){
+	public void add(TransferListItemPO theItem){
 		tfList.add(theItem) ;
 	}
 	
 	public double getTotal(){
 		double total = 0 ;
-		for(TransferListItem theItem : tfList){
+		for(TransferListItemPO theItem : tfList){
 			total += theItem.getTransferMoney();
 		}
 		return total ;
@@ -40,16 +41,16 @@ public class CollectionPO{
 	public void setNumber(String number) {
 		this.number = number;
 	}
-	public CustomerPO getCustomer() {
+	public String getCustomer() {
 		return customer;
 	}
-	public void setCustomer(CustomerPO customer) {
+	public void setCustomer(String customer) {
 		this.customer = customer;
 	}
-	public UserPO getUser() {
+	public String getUser() {
 		return user;
 	}
-	public void setUser(UserPO user) {
+	public void setUser(String user) {
 		this.user = user;
 	}
 

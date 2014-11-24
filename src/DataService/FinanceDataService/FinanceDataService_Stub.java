@@ -1,6 +1,7 @@
 package DataService.FinanceDataService;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import PO.AccountPO;
 import PO.CashPO;
@@ -33,30 +34,35 @@ public class FinanceDataService_Stub implements FinanceDataService{
 	}
 
 	@Override
-	public AccountPO find(AccountPO account) throws RemoteException {
+	public ArrayList<Object> find(String keyword) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(account.getName().equals("0001")){
+		if(keyword.equals("0001")){
 			System.out.println("find success") ;
+		}else{
+			System.out.println("find fail") ;
 		}
-		return new AccountPO() ;
+		return new ArrayList<Object>() ;
 	}
 
 	@Override
-	public void insertPayment(PaymentPO payment) throws RemoteException {
+	public ResultMessage insertPayment(PaymentPO payment) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("add success") ;
+		return null ;
 	}
 
 	@Override
-	public void insertCollection(CollectionPO payment) throws RemoteException {
+	public ResultMessage insertCollection(CollectionPO payment) throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		return null ;
+
 	}
 
 	@Override
-	public void insertCash(CashPO cash) throws RemoteException {
+	public ResultMessage insertCash(CashPO cash) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("add success") ;
+		return null ;
 	}
 
 	@Override

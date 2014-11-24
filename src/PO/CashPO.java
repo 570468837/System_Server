@@ -1,21 +1,22 @@
 package PO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CashPO  {
+public class CashPO implements Serializable{
 	String number ; 
-	UserPO user ;
-	AccountPO account ;
-	ArrayList<CaseListItem> cases ;//条目清单
+	String user ;
+	String account ;
+	ArrayList<CaseListItemPO> cases ;//条目清单
 	double sum ;
     double getTotal(){
     	double total  = 0 ;
-    	for(CaseListItem theCase:cases){
+    	for(CaseListItemPO theCase:cases){
     		total += theCase.getCaseMoney() ;
     	}
     	return total ;
     }
-    void addCase(CaseListItem theCase){
+    void addCase(CaseListItemPO theCase){
     	this.cases.add(theCase) ;
     }
 	public String getNumber() {
@@ -24,16 +25,16 @@ public class CashPO  {
 	public void setNumber(String number) {
 		this.number = number;
 	}
-	public UserPO getUser() {
+	public String getUser() {
 		return user;
 	}
-	public void setUser(UserPO user) {
+	public void setUser(String user) {
 		this.user = user;
 	}
-	public AccountPO getAccount() {
+	public String getAccount() {
 		return account;
 	}
-	public void setAccount(AccountPO account) {
+	public void setAccount(String account) {
 		this.account = account;
 	}
 	public double getSum() {

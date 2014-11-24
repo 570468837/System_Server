@@ -1,22 +1,24 @@
 package PO;
 
+import java.io.Serializable;
+
 import PO.AccountPO;
 
-public class TransferListItem {
-	AccountPO account;
+public class TransferListItemPO implements Serializable{
+	String account;
 	double transferMoney ;
 	String remark ;
 	
-	public TransferListItem(AccountPO account, double transferMoney,
+	public TransferListItemPO(String account, double transferMoney,
 			String remark) {
 		this.account = account;
 		this.transferMoney = transferMoney;
 		this.remark = remark;
 	}
-	public AccountPO getAccount() {
+	public String getAccount() {
 		return account;
 	}
-	public void setAccount(AccountPO account) {
+	public void setAccount(String account) {
 		this.account = account;
 	}
 	public double getTransferMoney() {

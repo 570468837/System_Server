@@ -1,11 +1,13 @@
 package PO;
 
-public class CaseListItem {
+import java.io.Serializable;
+
+public class CaseListItemPO implements Serializable{
 	String casename ;
 	double caseMoney ; //金额
 	String remark;// 备注
 	
-	public CaseListItem(String casename,double caseMoney,String remark){
+	public CaseListItemPO(String casename,double caseMoney,String remark){
 		this.casename=casename;
 		this.caseMoney=caseMoney;
 		this.remark=remark;

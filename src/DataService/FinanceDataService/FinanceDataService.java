@@ -1,6 +1,7 @@
 package DataService.FinanceDataService;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import PO.AccountPO;
 import PO.CashPO;
@@ -12,9 +13,9 @@ public interface FinanceDataService {
 	public ResultMessage insertAccount(AccountPO account) throws RemoteException;
 	public ResultMessage delet(AccountPO account) throws RemoteException;
 	public ResultMessage update(AccountPO account) throws RemoteException;
-	public AccountPO find(AccountPO accout) throws RemoteException;
-	public void insertPayment(PaymentPO payment) throws RemoteException ;
-	public void insertCollection(CollectionPO payment) throws RemoteException ;
-	public void insertCash(CashPO cash) throws RemoteException ;
+	public ArrayList<Object> find(String keyword) throws RemoteException;
+	public ResultMessage insertPayment(PaymentPO payment) throws RemoteException ;
+	public ResultMessage insertCollection(CollectionPO payment) throws RemoteException ;
+	public ResultMessage insertCash(CashPO cash) throws RemoteException ;
 	public void finish() ;
 }

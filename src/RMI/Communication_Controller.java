@@ -12,13 +12,14 @@ import PO.PromotionPO;
 import PO.UserPO;
 import ResultMessage.ResultMessage;
 
+
 public class Communication_Controller extends UnicastRemoteObject implements Communication{
 	protected Communication_Controller() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
+
 	public void voidCommand(String command,Object PO) throws RemoteException{
 		// TODO Auto-generated method stub
 		
@@ -62,7 +63,7 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 			return null;
 		}
 
-	@Override
+
 	public ArrayList<Object> findObject(String command, String keywords)
 			throws RemoteException {
 		// TODO Auto-generated method stub
@@ -74,7 +75,7 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}
 	} 
 	
-	@Override
+
 	public ArrayList<Object> showObject(String command)
 			throws RemoteException {
 		// TODO Auto-generated method stub
