@@ -21,7 +21,7 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 
 
 	public void voidCommand(String command,Object PO) throws RemoteException{
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub 
 		
 	}
 
