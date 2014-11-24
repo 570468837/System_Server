@@ -16,7 +16,6 @@ public class UserController implements UserDataService {
 	
 	public UserController(){
 		read();
-		save();
 	}
 	
 	public void read(){
