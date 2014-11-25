@@ -71,7 +71,7 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 			return new UserController().find(keywords);
 		}
 		else{
-		return null;
+			return null;
 		}
 	} 
 	
@@ -79,7 +79,12 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 	public ArrayList<Object> showObject(String command)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		if(command.equals("userShow")){
+			return new UserController().show();
+		}
+		else{
+			return null;
+		}
 	}
 
 	
