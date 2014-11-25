@@ -1,9 +1,12 @@
 package DataService.InfoDataService;
 
+import java.util.ArrayList;
+
+import PO.ScreeningConditionPO;
 import ResultMessage.ResultMessage;
 
 public interface InfoDataService {
-	public ResultMessage findReceipt(String label)  ;
-	public void deletReceipt(String label) ;
+	public ArrayList<Object> findReceipt(ScreeningConditionPO PO)  ;
+	public ResultMessage deletReceipt(String number) ;
 	public String getSalesCondition(String time1 ,String time2) ;
 }

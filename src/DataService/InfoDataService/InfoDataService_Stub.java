@@ -1,28 +1,34 @@
 package DataService.InfoDataService;
 
+import java.util.ArrayList;
+
+import PO.ScreeningConditionPO;
 import ResultMessage.ResultMessage;
 
 public class InfoDataService_Stub implements InfoDataService {
 
-	public ResultMessage findReceipt(String label)  {
+	public ArrayList<Object> findReceipt(ScreeningConditionPO PO)  {
 		// TODO Auto-generated method stub
-		if(label.equals("0001")) {
+		if(PO.getTime1().equals("0001")) {
 			System.out.println("success") ;
-			return ResultMessage.Exist ;
+			return null ;
 		}else{
 			System.out.println("fail") ;
-			return ResultMessage.Not_Exist ;
+			return null ;
 		}
 		
 	}
 
-	public void deletReceipt(String label) {
+	public ResultMessage deletReceipt(String label) {
 		// TODO Auto-generated method stub
 		if(label.equals("0001")) {
 			System.out.println("success") ;
+			return ResultMessage.delete_success ;
 		}else{
 			System.out.println("fail") ;
+			return ResultMessage.add_failure ;
 		}
+		
 	}
 
 	public String getSalesCondition(String time1, String time2) {
