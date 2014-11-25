@@ -1,6 +1,8 @@
 package PO;
 
-public class SalesListItemPO {
+import java.io.Serializable;
+
+public class SalesListItemPO implements Serializable{
 	private int quantity;
 	private double totalPrice;
 	private GoodsPO goodsPO;

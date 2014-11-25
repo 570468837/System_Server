@@ -1,8 +1,9 @@
 package PO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PurchaseReceiptPO {
+public class PurchaseReceiptPO implements Serializable{
 
 	private String serialNumber;
 	private UserPO userPO;
