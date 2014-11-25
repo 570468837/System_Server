@@ -46,7 +46,7 @@ public class UserController implements UserDataService {
 		try {
 			FileOutputStream fos;
 			ObjectOutputStream oos;
-			fos = new FileOutputStream("datas\\UserPO.out");
+			fos = new FileOutputStream("Datas\\UserPO.out");
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(users);
 		} catch (FileNotFoundException e) {
@@ -73,14 +73,12 @@ public class UserController implements UserDataService {
 	public ResultMessage add(UserPO po) {
 		// TODO Auto-generated method stub
 		boolean exist=false;
-		if(!users.isEmpty()){
 		for(UserPO p:users){
 			if(p.getUserName().equals(po.getUserName())){
 				exist=true;
 				break;
 				}
 			}
-		}
 		if(!exist){
 			users.add(po);
 			save();
@@ -93,32 +91,55 @@ public class UserController implements UserDataService {
 	@Override
 	public ResultMessage delete(UserPO po) {
 		// TODO Auto-generated method stub
-		if(po.getUserName().equals("0003"))
+		boolean exist=false;
+		for(UserPO p:users){
+			if(p.getUserName().equals(po.getUserName())){
+				users.remove(p);
+				exist=true;
+				break;
+				}
+			}
+		if(exist){
+			save();
 			return ResultMessage.delete_success;
-		else{
-			return ResultMessage.delete_failure;
 		}
+		else
+			return ResultMessage.delete_failure;
 	}
 
 	@Override
 	public ResultMessage update(UserPO po) {
 		// TODO Auto-generated method stub
-		if(po.getUserName().equals("0004")){
+		boolean exist=false;
+		for(UserPO p:users){
+			if(p.getUserName().equals(po.getUserName())){
+				p.setPassword(po.getPassword());
+				p.setUserSort(po.getUserSort());
+				p.setLevel(po.getLevel());
+				exist=true;
+				break;
+				}
+			}
+		if(exist){
+			save();
 			return ResultMessage.update_success;
 		}
-		else{
+		else
 			return ResultMessage.update_failure;
-		}
 	}
 
 	@Override
 	public ArrayList<Object> find(String userName) {
 		// TODO Auto-generated method stub
-		if(userName.equals("0005"));
-		ArrayList<Object> users=new ArrayList<Object>();
-		users.add(new UserPO("00051", " ", null, 0));
-		users.add(new UserPO("00052", " ", null, 0));
-		return users;
+		
+		return null;
+	}
+
+	@Override
+	public ArrayList<Object> show() {
+		// TODO Auto-generated method stub
+		ArrayList<Object> userobj=new ArrayList<Object>(users);
+		return userobj;
 	}
 
 }

@@ -1,33 +1,25 @@
 package DataService.PromotionDataService;
 
+import java.util.ArrayList;
+
 import PO.PromotionPO;
 import PO.UserPO;
 import ResultMessage.ResultMessage;
 
 public class PromotionDataService_Driver {
-	public void drive(PromotionDataService promotiondataservice){
-		PromotionPO po = new PromotionPO(null, null, null, 0, 0, null, 0, null, null, null);
-		ResultMessage result;
+	public void drive(PromotionController promotiondataservice){
+		PromotionPO po = new PromotionPO(null, "001", null, 0, 0, null, 0, null, null, null);
+		PromotionPO po1 = new PromotionPO(null, "001", null, 1, 0, null, 0, null, null, null);
+		System.out.println(new PromotionController().addGift(po));
+		System.out.println(new  PromotionController().delete(po));
+		System.out.println(new PromotionController().addGift(po1));
 		
-		result=promotiondataservice.addPackage(po);
-		if(result==ResultMessage.add_success)
-			System.out.println("add success!");
+		System.out.println(((PromotionPO) new PromotionController().show().get(0)).getPromotionId());
 		
-		result=promotiondataservice.addGift(po);
-		if(result==ResultMessage.add_success)
-			System.out.println("add success!");
-		
-		result=promotiondataservice.addVoucher(po);
-		if(result==ResultMessage.add_success)
-			System.out.println("add success!");
-		
-		result=promotiondataservice.delete(po);
-		if(result==ResultMessage.delete_success)
-			System.out.println("delete success!");
 	}
 	
 	public static void main(String[] args){
-		PromotionDataService promotionController=new PromotionController();
+		PromotionController promotionController=new PromotionController();
 		new PromotionDataService_Driver().drive(promotionController);
 	}
 }

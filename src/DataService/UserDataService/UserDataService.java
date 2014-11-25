@@ -11,4 +11,5 @@ public interface UserDataService {
     public ResultMessage delete(UserPO po);
     public ResultMessage update(UserPO po);
     public ArrayList<Object> find(String userName);
+    public ArrayList<Object> show();
 }

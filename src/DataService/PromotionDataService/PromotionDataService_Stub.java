@@ -1,5 +1,7 @@
 package DataService.PromotionDataService;
 
+import java.util.ArrayList;
+
 import PO.PromotionPO;
 import ResultMessage.ResultMessage;
 
@@ -27,6 +29,12 @@ public class PromotionDataService_Stub implements PromotionDataService{
 	public ResultMessage delete(PromotionPO po) {
 		// TODO Auto-generated method stub
 		return ResultMessage.delete_success;
+	}
+
+	@Override
+	public ArrayList<Object> show() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

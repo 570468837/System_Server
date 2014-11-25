@@ -39,4 +39,10 @@ public class UserDataService_Stub implements UserDataService{
 		return null;
 	}
 
+	@Override
+	public ArrayList<Object> show() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
