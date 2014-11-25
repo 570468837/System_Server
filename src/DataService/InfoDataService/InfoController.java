@@ -35,8 +35,9 @@ public class InfoController implements InfoDataService {
 	}
 
 	@Override
-	public ResultMessage deletReceipt(String label) {
+	public ResultMessage deletReceipt(String typeOfReceipt,String label) {
 		// TODO Auto-generated method stub
+		
 		return null ;
 	}
 
@@ -46,6 +47,13 @@ public class InfoController implements InfoDataService {
 		if(time1.equals("0001")){
 			System.out.println("success");
 		}
+		return null;
+	}
+
+	@Override
+	public ResultMessage deletAndUpdateReceipt(String typeOfreceipt,
+			String number) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

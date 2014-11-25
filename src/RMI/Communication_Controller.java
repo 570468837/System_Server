@@ -62,6 +62,9 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("accountUpdate")){
 			return new FinanceController().update((AccountPO)PO);
 		}
+		if(command.equals("receiptDeletAndUpdate")){
+			
+		}
 			return null;
 		}
 
@@ -110,6 +113,20 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		// TODO Auto-generated method stub
 		if(command.equals("showSalesConditionInfo")){
 			return new InfoController().getSalesCondition(time1, time2) ;
+		}
+		return null;
+	}
+
+
+	@Override
+	public ResultMessage mangeReceipt(String command, String typeOfReceipt,
+			String number) throws RemoteException {
+		// TODO Auto-generated method stub
+		if(command.equals("receiptDelet")){
+			return new InfoController().deletReceipt(typeOfReceipt, number) ;
+		}
+		if(command.equals("receiptDeletAndUpdat")){
+			return new InfoController().deletAndUpdateReceipt(typeOfReceipt, number) ;
 		}
 		return null;
 	}
