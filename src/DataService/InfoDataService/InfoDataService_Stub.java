@@ -19,7 +19,7 @@ public class InfoDataService_Stub implements InfoDataService {
 		
 	}
 
-	public ResultMessage deletReceipt(String label) {
+	public ResultMessage deletReceipt(String typeOfReceipt,String label) {
 		// TODO Auto-generated method stub
 		if(label.equals("0001")) {
 			System.out.println("success") ;
@@ -39,6 +39,13 @@ public class InfoDataService_Stub implements InfoDataService {
 			System.out.println("fail") ;
 		}
 		return null ;
+	}
+
+	@Override
+	public ResultMessage deletAndUpdateReceipt(String typeOfreceipt,
+			String number) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
