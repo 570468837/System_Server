@@ -4,25 +4,29 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import PO.CustomerPO;
+import ResultMessage.ResultMessage;
 
 public class CustomerDataService_Stub implements CustomerDataService {
 
 	@Override
-	public void insertCustomer(CustomerPO po) throws RemoteException {
+	public ResultMessage insertCustomer(CustomerPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("add customer success");
+		return null;
 	}
 
 	@Override
-	public void deleteCustomer(CustomerPO po) throws RemoteException {
+	public ResultMessage deleteCustomer(CustomerPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("delete customer success");
+		return null;
 	}
 
 	@Override
-	public void updateCustomer(CustomerPO po) throws RemoteException {
+	public ResultMessage updateCustomer(CustomerPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("update customer success");
+		return null;
 	}
 
 	@Override

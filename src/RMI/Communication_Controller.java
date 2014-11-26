@@ -4,11 +4,17 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import DataService.CustomerDataService.CustomerController;
 import DataService.FinanceDataService.FinanceController;
 import DataService.PromotionDataService.PromotionController;
+import DataService.PurchaseDataService.PurchaseController;
+import DataService.SalesDataService.SalesController;
 import DataService.UserDataService.UserController;
 import PO.AccountPO;
+import PO.CustomerPO;
 import PO.PromotionPO;
+import PO.PurchaseReceiptPO;
+import PO.SalesReceiptPO;
 import PO.UserPO;
 import ResultMessage.ResultMessage;
 
@@ -59,6 +65,20 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}
 		if(command.equals("accountUpdate")){
 			return new FinanceController().update((AccountPO)PO);
+		}
+		if(command.equals("addCustomer")){
+			return new CustomerController().insertCustomer((CustomerPO)PO);
+		}
+		if(command.equals("deleteCustomer")){
+			return new CustomerController().deleteCustomer((CustomerPO)PO);
+		}
+		if(command.equals("updateCustomer")){
+			return new CustomerController().updateCustomer((CustomerPO)PO);
+		}
+		if(command.equals("creat_purchase_receipt")){
+			 return new PurchaseController().addReceipt((PurchaseReceiptPO)PO);
+		}if(command.equals("creat_sales_receipt")){
+			return new SalesController().addReceipt((SalesReceiptPO)PO);
 		}
 			return null;
 		}

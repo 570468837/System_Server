@@ -4,25 +4,29 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import PO.SalesReceiptPO;
+import ResultMessage.ResultMessage;
 
 public class SalesController implements SalesDataService{
 
 	@Override
-	public void addReceipt(SalesReceiptPO po) throws RemoteException {
+	public ResultMessage addReceipt(SalesReceiptPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("add successful");
+		return ResultMessage.add_success;
 	}
 
 	@Override
-	public void deleteReceipt(SalesReceiptPO po) throws RemoteException {
+	public ResultMessage deleteReceipt(SalesReceiptPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("delete successful");
+		return ResultMessage.delete_success;
 	}
 
 	@Override
-	public void updateReceipt(SalesReceiptPO po) throws RemoteException {
+	public ResultMessage updateReceipt(SalesReceiptPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("update successful");
+		return ResultMessage.update_success;
 	}
 
 	@Override
