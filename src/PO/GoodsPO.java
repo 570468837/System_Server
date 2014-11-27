@@ -12,11 +12,12 @@ public class GoodsPO {
 	private double totalPrice;
 	private String comment;
 	
-	//记得加入commodityQuantity
+	
 	private GoodsClassPO goodsClass;
 	private double salePrice;
 	private double latestPrice;
 	private double latestSalePrice;
+	public int commodityQuantity;
 	
 	public GoodsPO() {}
 	public GoodsPO(String serialNumber, String name, String model, 

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import DataService.CustomerDataService.CustomerController;
 import DataService.FinanceDataService.FinanceController;
+import DataService.InfoDataService.InfoController;
 import DataService.PromotionDataService.PromotionController;
 import DataService.PurchaseDataService.PurchaseController;
 import DataService.SalesDataService.SalesController;
@@ -13,8 +14,12 @@ import DataService.UserDataService.UserController;
 import PO.AccountPO;
 import PO.CustomerPO;
 import PO.PromotionPO;
+<<<<<<< HEAD
 import PO.PurchaseReceiptPO;
 import PO.SalesReceiptPO;
+=======
+>>>>>>> FETCH_HEAD
+import PO.ScreeningConditionPO;
 import PO.UserPO;
 import ResultMessage.ResultMessage;
 
@@ -66,6 +71,7 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("accountUpdate")){
 			return new FinanceController().update((AccountPO)PO);
 		}
+<<<<<<< HEAD
 		if(command.equals("addCustomer")){
 			return new CustomerController().insertCustomer((CustomerPO)PO);
 		}
@@ -79,8 +85,16 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 			 return new PurchaseController().addReceipt((PurchaseReceiptPO)PO);
 		}if(command.equals("creat_sales_receipt")){
 			return new SalesController().addReceipt((SalesReceiptPO)PO);
+		}else{
+				return null;
+		}
+		
+=======
+		if(command.equals("receiptDeletAndUpdate")){
+			
 		}
 			return null;
+>>>>>>> FETCH_HEAD
 		}
 
 
@@ -91,7 +105,7 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 			return new UserController().find(keywords);
 		}
 		else{
-		return null;
+			return null;
 		}
 	} 
 	
@@ -99,6 +113,50 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 	public ArrayList<Object> showObject(String command)
 			throws RemoteException {
 		// TODO Auto-generated method stub
+		if(command.equals("userShow")){
+			return new UserController().show();
+		}
+		else{
+			return null;
+		}
+	}
+
+
+	@Override
+	public ArrayList<Object> showReceipt(String command,
+			ScreeningConditionPO condition) throws RemoteException {
+		// TODO Auto-generated method stub
+		if(command.equals("showSalesDetailsInfo")){
+			return new InfoController().findReceipt(condition) ;
+		}
+		if(command.equals("showSalesProcessInfo")){
+			return new InfoController().findReceipt(condition) ;
+		}
+		return null;
+	}
+
+
+	@Override
+	public String showSalesConditionInfo(String command, String time1, String time2)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		if(command.equals("showSalesConditionInfo")){
+			return new InfoController().getSalesCondition(time1, time2) ;
+		}
+		return null;
+	}
+
+
+	@Override
+	public ResultMessage mangeReceipt(String command, String typeOfReceipt,
+			String number) throws RemoteException {
+		// TODO Auto-generated method stub
+		if(command.equals("receiptDelet")){
+			return new InfoController().deletReceipt(typeOfReceipt, number) ;
+		}
+		if(command.equals("receiptDeletAndUpdat")){
+			return new InfoController().deletAndUpdateReceipt(typeOfReceipt, number) ;
+		}
 		return null;
 	}
 

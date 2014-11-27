@@ -4,26 +4,16 @@ package PO;
  * @author hutao
  *
  */
-public class SendCommodityPO extends CommodityBillPO {
-	private GoodsPO goodsPO;
-	private CustomerPO customerPO;
-	private int num;
+public class SendCommodityPO {
+	public long goodsVOId;
+	public String customerVOName;
+	public int num;
 	
 	public SendCommodityPO() {}
-	public SendCommodityPO(GoodsPO goodsPO, CustomerPO customerPO, int num) {
-		this.goodsPO = goodsPO;
-		this.customerPO = customerPO;
+	public SendCommodityPO(long goodsVOId, String customerVOName, int num) {
+		this.goodsVOId = goodsVOId;
+		this.customerVOName = customerVOName;
 		this.num = num;
-	}
-	
-	public GoodsPO getGoodsPO() {
-		return goodsPO;
-	}
-	public CustomerPO getCustomerPO() {
-		return customerPO;
-	}
-	public int getNum() {
-		return num;
 	}
 
 }
