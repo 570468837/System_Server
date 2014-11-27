@@ -15,8 +15,11 @@ import PO.AccountPO;
 import PO.CustomerPO;
 import PO.PromotionPO;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import PO.PurchaseReceiptPO;
 import PO.SalesReceiptPO;
+=======
+>>>>>>> FETCH_HEAD
 =======
 >>>>>>> FETCH_HEAD
 import PO.ScreeningConditionPO;
@@ -72,6 +75,7 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 			return new FinanceController().update((AccountPO)PO);
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if(command.equals("addCustomer")){
 			return new CustomerController().insertCustomer((CustomerPO)PO);
 		}
@@ -90,6 +94,8 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}
 		
 =======
+=======
+>>>>>>> FETCH_HEAD
 		if(command.equals("receiptDeletAndUpdate")){
 			
 		}
