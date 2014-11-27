@@ -87,6 +87,9 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("userShow")){
 			return new UserController().show();
 		}
+		if(command.equals("promotionShow")){
+			return new PromotionController().show();
+		}
 		else{
 			return null;
 		}
