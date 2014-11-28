@@ -6,12 +6,11 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
-import DataService.CommodityDataService.CommodityController;
 
 public class Communication_Start {
 	public static void main(String []args){
 		try {
-			Communication server=new Communication_Controller();
+			Communication server=new Communication_Controller(); 
 			LocateRegistry.createRegistry(8888);
 			 try {
 				Naming.bind("rmi://localhost:8888/MyServer",server);

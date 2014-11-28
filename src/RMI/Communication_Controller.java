@@ -65,7 +65,9 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("receiptDeletAndUpdate")){
 			
 		}
+		
 			return null;
+			
 		}
 
 
@@ -96,7 +98,6 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 	}
 
 
-	@Override
 	public ArrayList<Object> showReceipt(String command,
 			ScreeningConditionPO condition) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -106,11 +107,12 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("showSalesProcessInfo")){
 			return new InfoController().findReceipt(condition) ;
 		}
+		
 		return null;
 	}
 
 
-	@Override
+	
 	public String showSalesConditionInfo(String command, String time1, String time2)
 			throws RemoteException {
 		// TODO Auto-generated method stub
@@ -121,7 +123,6 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 	}
 
 
-	@Override
 	public ResultMessage mangeReceipt(String command, String typeOfReceipt,
 			String number) throws RemoteException {
 		// TODO Auto-generated method stub
