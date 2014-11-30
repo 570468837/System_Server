@@ -1,10 +1,13 @@
 package PO;
+
+import java.io.Serializable;
+
 /**
  * 
  * @author hutao gaoyang
  *
  */
-public class GoodsPO {
+public class GoodsPO implements Serializable{
 	private String serialNumber;
 	private String name;
 	private String model;
