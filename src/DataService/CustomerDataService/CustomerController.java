@@ -1,5 +1,6 @@
 package DataService.CustomerDataService;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -9,6 +10,8 @@ import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import Config.Level;
+import Config.Sort;
 import PO.CustomerPO;
 import ResultMessage.ResultMessage;
 
@@ -16,6 +19,7 @@ public class CustomerController implements CustomerDataService{
 
 ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>(); 
 	
+
 	public CustomerController(){
 		read();
 	}
@@ -23,7 +27,7 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 	public void read(){
 		try {
 			FileInputStream fis;
-			fis = new FileInputStream("Datas\\CustomerPO.out");
+			fis = new FileInputStream("Datas/CustomerPO.out");
 			if(fis.available()>0){
 			ObjectInputStream oin;
 			oin = new ObjectInputStream(fis);
@@ -47,7 +51,7 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 		try {
 			FileOutputStream fos;
 			ObjectOutputStream oos;
-			fos = new FileOutputStream("Datas\\CustomerPO.out");
+			fos = new FileOutputStream("Datas/CustomerPO.out");
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(customers);
 		} catch (FileNotFoundException e) {
@@ -72,6 +76,7 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 				if(!exist){
 					customers.add(po);
 					save();
+					System.out.println("success to insert a customer");
 					return ResultMessage.add_success;
 				}
 				else
@@ -131,6 +136,15 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 		customerList.add(new CustomerPO());
 		System.out.println("find customer successfully");
 		return customerList;
+	}
+	
+	public   void init(){
+		CustomerPO po=new CustomerPO("004", Sort.importer, Level.fiveClassVIP, "kuqe","110","there","00123", "@", "qiao");
+		customers.add(po);
+		save();
+	}
+	public static void main(String [] args){
+		new CustomerController().init();
 	}
 	
 }
