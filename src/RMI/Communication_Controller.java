@@ -14,14 +14,10 @@ import DataService.UserDataService.UserController;
 import PO.AccountPO;
 import PO.CustomerPO;
 import PO.PromotionPO;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import PO.PurchaseReceiptPO;
 import PO.SalesReceiptPO;
-=======
->>>>>>> FETCH_HEAD
-=======
->>>>>>> FETCH_HEAD
+
 import PO.ScreeningConditionPO;
 import PO.UserPO;
 import ResultMessage.ResultMessage;
@@ -74,8 +70,7 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("accountUpdate")){
 			return new FinanceController().update((AccountPO)PO);
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		if(command.equals("addCustomer")){
 			return new CustomerController().insertCustomer((CustomerPO)PO);
 		}
@@ -92,15 +87,7 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}else{
 				return null;
 		}
-		
-=======
-=======
->>>>>>> FETCH_HEAD
-		if(command.equals("receiptDeletAndUpdate")){
-			
-		}
-			return null;
->>>>>>> FETCH_HEAD
+
 		}
 
 
