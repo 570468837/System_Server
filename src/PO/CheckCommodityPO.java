@@ -1,6 +1,6 @@
 package PO;
 /**
- * 
+ * 库存查看的PO
  * @author hutao
  *
  */

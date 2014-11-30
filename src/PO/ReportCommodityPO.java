@@ -4,7 +4,7 @@ package PO;
  * @author hutao
  * 
  */
-public class ReportCommodityPO extends CommodityBillPO {
+public class ReportCommodityPO {
 	private GoodsPO goodsPO;
 	private int num;
 	

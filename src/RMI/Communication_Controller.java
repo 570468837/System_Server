@@ -72,9 +72,14 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}
 
 		if(command.equals("addCustomer")){
+<<<<<<< HEAD
 			return new CustomerController().insertCustomer((CustomerPO)PO);
 		}
 		
+=======
+			return new CustomerController().insertCustomer((CustomerPO)PO);
+		}
+>>>>>>> FETCH_HEAD
 		if(command.equals("deleteCustomer")){
 			return new CustomerController().deleteCustomer((CustomerPO)PO);
 		}
@@ -85,9 +90,14 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 			 return new PurchaseController().addReceipt((PurchaseReceiptPO)PO);
 		}if(command.equals("creat_sales_receipt")){
 			return new SalesController().addReceipt((SalesReceiptPO)PO);
+<<<<<<< HEAD
 		}
 
 			return null;
+=======
+		}
+				return null;
+>>>>>>> FETCH_HEAD
 		}
 
 

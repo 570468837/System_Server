@@ -1,5 +1,7 @@
 package DataService.CommodityDataService;
 
+import java.rmi.RemoteException;
+
 import PO.*;
 import ResultMessage.ResultMessage;
 
@@ -9,7 +11,7 @@ import ResultMessage.ResultMessage;
  *
  */
 public class CommodityDataService_Driver {
-	public void drive(CommodityDataService commodityController) {
+	public void drive(CommodityDataService commodityController) throws RemoteException {
 		ResultMessage resultMessage = commodityController.insertReportCommodity(new ReportCommodityPO());
 	    if(resultMessage == ResultMessage.add_success) {
 	    	System.out.println("reportCommodity add succcess");
@@ -33,7 +35,7 @@ public class CommodityDataService_Driver {
 	}
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws RemoteException {
 		CommodityDataService_Driver c = new CommodityDataService_Driver();
 		c.drive(new CommodityController());
 	}
