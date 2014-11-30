@@ -10,6 +10,8 @@ public class CollectionPO implements Serializable{
 	String user ;
 	ArrayList<TransferListItemPO> tfList = new ArrayList<TransferListItemPO>() ;//转账列表
 	double total;
+	boolean isProvedByManege = false ;
+	boolean isProvedByFinancer = false ;
 	public CollectionPO(){
 		number = null ;
 	    customer = null ;
