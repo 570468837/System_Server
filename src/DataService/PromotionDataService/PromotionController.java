@@ -126,23 +126,27 @@ ArrayList<PromotionPO> promotions=new ArrayList<PromotionPO>();
 	
 
 	@Override
-	public ArrayList<PromotionPO> ifPackage(SalesReceiptPO receipt) {
+	public ArrayList<Object> ifPackage(SalesReceiptPO receipt) {
 		// TODO Auto-generated method stub
-		ArrayList<PromotionPO> returnPromotions=new ArrayList<PromotionPO>();
+		ArrayList<Object> returnPromotions=new ArrayList<Object>();
 		ArrayList<SalesListItemPO> listItems=receipt.getSalesList();
 		ArrayList<String> goodsIds=new ArrayList<String>();
 		for(int i=0;i<listItems.size();i++){
 			goodsIds.add(listItems.get(i).getGoodsPO().getSerialNumber());
 		}
 		for(PromotionPO p:promotions){
-			ArrayList<GoodsPO> presents=new ArrayList<GoodsPO>();
-			
+			if(p.getPromotionType()==PromotionSort.Package){
+			GoodsPO goods1=p.getPromotionGoods().get(0);
+			GoodsPO goods2=p.getPromotionGoods().get(1);
+			if(goodsIds.contains(goods1.getSerialNumber())&&goodsIds.contains(goods2.getSerialNumber()))
+				returnPromotions.add(p);
+			}
 		}
 		return returnPromotions;
 	}
 	
-	public ArrayList<PromotionPO> ifGift(SalesReceiptPO receipt){
-		ArrayList<PromotionPO> returnPromotions=new ArrayList<PromotionPO>();
+	public ArrayList<Object> ifGift(SalesReceiptPO receipt){
+		ArrayList<Object> returnPromotions=new ArrayList<Object>();
 		for(PromotionPO p:promotions){
 			if(p.getPromotionType()==PromotionSort.Gifts){
 				if(receipt.getFinalprice()>=p.getLeastPrice()){
@@ -155,8 +159,15 @@ ArrayList<PromotionPO> promotions=new ArrayList<PromotionPO>();
 
 
 	@Override
-	public ArrayList<PromotionPO> ifVoucher(SalesReceiptPO receipt) {
+	public ArrayList<Object> ifVoucher(SalesReceiptPO receipt) {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Object> returnPromotions=new ArrayList<Object>();
+		for(PromotionPO p:promotions){
+			if(p.getPromotionType()==PromotionSort.Voucher){
+				if(receipt.getFinalprice()>=p.getLeastPrice())
+					returnPromotions.add(p);
+			}
+		}
+		return returnPromotions;
 	}
 }

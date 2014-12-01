@@ -12,9 +12,9 @@ public interface PromotionDataService {
 		public ResultMessage addVoucher(PromotionPO po);
 		public ResultMessage delete(PromotionPO po); 
 		public ArrayList<Object> show();
-		public ArrayList<PromotionPO> ifPackage(SalesReceiptPO receipt);
-		public ArrayList<PromotionPO> ifGift(SalesReceiptPO receipt);
-		public ArrayList<PromotionPO> ifVoucher(SalesReceiptPO receipt);
+		public ArrayList<Object> ifPackage(SalesReceiptPO receipt);
+		public ArrayList<Object> ifGift(SalesReceiptPO receipt);
+		public ArrayList<Object> ifVoucher(SalesReceiptPO receipt);
 		
 	
 }

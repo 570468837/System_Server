@@ -39,19 +39,19 @@ public class PromotionDataService_Stub implements PromotionDataService{
 	}
 
 	@Override
-	public ArrayList<PromotionPO> ifPackage(SalesReceiptPO receipt) {
+	public ArrayList<Object> ifPackage(SalesReceiptPO receipt) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<PromotionPO> ifGift(SalesReceiptPO receipt) {
+	public ArrayList<Object> ifGift(SalesReceiptPO receipt) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<PromotionPO> ifVoucher(SalesReceiptPO receipt) {
+	public ArrayList<Object> ifVoucher(SalesReceiptPO receipt) {
 		// TODO Auto-generated method stub
 		return null;
 	}
