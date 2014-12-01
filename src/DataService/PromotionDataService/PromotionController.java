@@ -8,7 +8,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import Config.PromotionSort;
 import PO.PromotionPO;
+import PO.SalesReceiptPO;
 import PO.UserPO;
 import ResultMessage.ResultMessage;
 
@@ -118,5 +120,33 @@ ArrayList<PromotionPO> promotions=new ArrayList<PromotionPO>();
 		// TODO Auto-generated method stub
 		ArrayList<Object> promotionobj=new ArrayList<Object>(promotions);
 		return promotionobj;
+	}
+	
+
+	@Override
+	public ArrayList<PromotionPO> ifPackage(SalesReceiptPO receipt) {
+		// TODO Auto-generated method stub
+		ArrayList<PromotionPO> returnPromotions=new ArrayList<PromotionPO>();
+		
+		return null;
+	}
+	
+	public ArrayList<PromotionPO> ifGift(SalesReceiptPO receipt){
+		ArrayList<PromotionPO> returnPromotions=new ArrayList<PromotionPO>();
+		for(PromotionPO p:promotions){
+			if(p.getPromotionType()==PromotionSort.Gifts){
+				if(receipt.getFinalprice()>=p.getLeastPrice()){
+					returnPromotions.add(p);
+				}
+			}
+		}
+		return returnPromotions;
+	}
+
+
+	@Override
+	public ArrayList<PromotionPO> ifVoucher(SalesReceiptPO receipt) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

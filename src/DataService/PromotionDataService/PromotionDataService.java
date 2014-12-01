@@ -3,6 +3,7 @@ package DataService.PromotionDataService;
 import java.util.ArrayList;
 
 import PO.PromotionPO;
+import PO.SalesReceiptPO;
 import ResultMessage.ResultMessage;
 
 public interface PromotionDataService {
@@ -11,5 +12,9 @@ public interface PromotionDataService {
 		public ResultMessage addVoucher(PromotionPO po);
 		public ResultMessage delete(PromotionPO po); 
 		public ArrayList<Object> show();
+		public ArrayList<PromotionPO> ifPackage(SalesReceiptPO receipt);
+		public ArrayList<PromotionPO> ifGift(SalesReceiptPO receipt);
+		public ArrayList<PromotionPO> ifVoucher(SalesReceiptPO receipt);
+		
 	
 }
