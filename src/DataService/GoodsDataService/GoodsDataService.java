@@ -11,14 +11,22 @@ import ResultMessage.ResultMessage;
  *
  */
 public interface GoodsDataService {
-	public ResultMessage insertGoods(GoodsPO goodsPO);
-	public ResultMessage deleteGoods(GoodsPO goodsPO);
-	public ResultMessage updateGoods(GoodsPO goodsPO);
-	public ArrayList<GoodsPO> searchGoods(String key);
+
+	public GoodsPO getGoodsByID(long id);
+	public GoodsPO getGoodsByInfo(String name, String model);
+	public ArrayList<GoodsPO> getGoodsVOList();
+	public GoodsClassPO getGoodsClassByID(long id);
+	public GoodsClassPO getGoodsClassByInfo(String name);
+	public ArrayList<GoodsClassPO> getGoodsClassVOList();
 	
-	public ResultMessage insertGoodsClass(GoodsClassPO goodsClassPO);
-	public ResultMessage deleteGoodsClass(GoodsClassPO goodsClassPO);
-	public ResultMessage updateGoodsClass(GoodsClassPO goodsClassPO);
+	public ResultMessage addGoods(GoodsPO goodsVO);
+	public ResultMessage delGoods(long id);
+	public ResultMessage updGoods(GoodsPO goodsVO);
+	public ArrayList<GoodsPO> searchGoods(String info);
+	
+	public ResultMessage addGoodsClass(GoodsClassPO goodsClassVO);
+	public ResultMessage delGoodsClass(long id);
+	public ResultMessage updGoodsClass(GoodsClassPO goodsClassVO);
 	
 	
 

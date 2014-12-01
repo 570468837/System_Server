@@ -13,7 +13,7 @@ import ResultMessage.ResultMessage;
  */
 public class GoodsDataService_Driver {
     public void drive(GoodsDataService goodsController) {
-		ResultMessage resultMessage = goodsController.insertGoods(new GoodsPO());
+		ResultMessage resultMessage = goodsController.addGoods(new GoodsPO());
     	if(resultMessage == ResultMessage.add_success) {
     		System.out.println("Goods add success");
     	}
@@ -21,15 +21,9 @@ public class GoodsDataService_Driver {
     		System.out.println("Goods add failure");
     	}
     	
-    	resultMessage = goodsController.deleteGoods(new GoodsPO());
-    	if(resultMessage == ResultMessage.delete_success) {
-    		System.out.println("Goods del success");
-    	}
-    	else {
-    		System.out.println("Goods del failure");
-    	}
+    
     	
-    	resultMessage = goodsController.updateGoods(new GoodsPO());
+    	resultMessage = goodsController.updGoods(new GoodsPO());
     	if(resultMessage == ResultMessage.update_success) {
     		System.out.println("Goods upd success");
     	}
@@ -45,7 +39,7 @@ public class GoodsDataService_Driver {
     		System.out.println("no match goods");
     	}
     	
-    	resultMessage = goodsController.insertGoodsClass(new GoodsClassPO());
+    	resultMessage = goodsController.addGoodsClass(new GoodsClassPO());
     	if(resultMessage == ResultMessage.add_success) {
     		System.out.println("GoodsClass add success");
     	}
@@ -53,15 +47,9 @@ public class GoodsDataService_Driver {
     		System.out.println("GoodsClass dd failure");
     	}
     	
-    	resultMessage = goodsController.deleteGoodsClass(new GoodsClassPO());
-    	if(resultMessage == ResultMessage.delete_success) {
-    		System.out.println("GoodsClass delete success");
-    	}
-    	else {
-    		System.out.println("GoodsClass delete failure");
-    	}
     	
-    	resultMessage = goodsController.updateGoodsClass(new GoodsClassPO());
+    	
+    	resultMessage = goodsController.updGoodsClass(new GoodsClassPO());
     	if(resultMessage == ResultMessage.add_success) {
     		System.out.println("GoodsClass upd success");
     	}
