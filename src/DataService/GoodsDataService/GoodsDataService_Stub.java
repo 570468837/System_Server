@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import PO.GoodsClassPO;
 import PO.GoodsPO;
+import PO.PurchaseReceiptPO;
+import PO.SalesReceiptPO;
 import ResultMessage.ResultMessage;
 
 /**
@@ -89,6 +91,18 @@ public class GoodsDataService_Stub implements GoodsDataService {
 	public ResultMessage updGoodsClass(GoodsClassPO goodsClassVO) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void purchaseChangeGoods(ArrayList<PurchaseReceiptPO> receipt) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void salesChangeGoods(ArrayList<SalesReceiptPO> receipt) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
