@@ -9,7 +9,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import Config.PromotionSort;
+import PO.GoodsPO;
 import PO.PromotionPO;
+import PO.SalesListItemPO;
 import PO.SalesReceiptPO;
 import PO.UserPO;
 import ResultMessage.ResultMessage;
@@ -127,8 +129,16 @@ ArrayList<PromotionPO> promotions=new ArrayList<PromotionPO>();
 	public ArrayList<PromotionPO> ifPackage(SalesReceiptPO receipt) {
 		// TODO Auto-generated method stub
 		ArrayList<PromotionPO> returnPromotions=new ArrayList<PromotionPO>();
-		
-		return null;
+		ArrayList<SalesListItemPO> listItems=receipt.getSalesList();
+		ArrayList<String> goodsIds=new ArrayList<String>();
+		for(int i=0;i<listItems.size();i++){
+			goodsIds.add(listItems.get(i).getGoodsPO().getSerialNumber());
+		}
+		for(PromotionPO p:promotions){
+			ArrayList<GoodsPO> presents=new ArrayList<GoodsPO>();
+			
+		}
+		return returnPromotions;
 	}
 	
 	public ArrayList<PromotionPO> ifGift(SalesReceiptPO receipt){
