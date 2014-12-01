@@ -62,4 +62,22 @@ public class PaymentPO implements Serializable{
 		}
 		return total ;
 	}
+
+	public boolean isProvedByManege() {
+		return isProvedByManege;
+	}
+
+	public void setProvedByManege(boolean isProvedByManege) {
+		this.isProvedByManege = isProvedByManege;
+	}
+
+	public boolean isProvedByFinancer() {
+		return isProvedByFinancer;
+	}
+
+	public void setProvedByFinancer(boolean isProvedByFinancer) {
+		this.isProvedByFinancer = isProvedByFinancer;
+	}
+	
+	
 }

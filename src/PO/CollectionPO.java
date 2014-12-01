@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class CollectionPO implements Serializable{
-//�տ
+
 	String number ;
 	String customer ;
 	String user ;
@@ -55,6 +55,24 @@ public class CollectionPO implements Serializable{
 	public void setUser(String user) {
 		this.user = user;
 	}
+
+	public boolean isProvedByManege() {
+		return isProvedByManege;
+	}
+
+	public void setProvedByManege(boolean isProvedByManege) {
+		this.isProvedByManege = isProvedByManege;
+	}
+
+	public boolean isProvedByFinancer() {
+		return isProvedByFinancer;
+	}
+
+	public void setProvedByFinancer(boolean isProvedByFinancer) {
+		this.isProvedByFinancer = isProvedByFinancer;
+	}
+	
+	
 
 	
 }
