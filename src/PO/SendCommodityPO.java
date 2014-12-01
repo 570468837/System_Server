@@ -5,14 +5,16 @@ package PO;
  *
  */
 public class SendCommodityPO {
-	public long goodsVOId;
-	public String customerVOName;
+	public long goodsPOId;
+	public String customerPOName;
 	public int num;
+	public boolean checked;
+	
 	
 	public SendCommodityPO() {}
-	public SendCommodityPO(long goodsVOId, String customerVOName, int num) {
-		this.goodsVOId = goodsVOId;
-		this.customerVOName = customerVOName;
+	public SendCommodityPO(long goodsPOId, String customerPOName, int num) {
+		this.goodsPOId = goodsPOId;
+		this.customerPOName = customerPOName;
 		this.num = num;
 	}
 
