@@ -23,7 +23,7 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 	public void read(){
 		try {
 			FileInputStream fis;
-			fis = new FileInputStream("Datas\\CustomerPO.out");
+			fis = new FileInputStream("Datas/CustomerPO.out");
 			if(fis.available()>0){
 			ObjectInputStream oin;
 			oin = new ObjectInputStream(fis);
@@ -47,7 +47,7 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 		try {
 			FileOutputStream fos;
 			ObjectOutputStream oos;
-			fos = new FileOutputStream("Datas\\CustomerPO.out");
+			fos = new FileOutputStream("Datas/CustomerPO.out");
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(customers);
 		} catch (FileNotFoundException e) {
@@ -72,6 +72,7 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 				if(!exist){
 					customers.add(po);
 					save();
+					System.out.println("添加客户成功");
 					return ResultMessage.add_success;
 				}
 				else

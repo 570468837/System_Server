@@ -1,8 +1,11 @@
 package DataService.GoodsDataService;
 
-import java.util.*;
+import java.util.ArrayList;
 
-import PO.*;
+import PO.GoodsClassPO;
+import PO.GoodsPO;
+import PO.PurchaseReceiptPO;
+import PO.SalesReceiptPO;
 import ResultMessage.ResultMessage;
 
 /**
@@ -27,6 +30,9 @@ public interface GoodsDataService {
 	public ResultMessage addGoodsClass(GoodsClassPO goodsClassVO);
 	public ResultMessage delGoodsClass(long id);
 	public ResultMessage updGoodsClass(GoodsClassPO goodsClassVO);
+	
+	public void purchaseChangeGoods(ArrayList<PurchaseReceiptPO> receipt);
+	public void salesChangeGoods(ArrayList<SalesReceiptPO> receipt);
 	
 	
 
