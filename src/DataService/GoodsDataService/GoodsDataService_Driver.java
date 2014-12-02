@@ -39,23 +39,9 @@ public class GoodsDataService_Driver {
     		System.out.println("no match goods");
     	}
     	
-    	resultMessage = goodsController.addGoodsClass(new GoodsClassPO());
-    	if(resultMessage == ResultMessage.add_success) {
-    		System.out.println("GoodsClass add success");
-    	}
-    	else {
-    		System.out.println("GoodsClass dd failure");
-    	}
     	
     	
     	
-    	resultMessage = goodsController.updGoodsClass(new GoodsClassPO());
-    	if(resultMessage == ResultMessage.add_success) {
-    		System.out.println("GoodsClass upd success");
-    	}
-    	else {
-    		System.out.println("GoodsClass upd failure");
-    	}
     	
 	}
 	
