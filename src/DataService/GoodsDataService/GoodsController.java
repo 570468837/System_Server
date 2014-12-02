@@ -110,11 +110,26 @@ public class GoodsController implements GoodsDataService{
 
 	/**
 	 * 添加商品
+	 * 在这个方法中商品获得编号
 	 */
 	@Override
 	public ResultMessage addGoods(GoodsPO goodsPO) {
-		// TODO Auto-generated method stub
-		return null;
+		gIter = goodsList.iterator();
+		GoodsPO g = null;
+		while(gIter.hasNext()) {
+			g = gIter.next();
+			if(g.getName().equals(goodsPO.getName()) && g.getModel().equals(goodsPO.getModel()))
+				return ResultMessage.add_failure;
+		}
+		if(g != null) {
+			g.setSerialNumber(Long.toString(Long.parseLong(
+					goodsList.get(goodsList.size() - 1).getSerialNumber()) + 1));
+			goodsList.add(g);
+			writeFile();
+			return ResultMessage.add_success;
+		}
+		return ResultMessage.add_failure;
+		
 	}
 
 	/**
@@ -122,19 +137,30 @@ public class GoodsController implements GoodsDataService{
 	 */
 	@Override
 	public ResultMessage delGoods(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		gIter = goodsList.iterator();
+		GoodsPO g = null;
+		while(gIter.hasNext()) {
+			g = gIter.next();
+			if(g.getSerialNumber().equals(Long.toString(id))) {
+				goodsList.remove(g);
+				writeFile();
+				return ResultMessage.delete_success;
+			}
+		}
+		return ResultMessage.delete_failure;
 	}
 	
     /**
      * 用于任何商品信息的更新
-     * 更新的内容依据传入的goodsPO属性而定，double和int若为0则不修改，否则修改，String若为"/"则不修改，否则修改
+     * 更新的内容依据传入的goodsPO属性而定，double和int若为-1则不修改，否则修改，String若为"/"则不修改，否则修改
      * id必须为正确的
      */
 	@Override
 	public ResultMessage updGoods(GoodsPO goodsPO) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		
+		
 	}
 
 	/**
