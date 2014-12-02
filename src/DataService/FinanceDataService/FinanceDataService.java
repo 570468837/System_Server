@@ -18,4 +18,5 @@ public interface FinanceDataService {
 	public ResultMessage insertCollection(CollectionPO payment) throws RemoteException ;
 	public ResultMessage insertCash(CashPO cash) throws RemoteException ;
 	public void finish() ;
+	public ArrayList<Object> show() throws RemoteException ;
 }

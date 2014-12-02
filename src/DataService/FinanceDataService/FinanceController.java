@@ -19,6 +19,7 @@ import ResultMessage.ResultMessage;
 public class FinanceController implements FinanceDataService {
 	ResultMessage result = null ;
 	ArrayList<AccountPO> accounts = new ArrayList<AccountPO>();
+	boolean isExist = false ;
 	
 	public FinanceController(){
 		read() ;
@@ -67,7 +68,6 @@ public class FinanceController implements FinanceDataService {
 	@Override
 	public ResultMessage insertAccount(AccountPO account) throws RemoteException {
 		// TODO Auto-generated method stub
-		boolean isExist = false ;
 		for(AccountPO theAccount : accounts){
 			if(theAccount.getName().equals(account.getName())){
 				isExist = true;
@@ -76,6 +76,7 @@ public class FinanceController implements FinanceDataService {
 		}
 		if(!isExist){
 			accounts.add(account) ;
+			save() ;
 			result = ResultMessage.add_success ;
 		}else{
 			result = ResultMessage.add_failure ;
@@ -85,7 +86,15 @@ public class FinanceController implements FinanceDataService {
 
 	@Override
 	public ResultMessage delet(AccountPO account) throws RemoteException {
-		if(account.getName().equals("0001")){
+		for(AccountPO theAccount : accounts){
+			if(account.getName().equals(theAccount.getName())){
+				isExist = true ;
+				accounts.remove(theAccount) ;
+				save();
+				break ;
+			}
+		}
+		if(isExist){
 			result = ResultMessage.delete_success ;
 		}else{
 			result = ResultMessage.delete_failure ;
@@ -107,18 +116,23 @@ public class FinanceController implements FinanceDataService {
 	@Override
 	public ArrayList<Object> find(String keyword) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(keyword.equals("0001")){
-			ArrayList<Object> accounts = new ArrayList<>() ;
-			accounts.add(new AccountPO(keyword,212)) ;
-			accounts.add(new AccountPO(keyword,366)) ;
-			System.out.println("find successd") ;
-			return accounts ;
-		}else{
-			System.out.println("find fail") ;
-			return null ;
+		ArrayList<Object> findAccounts = new ArrayList<Object>() ;
+		for(AccountPO theAccount:accounts){
+			if(theAccount.getName().contains(keyword)){
+				findAccounts.add(theAccount) ;
+			}
 		}
+		return findAccounts ;
 	}
+	
 
+	public ArrayList<Object> show() throws RemoteException {
+		ArrayList<Object> result = new ArrayList<Object>() ;
+		for(AccountPO theAccount :accounts){
+			result.add(theAccount) ;
+		}
+		return result;
+	}
 	@Override
 	public ResultMessage insertPayment(PaymentPO payment) throws RemoteException {
 		// TODO Auto-generated method stub

@@ -93,6 +93,9 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("userFind")){
 			return new UserController().find(keywords);
 		}
+		if(command.equals("accountFind")){
+			return new FinanceController().find(keywords) ;
+		}
 		else{
 			return null;
 		}
@@ -107,6 +110,9 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}
 		if(command.equals("promotionShow")){
 			return new PromotionController().show();
+		}
+		if(command.equals("accountShow")){
+			return new FinanceController().show() ;
 		}
 		else{
 			return null;

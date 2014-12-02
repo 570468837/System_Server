@@ -70,5 +70,11 @@ public class FinanceDataService_Stub implements FinanceDataService{
 		// TODO Auto-generated method stub
 		System.out.println("exit success") ;
 	}
+
+	@Override
+	public ArrayList<Object> show() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
