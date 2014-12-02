@@ -3,6 +3,7 @@ package DataService.GoodsDataService;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import PO.GoodsClassPO;
 import PO.GoodsPO;
@@ -18,6 +19,8 @@ import ResultMessage.ResultMessage;;
 public class GoodsController implements GoodsDataService{
 	ArrayList<GoodsPO> goodsList;
 	ArrayList<GoodsClassPO> goodsClassList;
+	Iterator<GoodsPO> gIter;
+	Iterator<GoodsClassPO> gcIter;
 	
 	public GoodsController() {
 		goodsList = new ArrayList<GoodsPO>();
@@ -26,49 +29,97 @@ public class GoodsController implements GoodsDataService{
 	}
 	
 	
-	
+	/**
+	 * 通过id获取商品对象
+	 */
 	@Override
 	public GoodsPO getGoodsByID(long id) {
-		// TODO Auto-generated method stub
+		gIter = goodsList.iterator();
+		GoodsPO g;
+		while(gIter.hasNext()) {
+			g = gIter.next();
+			if(g.getSerialNumber().equals(Long.toString(id)))
+				return g;
+		}
 		return null;
 	}
 
+	/**
+	 * 通过名字和型号获取商品对象
+	 */
 	@Override
 	public GoodsPO getGoodsByInfo(String name, String model) {
-		// TODO Auto-generated method stub
+		gIter = goodsList.iterator();
+		GoodsPO g;
+		while(gIter.hasNext()) {
+			g = gIter.next();
+			if(g.getName().equals(name) && g.getModel().equals(model))
+				return g;
+		}
+		System.out.println("goods not found");
 		return null;
 	}
 
+	/**
+	 * 获取商品列表
+	 */
 	@Override
 	public ArrayList<GoodsPO> getGoodsVOList() {
-		// TODO Auto-generated method stub
-		return null;
+		return goodsList;
 	}
 
+	/**
+	 * 通过商品分类id获取商品分类对象
+	 */
 	@Override
 	public GoodsClassPO getGoodsClassByID(long id) {
-		// TODO Auto-generated method stub
+		gcIter = goodsClassList.iterator();
+		GoodsClassPO gc;
+		while(gcIter.hasNext()) {
+			gc = gcIter.next();
+			if(gc.Num == id)
+				return gc;
+		}
+		System.out.println("goodsClass not found");
 		return null;
 	}
 
+	/**
+	 * 通过商品分类名获取商品分类对象
+	 */
 	@Override
 	public GoodsClassPO getGoodsClassByInfo(String name) {
-		// TODO Auto-generated method stub
+		gcIter = goodsClassList.iterator();
+		GoodsClassPO gc;
+		while(gcIter.hasNext()) {
+			gc = gcIter.next();
+			if(gc.goodsClassName.equals(name))
+				return gc;
+		}
+		System.out.println("goodsClass not found");
 		return null;
 	}
 
+	/**
+	 * 获取商品分类列表
+	 */
 	@Override
 	public ArrayList<GoodsClassPO> getGoodsClassVOList() {
-		// TODO Auto-generated method stub
-		return null;
+		return goodsClassList;
 	}
 
+	/**
+	 * 添加商品
+	 */
 	@Override
 	public ResultMessage addGoods(GoodsPO goodsVO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * 删除商品
+	 */
 	@Override
 	public ResultMessage delGoods(long id) {
 		// TODO Auto-generated method stub
@@ -86,40 +137,40 @@ public class GoodsController implements GoodsDataService{
 		return null;
 	}
 
+	/**
+	 * 搜索商品
+	 */
 	@Override
 	public ArrayList<GoodsPO> searchGoods(String info) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * 添加商品分类
+	 */
 	@Override
 	public ResultMessage addGoodsClass(GoodsClassPO goodsClassVO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * 删除商品分类
+	 */
 	@Override
 	public ResultMessage delGoodsClass(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * 更新商品分类
+	 */
 	@Override
 	public ResultMessage updGoodsClass(GoodsClassPO goodsClassVO) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public void purchaseChangeGoods(ArrayList<PurchaseReceiptPO> receipt) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void salesChangeGoods(ArrayList<SalesReceiptPO> receipt) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	private void readFile() {
@@ -133,6 +184,10 @@ public class GoodsController implements GoodsDataService{
 		
 		
 		
+		
+	}
+	
+	private void writeFile() {
 		
 	}
 	
