@@ -116,7 +116,15 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 	public ArrayList<Object> showObjectByPO(String command, Object PO)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		
+		if(command.equals("promotionIfPackage")){
+			return new PromotionController().ifPackage((SalesReceiptPO)PO);
+		}
+		if(command.equals("promotionIfGift")){
+			return new PromotionController().ifGift((SalesReceiptPO)PO);
+		}
+		if(command.equals("promotionIfVoucher")){
+			return new PromotionController().ifVoucher((SalesReceiptPO)PO);
+		}
 		return null;
 	}
 
