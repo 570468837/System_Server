@@ -1,5 +1,7 @@
 package DataService.GoodsDataService;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import PO.GoodsClassPO;
@@ -14,7 +16,17 @@ import ResultMessage.ResultMessage;;
  *
  */
 public class GoodsController implements GoodsDataService{
-
+	ArrayList<GoodsPO> goodsList;
+	ArrayList<GoodsClassPO> goodsClassList;
+	
+	public GoodsController() {
+		goodsList = new ArrayList<GoodsPO>();
+		goodsClassList = new ArrayList<GoodsClassPO>();
+		readFile();
+	}
+	
+	
+	
 	@Override
 	public GoodsPO getGoodsByID(long id) {
 		// TODO Auto-generated method stub
@@ -62,7 +74,12 @@ public class GoodsController implements GoodsDataService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+    /**
+     * 用于任何商品信息的更新
+     * 更新的内容依据传入的goodsVO属性而定，double和int若为0则不修改，否则修改，String若为"/"则不修改，否则修改
+     * id必须为正确的
+     */
 	@Override
 	public ResultMessage updGoods(GoodsPO goodsVO) {
 		// TODO Auto-generated method stub
@@ -105,7 +122,20 @@ public class GoodsController implements GoodsDataService{
 		
 	}
 
+	private void readFile() {
+		FileInputStream gfis, gcfis;
+		try {
+			gfis = new FileInputStream(goodsURL);
+			gcfis = new FileInputStream(goodsClassURL);
+		} catch (FileNotFoundException e) {
+			System.out.println("goodsPO.out or goodsClassPO.out not found");
+		}
+		
+		
+		
+		
+	}
 	
-	
-	
+	private static final String goodsURL = "Datas/GoodsPO.out";
+	private static final String goodsClassURL = "Datas/GoodsClassPO.out";
 }
