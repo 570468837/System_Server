@@ -13,7 +13,15 @@ public class GoodsClassPO implements Serializable{
 	public long Num;
 	public String goodsClassName;
 	
-	public GoodsClassPO() {}
+	/**
+	 * 用于创建新的gcp对象
+	 * @param gcp
+	 */
+	public GoodsClassPO(GoodsClassPO gcp) {
+		this.fatherGoodsClassNum = gcp.fatherGoodsClassNum;
+		this.Num = gcp.Num;
+		this.goodsClassName = gcp.goodsClassName;
+	}
 	public GoodsClassPO(GoodsClassPO fatherGoodsClass, String name) {
 		this.fatherGoodsClassNum = fatherGoodsClass.Num;
 		this.goodsClassName = name;

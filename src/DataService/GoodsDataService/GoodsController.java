@@ -30,7 +30,7 @@ public class GoodsController implements GoodsDataService{
 	
 	
 	/**
-	 * 通过id获取商品对象
+	 * 通过id获取新的商品对象
 	 */
 	@Override
 	public GoodsPO getGoodsByID(long id) {
@@ -39,13 +39,13 @@ public class GoodsController implements GoodsDataService{
 		while(gIter.hasNext()) {
 			g = gIter.next();
 			if(g.getSerialNumber().equals(Long.toString(id)))
-				return g;
+				return new GoodsPO(g);
 		}
 		return null;
 	}
 
 	/**
-	 * 通过名字和型号获取商品对象
+	 * 通过名字和型号获取新的商品对象
 	 */
 	@Override
 	public GoodsPO getGoodsByInfo(String name, String model) {
@@ -54,22 +54,27 @@ public class GoodsController implements GoodsDataService{
 		while(gIter.hasNext()) {
 			g = gIter.next();
 			if(g.getName().equals(name) && g.getModel().equals(model))
-				return g;
+				return new GoodsPO(g);
 		}
 		System.out.println("goods not found");
 		return null;
 	}
 
 	/**
-	 * 获取商品列表
+	 * 获取新的商品列表
 	 */
 	@Override
 	public ArrayList<GoodsPO> getGoodsPOList() {
-		return goodsList;
+		ArrayList<GoodsPO> gl = new ArrayList<GoodsPO>();
+		gIter = goodsList.iterator();
+		while(gIter.hasNext()) {
+			gl.add(new GoodsPO(gIter.next()));
+		}
+		return gl;
 	}
 
 	/**
-	 * 通过商品分类id获取商品分类对象
+	 * 通过商品分类id获取新的商品分类对象
 	 */
 	@Override
 	public GoodsClassPO getGoodsClassByID(long id) {
@@ -78,7 +83,7 @@ public class GoodsController implements GoodsDataService{
 		while(gcIter.hasNext()) {
 			gc = gcIter.next();
 			if(gc.Num == id)
-				return gc;
+				return new GoodsClassPO(gc);
 		}
 		System.out.println("goodsClass not found");
 		return null;
@@ -94,18 +99,23 @@ public class GoodsController implements GoodsDataService{
 		while(gcIter.hasNext()) {
 			gc = gcIter.next();
 			if(gc.goodsClassName.equals(name))
-				return gc;
+				return new GoodsClassPO(gc);
 		}
 		System.out.println("goodsClass not found");
 		return null;
 	}
 
 	/**
-	 * 获取商品分类列表
+	 * 获取新的商品分类列表
 	 */
 	@Override
 	public ArrayList<GoodsClassPO> getGoodsClassPOList() {
-		return goodsClassList;
+		ArrayList<GoodsClassPO> gcl = new ArrayList<GoodsClassPO>();
+		gcIter = goodsClassList.iterator();
+		while(gcIter.hasNext()) {
+			gcl.add(new GoodsClassPO(gcIter.next()));
+		}
+		return gcl;
 	}
 
 	/**
@@ -157,9 +167,26 @@ public class GoodsController implements GoodsDataService{
      */
 	@Override
 	public ResultMessage updGoods(GoodsPO goodsPO) {
-		
-		
-		
+		gIter = goodsList.iterator();
+		GoodsPO g;
+		while(gIter.hasNext()) {
+			g = gIter.next();
+			if(g.getSerialNumber().equals(goodsPO.getSerialNumber())) {
+				if(goodsPO.getName() != "/") g.setName(goodsPO.getName());
+				if(goodsPO.getModel() != "/") g.setModel(goodsPO.getModel());
+				if(goodsPO.getPrice() != -1) g.setPrice(goodsPO.getPrice());
+				if(goodsPO.getTotalPrice() != -1) g.setTotalPrice(goodsPO.getTotalPrice());
+				if(goodsPO.getComment() != "/") g.setComment(goodsPO.getComment());
+				//if(goodsPO.getGoodsClassName() != "/") g.setGoodsClassName(goodsPO.getGoodsClassName());
+				if(goodsPO.getSalePrice() != -1) g.setSalePrice(goodsPO.getSalePrice());
+				if(goodsPO.getLatestPrice() != -1) g.setLatestPrice(goodsPO.getLatestPrice());
+				if(goodsPO.getLatestSalePrice() != -1) g.setLatestSalePrice(goodsPO.getLatestSalePrice());
+				if(goodsPO.getCommodityQuantity() != -1) g.setCommodityQuantity(goodsPO.getCommodityQuantity());
+				writeFile();
+				return ResultMessage.update_success;
+			}
+		}
+		return ResultMessage.update_failure;
 		
 	}
 
