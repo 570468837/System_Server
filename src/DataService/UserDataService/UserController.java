@@ -22,7 +22,7 @@ public class UserController implements UserDataService {
 	public void read(){
 		try {
 			FileInputStream fis;
-			fis = new FileInputStream("Datas\\UserPO.out");
+			fis = new FileInputStream("Datas//UserPO.out");
 			if(fis.available()>0){
 			ObjectInputStream oin;
 			oin = new ObjectInputStream(fis);
@@ -46,7 +46,7 @@ public class UserController implements UserDataService {
 		try {
 			FileOutputStream fos;
 			ObjectOutputStream oos;
-			fos = new FileOutputStream("Datas\\UserPO.out");
+			fos = new FileOutputStream("Datas//UserPO.out");
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(users);
 		} catch (FileNotFoundException e) {
