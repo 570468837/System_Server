@@ -6,9 +6,19 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
+import javax.swing.JFrame;
+
 
 public class Communication_Start {
 	public static void main(String []args){
+		
+		//用来关闭服务器的Frame
+		JFrame serverFrame = new JFrame("高锰酸钾服务器");
+		serverFrame.setSize(250, 100);
+		serverFrame.setLocationRelativeTo(null);
+		serverFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		serverFrame.setVisible(true);
+		
 		try {
 			Communication server=new Communication_Controller(); 
 			LocateRegistry.createRegistry(8888);
