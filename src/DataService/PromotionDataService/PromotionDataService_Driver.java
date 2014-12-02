@@ -21,7 +21,7 @@ public class PromotionDataService_Driver {
 		System.out.println(new PromotionController().addVoucher(po));
 		System.out.println((new PromotionController().addGift(po1)));
 		System.out.println((new PromotionController().addPackage(po2)));
-		System.out.println((new PromotionController().delete(po3)));
+		//System.out.println((new PromotionController().delete(po3)));
 		System.out.println((new PromotionController().addPackage(po3)));
 		System.out.println(new PromotionController().show().size());
 	}

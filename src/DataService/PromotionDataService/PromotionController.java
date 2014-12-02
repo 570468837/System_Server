@@ -26,7 +26,7 @@ ArrayList<PromotionPO> promotions=new ArrayList<PromotionPO>();
 	public void read(){
 		try {
 			FileInputStream fis;
-			fis = new FileInputStream("Datas\\PromotionPO.out");
+			fis = new FileInputStream("Datas/PromotionPO.out");
 			if(fis.available()>0){
 			ObjectInputStream oin;
 			oin = new ObjectInputStream(fis);
@@ -50,7 +50,7 @@ ArrayList<PromotionPO> promotions=new ArrayList<PromotionPO>();
 		try {
 			FileOutputStream fos;
 			ObjectOutputStream oos;
-			fos = new FileOutputStream("Datas\\PromotionPO.out");
+			fos = new FileOutputStream("Datas/PromotionPO.out");
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(promotions);
 		} catch (FileNotFoundException e) {
