@@ -14,10 +14,8 @@ import DataService.UserDataService.UserController;
 import PO.AccountPO;
 import PO.CustomerPO;
 import PO.PromotionPO;
-
 import PO.PurchaseReceiptPO;
 import PO.SalesReceiptPO;
-
 import PO.ScreeningConditionPO;
 import PO.UserPO;
 import ResultMessage.ResultMessage;
@@ -115,6 +113,13 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}
 	}
 
+	public ArrayList<Object> showObjectByPO(String command, Object PO)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
+
 
 	public ArrayList<Object> showReceipt(String command,
 			ScreeningConditionPO condition) throws RemoteException {
@@ -153,5 +158,7 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		return null;
 	}
 
+
+	
 	
 	}
