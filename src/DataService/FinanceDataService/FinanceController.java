@@ -1,5 +1,11 @@
 package DataService.FinanceDataService;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -7,14 +13,69 @@ import PO.AccountPO;
 import PO.CashPO;
 import PO.CollectionPO;
 import PO.PaymentPO;
+import PO.AccountPO;
 import ResultMessage.ResultMessage;
 
 public class FinanceController implements FinanceDataService {
 	ResultMessage result = null ;
+	ArrayList<AccountPO> accounts = new ArrayList<AccountPO>();
+	
+	public FinanceController(){
+		read() ;
+	}
+	
+	public void read(){
+		try {
+			FileInputStream fis;
+			fis = new FileInputStream("Datas/AccountPO.out");
+			if(fis.available()>0){
+			ObjectInputStream oin;
+			oin = new ObjectInputStream(fis);
+			accounts=(ArrayList<AccountPO>)oin.readObject();
+			}
+			} catch (FileNotFoundException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}          
+			catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+		     catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void save() {
+		try {
+			FileOutputStream fos;
+			ObjectOutputStream oos;
+			fos = new FileOutputStream("Datas/AccountPO.out");
+			oos = new ObjectOutputStream(fos);
+			oos.writeObject(accounts);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}          
+		 catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+	}
+	
 	@Override
 	public ResultMessage insertAccount(AccountPO account) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(account.getName().equals("0001")){
+		boolean isExist = false ;
+		for(AccountPO theAccount : accounts){
+			if(theAccount.getName().equals(account.getName())){
+				isExist = true;
+				break;
+			}
+		}
+		if(!isExist){
+			accounts.add(account) ;
 			result = ResultMessage.add_success ;
 		}else{
 			result = ResultMessage.add_failure ;
@@ -24,7 +85,6 @@ public class FinanceController implements FinanceDataService {
 
 	@Override
 	public ResultMessage delet(AccountPO account) throws RemoteException {
-		// TODO Auto-generated method stub
 		if(account.getName().equals("0001")){
 			result = ResultMessage.delete_success ;
 		}else{

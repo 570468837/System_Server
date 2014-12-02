@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import PO.CustomerPO;
 import PO.PurchaseReceiptPO;
 import PO.UserPO;
 import ResultMessage.ResultMessage;
@@ -109,6 +110,31 @@ ArrayList<PurchaseReceiptPO> purchaseReceipts=new ArrayList<PurchaseReceiptPO>()
 		System.out.println("find successful");
 		return polist;
 	}
-
 	
+	public ArrayList<Object> show(){
+		ArrayList<Object> purchaseReceipts_2=new ArrayList<Object>(purchaseReceipts);
+		try {
+			FileInputStream fis;
+			fis = new FileInputStream("Datas/PurchaseReceiptPO.out");
+			if(fis.available()>0){
+			ObjectInputStream oin;
+			oin = new ObjectInputStream(fis);
+			purchaseReceipts_2=(ArrayList<Object>)oin.readObject();
+			}
+			} catch (FileNotFoundException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}          
+			catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+		     catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return purchaseReceipts_2;
+	}
+
 }

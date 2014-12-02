@@ -6,9 +6,6 @@ package PO;
  */
 public class InventoryCommodityPO {
 	
-	
-	public void print() {
-		System.out.println("<库存盘点信息>");
-	}
+	public String[][] icInfo;
 
 }

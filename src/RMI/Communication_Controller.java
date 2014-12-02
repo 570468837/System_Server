@@ -14,10 +14,8 @@ import DataService.UserDataService.UserController;
 import PO.AccountPO;
 import PO.CustomerPO;
 import PO.PromotionPO;
-
 import PO.PurchaseReceiptPO;
 import PO.SalesReceiptPO;
-
 import PO.ScreeningConditionPO;
 import PO.UserPO;
 import ResultMessage.ResultMessage;
@@ -80,6 +78,13 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("updateCustomer")){
 			return new CustomerController().updateCustomer((CustomerPO)PO);
 		}
+		if(command.equals("purchase_change_getting")){
+			return new CustomerController().purchaseChangeGetting((PurchaseReceiptPO)PO);
+		}
+		if(command.equals("sales_change_pay")){
+			return new CustomerController().salesChangePay((SalesReceiptPO)PO);
+		}
+		
 		if(command.equals("creat_purchase_receipt")){
 			 return new PurchaseController().addReceipt((PurchaseReceiptPO)PO);
 		}if(command.equals("creat_sales_receipt")){
@@ -110,9 +115,35 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("promotionShow")){
 			return new PromotionController().show();
 		}
+		if(command.equals("showCustomer")){
+			System.out.println("it does comes here to show customer");
+			 return new CustomerController().show();
+			 
+		}
+		if(command.equals("showPurchaseReceipts")){
+			return new PurchaseController().show();
+		}
+		if(command.equals("showSalesReceipts")){
+			return new SalesController().show();
+		}
 		else{
 			return null;
 		}
+	}
+
+	public ArrayList<Object> showObjectByPO(String command, Object PO)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		if(command.equals("promotionIfPackage")){
+			return new PromotionController().ifPackage((SalesReceiptPO)PO);
+		}
+		if(command.equals("promotionIfGift")){
+			return new PromotionController().ifGift((SalesReceiptPO)PO);
+		}
+		if(command.equals("promotionIfVoucher")){
+			return new PromotionController().ifVoucher((SalesReceiptPO)PO);
+		}
+		return null;
 	}
 
 
@@ -153,5 +184,7 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		return null;
 	}
 
+
+	
 	
 	}

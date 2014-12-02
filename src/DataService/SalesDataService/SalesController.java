@@ -104,4 +104,30 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 		System.out.println("find successful");
 		return polist;
 	}
+	
+	public ArrayList<Object> show(){
+		ArrayList<Object> salesReceipts_2=new ArrayList<Object>(salesReceipts);
+		try {
+			FileInputStream fis;
+			fis = new FileInputStream("Datas/SalesReceiptPO.out");
+			if(fis.available()>0){
+			ObjectInputStream oin;
+			oin = new ObjectInputStream(fis);
+			salesReceipts_2=(ArrayList<Object>)oin.readObject();
+			}
+			} catch (FileNotFoundException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}          
+			catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+		     catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return salesReceipts_2;
+	}
 }

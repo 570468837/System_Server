@@ -30,13 +30,20 @@ public class CustomerDataService_Stub implements CustomerDataService {
 	}
 
 	@Override
-	public ArrayList<CustomerPO> findCustomer(String key, int id)
+	public ArrayList<CustomerPO> findCustomer(String key)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		ArrayList<CustomerPO> customerList=new ArrayList<CustomerPO>();
 		customerList.add(new CustomerPO());
 		System.out.println("find customer successfully");
 		return customerList;
+	}
+
+	@Override
+	public CustomerPO getCustomerPOById(String serialnumber)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

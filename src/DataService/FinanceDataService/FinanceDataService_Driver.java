@@ -18,5 +18,14 @@ public class FinanceDataService_Driver {
 		financeDataService.insertPayment(new PaymentPO());
 		financeDataService.insertCash(new CashPO());
 	}
+	public static void main(String[] args){
+		FinanceController controller = new FinanceController();
+		try {
+			controller.insertAccount(new AccountPO("s盛宇",1000));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
 

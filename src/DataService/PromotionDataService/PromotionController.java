@@ -8,7 +8,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import Config.PromotionSort;
+import PO.GoodsPO;
 import PO.PromotionPO;
+import PO.SalesListItemPO;
+import PO.SalesReceiptPO;
 import PO.UserPO;
 import ResultMessage.ResultMessage;
 
@@ -22,7 +26,7 @@ ArrayList<PromotionPO> promotions=new ArrayList<PromotionPO>();
 	public void read(){
 		try {
 			FileInputStream fis;
-			fis = new FileInputStream("Datas\\PromotionPO.out");
+			fis = new FileInputStream("Datas/PromotionPO.out");
 			if(fis.available()>0){
 			ObjectInputStream oin;
 			oin = new ObjectInputStream(fis);
@@ -46,7 +50,7 @@ ArrayList<PromotionPO> promotions=new ArrayList<PromotionPO>();
 		try {
 			FileOutputStream fos;
 			ObjectOutputStream oos;
-			fos = new FileOutputStream("Datas\\PromotionPO.out");
+			fos = new FileOutputStream("Datas/PromotionPO.out");
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(promotions);
 		} catch (FileNotFoundException e) {
@@ -118,5 +122,52 @@ ArrayList<PromotionPO> promotions=new ArrayList<PromotionPO>();
 		// TODO Auto-generated method stub
 		ArrayList<Object> promotionobj=new ArrayList<Object>(promotions);
 		return promotionobj;
+	}
+	
+
+	@Override
+	public ArrayList<Object> ifPackage(SalesReceiptPO receipt) {
+		// TODO Auto-generated method stub
+		ArrayList<Object> returnPromotions=new ArrayList<Object>();
+		ArrayList<SalesListItemPO> listItems=receipt.getSalesList();
+		ArrayList<String> goodsIds=new ArrayList<String>();
+		for(int i=0;i<listItems.size();i++){
+			goodsIds.add(listItems.get(i).getGoodsPO().getSerialNumber());
+		}
+		for(PromotionPO p:promotions){
+			if(p.getPromotionType()==PromotionSort.Package){
+			GoodsPO goods1=p.getPromotionGoods().get(0);
+			GoodsPO goods2=p.getPromotionGoods().get(1);
+			if(goodsIds.contains(goods1.getSerialNumber())&&goodsIds.contains(goods2.getSerialNumber()))
+				returnPromotions.add(p);
+			}
+		}
+		return returnPromotions;
+	}
+	
+	public ArrayList<Object> ifGift(SalesReceiptPO receipt){
+		ArrayList<Object> returnPromotions=new ArrayList<Object>();
+		for(PromotionPO p:promotions){
+			if(p.getPromotionType()==PromotionSort.Gifts){
+				if(receipt.getFinalprice()>=p.getLeastPrice()){
+					returnPromotions.add(p);
+				}
+			}
+		}
+		return returnPromotions;
+	}
+
+
+	@Override
+	public ArrayList<Object> ifVoucher(SalesReceiptPO receipt) {
+		// TODO Auto-generated method stub
+		ArrayList<Object> returnPromotions=new ArrayList<Object>();
+		for(PromotionPO p:promotions){
+			if(p.getPromotionType()==PromotionSort.Voucher){
+				if(receipt.getFinalprice()>=p.getLeastPrice())
+					returnPromotions.add(p);
+			}
+		}
+		return returnPromotions;
 	}
 }
