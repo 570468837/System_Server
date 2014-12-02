@@ -13,7 +13,6 @@ import PO.GoodsPO;
 import PO.PromotionPO;
 import PO.SalesListItemPO;
 import PO.SalesReceiptPO;
-import PO.UserPO;
 import ResultMessage.ResultMessage;
 
 public class PromotionController implements PromotionDataService {
