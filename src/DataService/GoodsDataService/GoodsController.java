@@ -123,7 +123,7 @@ public class GoodsController implements GoodsDataService{
 	 * 在这个方法中商品获得编号
 	 */
 	@Override
-	public ResultMessage addGoods(GoodsPO goodsPO) {
+	public synchronized ResultMessage addGoods(GoodsPO goodsPO) {
 		gIter = goodsList.iterator();
 		GoodsPO g = null;
 		while(gIter.hasNext()) {
@@ -132,8 +132,13 @@ public class GoodsController implements GoodsDataService{
 				return ResultMessage.add_failure;
 		}
 		if(g != null) {
-			g.setSerialNumber(Long.toString(Long.parseLong(
-					goodsList.get(goodsList.size() - 1).getSerialNumber()) + 1));
+			if(goodsList.size() != 0) {
+				g.setSerialNumber(Long.toString(Long.parseLong(
+						goodsList.get(goodsList.size() - 1).getSerialNumber()) + 1));
+			}
+			else {
+				g.setSerialNumber("1000000000");
+			}
 			goodsList.add(g);
 			writeFile();
 			return ResultMessage.add_success;
@@ -146,7 +151,7 @@ public class GoodsController implements GoodsDataService{
 	 * 删除商品
 	 */
 	@Override
-	public ResultMessage delGoods(long id) {
+	public synchronized ResultMessage delGoods(long id) {
 		gIter = goodsList.iterator();
 		GoodsPO g = null;
 		while(gIter.hasNext()) {
@@ -166,7 +171,7 @@ public class GoodsController implements GoodsDataService{
      * id必须为正确的
      */
 	@Override
-	public ResultMessage updGoods(GoodsPO goodsPO) {
+	public synchronized ResultMessage updGoods(GoodsPO goodsPO) {
 		gIter = goodsList.iterator();
 		GoodsPO g;
 		while(gIter.hasNext()) {
@@ -203,25 +208,50 @@ public class GoodsController implements GoodsDataService{
 	 * 添加商品分类
 	 */
 	@Override
-	public ResultMessage addGoodsClass(GoodsClassPO goodsClassPO) {
-		// TODO Auto-generated method stub
-		return null;
+	public synchronized ResultMessage addGoodsClass(GoodsClassPO goodsClassPO) {
+		boolean hasFather = false;
+		gcIter = goodsClassList.iterator();
+		GoodsClassPO gcp;
+		while(gcIter.hasNext()) {
+			gcp = gcIter.next();
+			if(gcp.goodsClassName.equals(goodsClassPO.goodsClassName))
+				return ResultMessage.add_failure;
+			if(gcp.goodsClassName.equals(Long.toString(goodsClassPO.fatherGoodsClassNum)))
+				hasFather = true;
+		}
+		if(hasFather) {
+			goodsClassList.add(goodsClassPO);
+			writeFile();
+			return ResultMessage.add_success;
+		}
+		return ResultMessage.add_failure;
+		
 	}
 
 	/**
 	 * 删除商品分类
+	 * 递归地删除所有子类以及商品
 	 */
 	@Override
-	public ResultMessage delGoodsClass(long id) {
-		// TODO Auto-generated method stub
+	public synchronized ResultMessage delGoodsClass(long id) {
+		/*
+		ArrayList<GoodsClassPO> child = new ArrayList<GoodsClassPO>();
+		gcIter = goodsClassList.iterator();
+		GoodsClassPO g;
+		while(gcIter.hasNext()) {
+			g = gcIter.next();
+			
+		}
+		*/
 		return null;
+		
 	}
 
 	/**
 	 * 更新商品分类
 	 */
 	@Override
-	public ResultMessage updGoodsClass(GoodsClassPO goodsClassPO) {
+	public synchronized ResultMessage updGoodsClass(GoodsClassPO goodsClassPO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
