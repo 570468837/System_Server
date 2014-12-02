@@ -140,7 +140,7 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 	@Override
 	public CustomerPO getCustomerPOById(String serialnumber)
 			throws RemoteException {
-		ArrayList<CustomerPO> customers=this.show();
+		ArrayList<Object> customers=this.show();
 		CustomerPO customer=null;
 		for (Iterator iterator = customers.iterator(); iterator.hasNext();) {
 			CustomerPO customerPO = (CustomerPO) iterator.next();
@@ -157,11 +157,11 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 		try {
 			customer = getCustomerPOById(receipt.getCustomerPO().getNumber());
 		
-		//判断权限
-		if(userPO.getSelf().getLevel()!=3){
-			System.out.println("权限过低!");
-			return ResultMessage.update_failure;
-		}
+		//TODO 判断权限
+//		if(userPO.getSelf().getLevel()!=3){
+//			System.out.println("权限过低!");
+//			return ResultMessage.update_failure;
+//		}
 		//判断进货单还是进货退货单
 		//进货单
 		if(receipt.getSerialNumber().substring(0, 3).equals("JHD")){
@@ -188,11 +188,11 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 		try {
 			customer = getCustomerPOById(receipt.getCustomerPO().getNumber());
 		
-		//判断权限
-		if(userPO.getSelf().getLevel()!=3){
-			System.out.println("权限过低!");
-			return ResultMessage.update_failure;
-		}
+		//TODO 判断权限
+//		if(userPO.getSelf().getLevel()!=3){
+//			System.out.println("权限过低!");
+//			return ResultMessage.update_failure;
+//		}
 		//判断进货单还是进货退货单
 		//进货单
 		if(receipt.getSerialNumber().substring(0, 3).equals("XSD")){
