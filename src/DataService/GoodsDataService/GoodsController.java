@@ -2,13 +2,15 @@ package DataService.GoodsDataService;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import PO.GoodsClassPO;
 import PO.GoodsPO;
-import PO.PurchaseReceiptPO;
-import PO.SalesReceiptPO;
 import ResultMessage.ResultMessage;;
 
 /**
@@ -234,7 +236,7 @@ public class GoodsController implements GoodsDataService{
 	 */
 	@Override
 	public synchronized ResultMessage delGoodsClass(long id) {
-		/*
+		/* TODO
 		ArrayList<GoodsClassPO> child = new ArrayList<GoodsClassPO>();
 		gcIter = goodsClassList.iterator();
 		GoodsClassPO g;
@@ -257,20 +259,43 @@ public class GoodsController implements GoodsDataService{
 	}
 
 	private void readFile() {
-		FileInputStream gfis, gcfis;
+		FileInputStream 
+		    gfis = null,
+		    gcfis = null;
+		ObjectInputStream
+		    gois = null,
+		    gcois = null;
 		try {
 			gfis = new FileInputStream(goodsURL);
 			gcfis = new FileInputStream(goodsClassURL);
+			if(gfis.available() > 0) gois = new ObjectInputStream(gfis);
+			if(gcfis.available() > 0) gcois = new ObjectInputStream(gcfis);
+			goodsList = (ArrayList<GoodsPO>) gois.readObject();
+			goodsClassList = (ArrayList<GoodsClassPO>) gcois.readObject();
+			
 		} catch (FileNotFoundException e) {
 			System.out.println("goodsPO.out or goodsClassPO.out not found");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			System.out.println(".out读取问题");
 		}
-		
-		
-		
-		
 	}
 	
 	private void writeFile() {
+		try {
+			ObjectOutputStream goos = new ObjectOutputStream(new FileOutputStream(goodsURL));
+			ObjectOutputStream gcoos = new ObjectOutputStream(new FileOutputStream(goodsClassURL));
+			goos.writeObject(goodsList);
+			gcoos.writeObject(goodsClassList);
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
 		
 	}
 	

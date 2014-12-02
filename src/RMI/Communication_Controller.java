@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import DataService.CustomerDataService.CustomerController;
 import DataService.FinanceDataService.FinanceController;
+import DataService.GoodsDataService.GoodsController;
 import DataService.InfoDataService.InfoController;
 import DataService.PromotionDataService.PromotionController;
 import DataService.PurchaseDataService.PurchaseController;
@@ -13,18 +14,21 @@ import DataService.SalesDataService.SalesController;
 import DataService.UserDataService.UserController;
 import PO.AccountPO;
 import PO.CustomerPO;
+import PO.GoodsClassPO;
 import PO.PromotionPO;
 import PO.PurchaseReceiptPO;
 import PO.SalesReceiptPO;
 import PO.ScreeningConditionPO;
 import PO.UserPO;
+import PO.GoodsPO;
 import ResultMessage.ResultMessage;
 
 
 public class Communication_Controller extends UnicastRemoteObject implements Communication{
+	GoodsController goodsController;
 	protected Communication_Controller() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
+		goodsController = new GoodsController();
 	}
 
 
@@ -80,11 +84,31 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}
 		if(command.equals("creat_purchase_receipt")){
 			 return new PurchaseController().addReceipt((PurchaseReceiptPO)PO);
-		}if(command.equals("creat_sales_receipt")){
+		}
+		if(command.equals("creat_sales_receipt")){
 			return new SalesController().addReceipt((SalesReceiptPO)PO);
 		}
-				return null;
+		if(command.equals("goodsAdd")) {
+			return goodsController.addGoods((GoodsPO) PO);
 		}
+		if(command.equals("goodsDel")) {
+			return goodsController.delGoods(Long.parseLong(((GoodsPO) PO).getSerialNumber()));
+		}
+		if(command.equals("goodsUpd")) {
+			return goodsController.updGoods((GoodsPO) PO);
+		}
+		if(command.equals("goodsClassAdd")) {
+			return goodsController.addGoodsClass((GoodsClassPO) PO);
+		}
+        if(command.equals("goodsClassDel")) {
+        	return goodsController.delGoodsClass(((GoodsClassPO) PO).Num);
+		}
+        if(command.equals("goodsClassUpd")) {
+        	return goodsController.updGoodsClass((GoodsClassPO) PO);
+		}
+		
+		return null;
+	}
 
 
 	public ArrayList<Object> findObject(String command, String keywords)
