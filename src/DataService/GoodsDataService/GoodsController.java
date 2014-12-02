@@ -64,7 +64,7 @@ public class GoodsController implements GoodsDataService{
 	 * 获取商品列表
 	 */
 	@Override
-	public ArrayList<GoodsPO> getGoodsVOList() {
+	public ArrayList<GoodsPO> getGoodsPOList() {
 		return goodsList;
 	}
 
@@ -104,7 +104,7 @@ public class GoodsController implements GoodsDataService{
 	 * 获取商品分类列表
 	 */
 	@Override
-	public ArrayList<GoodsClassPO> getGoodsClassVOList() {
+	public ArrayList<GoodsClassPO> getGoodsClassPOList() {
 		return goodsClassList;
 	}
 
@@ -112,7 +112,7 @@ public class GoodsController implements GoodsDataService{
 	 * 添加商品
 	 */
 	@Override
-	public ResultMessage addGoods(GoodsPO goodsVO) {
+	public ResultMessage addGoods(GoodsPO goodsPO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -128,11 +128,11 @@ public class GoodsController implements GoodsDataService{
 	
     /**
      * 用于任何商品信息的更新
-     * 更新的内容依据传入的goodsVO属性而定，double和int若为0则不修改，否则修改，String若为"/"则不修改，否则修改
+     * 更新的内容依据传入的goodsPO属性而定，double和int若为0则不修改，否则修改，String若为"/"则不修改，否则修改
      * id必须为正确的
      */
 	@Override
-	public ResultMessage updGoods(GoodsPO goodsVO) {
+	public ResultMessage updGoods(GoodsPO goodsPO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -150,7 +150,7 @@ public class GoodsController implements GoodsDataService{
 	 * 添加商品分类
 	 */
 	@Override
-	public ResultMessage addGoodsClass(GoodsClassPO goodsClassVO) {
+	public ResultMessage addGoodsClass(GoodsClassPO goodsClassPO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -168,7 +168,7 @@ public class GoodsController implements GoodsDataService{
 	 * 更新商品分类
 	 */
 	@Override
-	public ResultMessage updGoodsClass(GoodsClassPO goodsClassVO) {
+	public ResultMessage updGoodsClass(GoodsClassPO goodsClassPO) {
 		// TODO Auto-generated method stub
 		return null;
 	}

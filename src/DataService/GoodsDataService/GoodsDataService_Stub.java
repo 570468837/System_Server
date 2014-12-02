@@ -28,7 +28,7 @@ public class GoodsDataService_Stub implements GoodsDataService {
 	}
 
 	@Override
-	public ArrayList<GoodsPO> getGoodsVOList() {
+	public ArrayList<GoodsPO> getGoodsPOList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -46,13 +46,13 @@ public class GoodsDataService_Stub implements GoodsDataService {
 	}
 
 	@Override
-	public ArrayList<GoodsClassPO> getGoodsClassVOList() {
+	public ArrayList<GoodsClassPO> getGoodsClassPOList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage addGoods(GoodsPO goodsVO) {
+	public ResultMessage addGoods(GoodsPO goodsPO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -64,7 +64,7 @@ public class GoodsDataService_Stub implements GoodsDataService {
 	}
 
 	@Override
-	public ResultMessage updGoods(GoodsPO goodsVO) {
+	public ResultMessage updGoods(GoodsPO goodsPO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -76,7 +76,7 @@ public class GoodsDataService_Stub implements GoodsDataService {
 	}
 
 	@Override
-	public ResultMessage addGoodsClass(GoodsClassPO goodsClassVO) {
+	public ResultMessage addGoodsClass(GoodsClassPO goodsClassPO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -88,22 +88,12 @@ public class GoodsDataService_Stub implements GoodsDataService {
 	}
 
 	@Override
-	public ResultMessage updGoodsClass(GoodsClassPO goodsClassVO) {
+	public ResultMessage updGoodsClass(GoodsClassPO goodsClassPO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public void purchaseChangeGoods(ArrayList<PurchaseReceiptPO> receipt) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void salesChangeGoods(ArrayList<SalesReceiptPO> receipt) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 	
 }
