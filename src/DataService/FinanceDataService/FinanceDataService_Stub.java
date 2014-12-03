@@ -5,8 +5,7 @@ import java.util.ArrayList;
 
 import PO.AccountPO;
 import PO.CashPO;
-import PO.CollectionPO;
-import PO.PaymentPO;
+import PO.CollectionOrPaymentPO;
 import ResultMessage.ResultMessage;
 
 public class FinanceDataService_Stub implements FinanceDataService{
@@ -44,15 +43,9 @@ public class FinanceDataService_Stub implements FinanceDataService{
 		return new ArrayList<Object>() ;
 	}
 
-	@Override
-	public ResultMessage insertPayment(PaymentPO payment) throws RemoteException {
-		// TODO Auto-generated method stub
-		System.out.println("add success") ;
-		return null ;
-	}
 
 	@Override
-	public ResultMessage insertCollection(CollectionPO payment) throws RemoteException {
+	public ResultMessage insertCollectionOrPaymentPO(CollectionOrPaymentPO payment) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null ;
 
@@ -73,6 +66,12 @@ public class FinanceDataService_Stub implements FinanceDataService{
 
 	@Override
 	public ArrayList<Object> show() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getReceiptNumber(String typeOfReceipt) {
 		// TODO Auto-generated method stub
 		return null;
 	}

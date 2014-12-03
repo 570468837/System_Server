@@ -3,8 +3,7 @@ package DataService.InfoDataService;
 import java.util.ArrayList;
 
 import PO.CashPO;
-import PO.CollectionPO;
-import PO.PaymentPO;
+import PO.CollectionOrPaymentPO;
 import PO.PurchaseReceiptPO;
 import PO.SalesReceiptPO;
 import PO.ScreeningConditionPO;
@@ -22,11 +21,8 @@ public class InfoController implements InfoDataService {
 		if(PO.getTypeOfReceipt().equals("PurchaseReceiptPO")){
 			objects.add(new PurchaseReceiptPO()) ;
 		}
-		if(PO.getTypeOfReceipt().equals("CollectionPO")){
-			objects.add(new CollectionPO());
-		}
-		if(PO.getTypeOfReceipt().equals("PaymentPO")){
-			objects.add(new PaymentPO()) ;
+		if(PO.getTypeOfReceipt().equals("CollectionOrPaymentPO")){
+			objects.add(new CollectionOrPaymentPO());
 		}
 		if(PO.getTypeOfReceipt().equals("CashPO")){
 			objects.add(new CashPO());

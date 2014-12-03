@@ -7,18 +7,25 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+
+import javax.print.CancelablePrintJob;
+
+import com.mysql.fabric.xmlrpc.base.Data;
 
 import PO.AccountPO;
 import PO.CashPO;
-import PO.CollectionPO;
-import PO.PaymentPO;
+import PO.CollectionOrPaymentPO;
 import PO.AccountPO;
 import ResultMessage.ResultMessage;
 
 public class FinanceController implements FinanceDataService {
 	ResultMessage result = null ;
 	ArrayList<AccountPO> accounts = new ArrayList<AccountPO>();
+	ArrayList<CollectionOrPaymentPO> cpReceipts = new ArrayList<CollectionOrPaymentPO>();
+	ArrayList<CashPO> cashReceipts = new ArrayList<CashPO>() ;
 	boolean isExist = false ;
 	
 	public FinanceController(){
@@ -27,13 +34,26 @@ public class FinanceController implements FinanceDataService {
 	
 	public void read(){
 		try {
-			FileInputStream fis;
-			fis = new FileInputStream("Datas/AccountPO.out");
-			if(fis.available()>0){
-			ObjectInputStream oin;
-			oin = new ObjectInputStream(fis);
-			accounts=(ArrayList<AccountPO>)oin.readObject();
+			FileInputStream fis1;
+			fis1 = new FileInputStream("Datas/AccountPO.out");
+			FileInputStream fis2  = new FileInputStream("Datas/CollectionOrPaymentPO.out") ;
+			FileInputStream fis3 = new FileInputStream("Datas/CashPO.out");
+			
+			if(fis1.available()>0&&fis2.available()>0&&fis3.available()>0){
+			ObjectInputStream oin1 ;
+			oin1 = new ObjectInputStream(fis1);
+			accounts=(ArrayList<AccountPO>)oin1.readObject();
 			}
+			
+			if(fis2.available()>0){
+				ObjectInputStream oin2 = new ObjectInputStream(fis2) ;
+				cpReceipts = (ArrayList<CollectionOrPaymentPO>)oin2.readObject() ;
+			}
+			if(fis3.available()>0){
+				ObjectInputStream oin3 = new ObjectInputStream(fis3) ;
+	    		cashReceipts = (ArrayList<CashPO>)oin3.readObject() ;
+			}
+			
 			} catch (FileNotFoundException e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
@@ -47,14 +67,21 @@ public class FinanceController implements FinanceDataService {
 			e.printStackTrace();
 		}
 	}
-	
 	public void save() {
 		try {
-			FileOutputStream fos;
-			ObjectOutputStream oos;
-			fos = new FileOutputStream("Datas/AccountPO.out");
-			oos = new ObjectOutputStream(fos);
-			oos.writeObject(accounts);
+			FileOutputStream fos1,fos2,fos3;
+			ObjectOutputStream oos1,oos2,oos3;
+			fos1 = new FileOutputStream("Datas/AccountPO.out");
+			oos1 = new ObjectOutputStream(fos1);
+			oos1.writeObject(accounts);
+			
+			fos2 = new FileOutputStream("Datas/CollectionOrPaymentPO.out") ;
+			oos2 = new ObjectOutputStream(fos2) ;
+			oos2.writeObject(cpReceipts);
+			
+			fos3 = new FileOutputStream("Datas/CashPO.out");
+			oos3 = new ObjectOutputStream(fos3) ;
+			oos3.writeObject(cashReceipts);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -133,19 +160,9 @@ public class FinanceController implements FinanceDataService {
 		}
 		return result;
 	}
-	@Override
-	public ResultMessage insertPayment(PaymentPO payment) throws RemoteException {
-		// TODO Auto-generated method stub
-		if(payment.getNumber().equals("0001")){
-			result = ResultMessage.add_success ;
-		}else{
-			result = ResultMessage.add_failure ;
-		}
-		return result ;
-	}
 
 	@Override
-	public ResultMessage insertCollection(CollectionPO collection) throws RemoteException {
+	public ResultMessage insertCollectionOrPaymentPO(CollectionOrPaymentPO collection) throws RemoteException {
 		// TODO Auto-generated method stub
 		if(collection.getNumber().equals("0001")){
 			result = ResultMessage.add_success ;
@@ -171,6 +188,62 @@ public class FinanceController implements FinanceDataService {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String getReceiptNumber(String typeOfReceipt) {
+		// TODO Auto-generated method stub
+		int count = 1 ;
+		String number = "" ;
+		typeOfReceipt = typeOfReceipt+"-"+getDate()+"-";
+		if(typeOfReceipt.equals("SKD")||typeOfReceipt.equals("FKD")){
+			for(CollectionOrPaymentPO theReceipt:cpReceipts){
+				if(theReceipt.getNumber().contains(typeOfReceipt))
+					count++ ;
+			}
+		}else{
+			if(typeOfReceipt.equals("XJFYD")){
+				for(CashPO theCash: cashReceipts){
+					if(theCash.getNumber().contains(typeOfReceipt))
+						count++ ;
+				}
+			}
+		}
+		if(count<10){
+			number = "000"+count ;
+		}else{
+			if(count<100){
+				number = "00"+count ;
+			}else{
+				if(count<1000){
+					number = "0"+count ;
+				}else{
+					number = String.valueOf(count) ;
+		  		}
+			}
+		}
+		return typeOfReceipt+number ;
+	}
 	
 
+	/*
+	 * 获得当前日期，形式：yyyymmdd
+	 */
+	public String getDate(){//yyyymmdd
+		Calendar cal = Calendar.getInstance() ;
+		int y = cal.get(Calendar.YEAR) ;
+		int m = cal.get(Calendar.MARCH) ;
+		int d = cal.get(Calendar.DAY_OF_MONTH) ;
+		String month = String.valueOf(m) ;
+		String day = String.valueOf(d) ;
+		if(m<10)
+			month = "0"+month ;
+		if(d<10)
+			day = "0" + day ;
+		String date = String.valueOf(y)+month+day ;
+		return date ;
+	}
+	public static void main(String[] args){
+		new FinanceController().save();
+	}
 }
+

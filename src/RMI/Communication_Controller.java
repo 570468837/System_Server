@@ -173,6 +173,18 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 	}
 
 
+	@Override
+	public String getReceiptNumber(String typeOfReceipt) throws RemoteException {
+		// TODO Auto-generated method stub
+		if(typeOfReceipt.equals("SKD")||typeOfReceipt.equals("FKD")){
+			return new FinanceController().getReceiptNumber(typeOfReceipt) ;
+		}
+		else{
+	    	return "错误";
+		}
+	}
+
+
 	
 	
 	}
