@@ -3,7 +3,7 @@ package PO;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CollectionPO implements Serializable{
+public class CollectionOrPaymentPO implements Serializable{
 
 	String number ;
 	String customer ;
@@ -12,14 +12,14 @@ public class CollectionPO implements Serializable{
 	double total;
 	boolean isProvedByManege = false ;
 	boolean isProvedByFinancer = false ;
-	public CollectionPO(){
+	public CollectionOrPaymentPO(){
 		number = null ;
 	    customer = null ;
 	    user = null ;
 	    total = 0 ;
 	}
 	
-	public CollectionPO(String theNumber,String theCustomer,String theUser,double theSum){
+	public CollectionOrPaymentPO(String theNumber,String theCustomer,String theUser,double theSum){
 		number = theNumber ;
 		customer = theCustomer ;
 		user = theUser ;

@@ -4,8 +4,7 @@ import java.rmi.RemoteException;
 
 import PO.AccountPO;
 import PO.CashPO;
-import PO.CollectionPO;
-import PO.PaymentPO;
+import PO.CollectionOrPaymentPO;
 
 public class FinanceDataService_Driver {
 	public void driver(FinanceDataService financeDataService) throws RemoteException{
@@ -14,8 +13,7 @@ public class FinanceDataService_Driver {
 		financeDataService.update(new AccountPO());
 		AccountPO account = new AccountPO() ;
 		financeDataService.find("0001");
-		financeDataService.insertCollection(new CollectionPO());
-		financeDataService.insertPayment(new PaymentPO());
+		financeDataService.insertCollectionOrPaymentPO(new CollectionOrPaymentPO());
 		financeDataService.insertCash(new CashPO());
 	}
 	public static void main(String[] args){

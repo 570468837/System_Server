@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import PO.AccountPO;
-import PO.CollectionPO;
+import PO.CollectionOrPaymentPO;
 import PO.TransferListItemPO;
 
 public class Collection_TotalIntegration_Tester {
@@ -15,7 +15,7 @@ public class Collection_TotalIntegration_Tester {
 		TransferListItemPO listItem1=new TransferListItemPO(null,100,null);
 		TransferListItemPO listItem2=new TransferListItemPO(null,200,null);
 		
-		CollectionPO collection=new CollectionPO();
+		CollectionOrPaymentPO collection=new CollectionOrPaymentPO();
 		collection.add(listItem1);
 		collection.add(listItem2);
 		
