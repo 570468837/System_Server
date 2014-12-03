@@ -151,7 +151,7 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 		return customer;
 	}
 	
-	public ResultMessage purchaseChangeGetting(PurchaseReceiptPO receipt){
+	public ResultMessage purchaseChangePay(PurchaseReceiptPO receipt){
 		//
 		CustomerPO customer;
 		try {
@@ -165,11 +165,11 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 		//判断进货单还是进货退货单
 		//进货单
 		if(receipt.getSerialNumber().substring(0, 3).equals("JHD")){
-			customer.setGetting(customer.getGetting()+receipt.getTotalPrice());
+			customer.setGetting(customer.getPay()+receipt.getTotalPrice());
 		}
 		//进货退货单
 		else{
-			customer.setGetting(customer.getGetting()-receipt.getTotalPrice());
+			customer.setGetting(customer.getPay()-receipt.getTotalPrice());
 		}
 		
 			this.updateCustomer(customer);
@@ -183,7 +183,7 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 		}
 	}
 	
-	public ResultMessage salesChangePay(SalesReceiptPO receipt){
+	public ResultMessage salesChangeGetting(SalesReceiptPO receipt){
 		CustomerPO customer;
 		try {
 			customer = getCustomerPOById(receipt.getCustomerPO().getNumber());
@@ -194,13 +194,13 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 //			return ResultMessage.update_failure;
 //		}
 		//判断进货单还是进货退货单
-		//进货单
+		//销售单
 		if(receipt.getSerialNumber().substring(0, 3).equals("XSD")){
-			customer.setGetting(customer.getPay()+receipt.getFinalprice());
+			customer.setGetting(customer.getGetting()+receipt.getFinalprice());
 		}
-		//进货退货单
+		//销售退货单
 		else{
-			customer.setGetting(customer.getPay()-receipt.getFinalprice());
+			customer.setGetting(customer.getGetting()-receipt.getFinalprice());
 		}
 		
 			this.updateCustomer(customer);
