@@ -139,8 +139,16 @@ public class UserController implements UserDataService {
 	@Override
 	public ArrayList<Object> find(String userName) {
 		// TODO Auto-generated method stub
-		
-		return null;
+		ArrayList<Object> userobj=new ArrayList<Object>();
+		UserPO findUser;
+		for(UserPO po:users){
+			if(po.getUserName().equals(userName)){
+				findUser=po;
+				userobj.add(findUser);
+				break;
+			}
+		}
+		return userobj;
 	}
 
 	@Override
