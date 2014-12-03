@@ -8,7 +8,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import Config.Level;
 import Config.PromotionSort;
+import PO.CustomerPO;
 import PO.GoodsPO;
 import PO.PromotionPO;
 import PO.SalesListItemPO;
@@ -137,7 +139,9 @@ ArrayList<PromotionPO> promotions=new ArrayList<PromotionPO>();
 			if(p.getPromotionType()==PromotionSort.Package){
 			GoodsPO goods1=p.getPromotionGoods().get(0);
 			GoodsPO goods2=p.getPromotionGoods().get(1);
-			if(goodsIds.contains(goods1.getSerialNumber())&&goodsIds.contains(goods2.getSerialNumber()))
+			if(goodsIds.contains(goods1.getSerialNumber())&&goodsIds.contains(goods2.getSerialNumber())
+					&&checkDateValid(receipt.getSerialNumber(), p)
+					&&checkCustomerValid(receipt.getCustomerPO(), p.getCustomer()))
 				returnPromotions.add(p);
 			}
 		}
@@ -148,7 +152,9 @@ ArrayList<PromotionPO> promotions=new ArrayList<PromotionPO>();
 		ArrayList<Object> returnPromotions=new ArrayList<Object>();
 		for(PromotionPO p:promotions){
 			if(p.getPromotionType()==PromotionSort.Gifts){
-				if(receipt.getFinalprice()>=p.getLeastPrice()){
+				if(receipt.getFinalprice()>=p.getLeastPrice()
+						&&checkDateValid(receipt.getSerialNumber(), p)
+						&&checkCustomerValid(receipt.getCustomerPO(), p.getCustomer())){
 					returnPromotions.add(p);
 				}
 			}
@@ -162,11 +168,32 @@ ArrayList<PromotionPO> promotions=new ArrayList<PromotionPO>();
 		// TODO Auto-generated method stub
 		ArrayList<Object> returnPromotions=new ArrayList<Object>();
 		for(PromotionPO p:promotions){
-			if(p.getPromotionType()==PromotionSort.Voucher){
+			if(p.getPromotionType()==PromotionSort.Voucher&&
+					checkDateValid(receipt.getSerialNumber(), p)&&
+					checkCustomerValid(receipt.getCustomerPO(),p.getCustomer())){
 				if(receipt.getFinalprice()>=p.getLeastPrice())
 					returnPromotions.add(p);
 			}
 		}
 		return returnPromotions;
+	}
+	
+	public boolean checkDateValid(String receiptNum,PromotionPO po){
+		String[] splitString=receiptNum.split("-");
+		String receiptDate=splitString[1];
+		int date=Integer.parseInt(receiptDate);
+		int startDate=Integer.parseInt(po.getStartTime());
+		int endDate=Integer.parseInt(po.getEndTime());
+		if(date>=startDate&&date<=endDate)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean checkCustomerValid(CustomerPO realCustomer,Level promotionCustomerLevel){
+		if((realCustomer.getLevel()).compareTo(promotionCustomerLevel)<0)
+			return false;
+		else
+			return true;
 	}
 }
