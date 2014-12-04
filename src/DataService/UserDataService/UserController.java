@@ -70,7 +70,6 @@ public class UserController implements UserDataService {
 				break;
 			}
 		}
-		System.out.println(exist);
 		if(exist)
 			return ResultMessage.login_success;
 		else
