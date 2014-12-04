@@ -25,7 +25,7 @@ public class InfoController implements InfoDataService {
 			objects.add(new CollectionOrPaymentPO());
 		}
 		if(PO.getTypeOfReceipt().equals("CashPO")){
-			objects.add(new CashPO());
+			objects.add(new CashPO(null,null,null,null,0));
 		}
 		return objects;
 	}

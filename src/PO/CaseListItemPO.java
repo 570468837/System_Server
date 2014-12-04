@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class CaseListItemPO implements Serializable{
 	String casename ;
-	double caseMoney ; //金额
-	String remark;// 备注
+	double caseMoney ; 
+	String remark ;
 	
 	public CaseListItemPO(String casename,double caseMoney,String remark){
 		this.casename=casename;
@@ -30,5 +30,5 @@ public class CaseListItemPO implements Serializable{
 	}
 	public void setRemark(String remark) {
 		this.remark = remark;
-	}
-	}
+	}//ע
+}

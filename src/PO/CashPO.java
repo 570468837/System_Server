@@ -9,7 +9,16 @@ public class CashPO implements Serializable{
 	String account ;
 	ArrayList<CaseListItemPO> cases ;//条目清单
 	double sum ;
-    double getTotal(){
+    public CashPO(String number, String user, String account,
+			ArrayList<CaseListItemPO> cases, double sum) {
+		super();
+		this.number = number;
+		this.user = user;
+		this.account = account;
+		this.cases = cases;
+		this.sum = sum;
+	}
+	double getTotal(){
     	double total  = 0 ;
     	for(CaseListItemPO theCase:cases){
     		total += theCase.getCaseMoney() ;

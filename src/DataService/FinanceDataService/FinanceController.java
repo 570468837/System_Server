@@ -172,12 +172,9 @@ public class FinanceController implements FinanceDataService {
 	@Override
 	public ResultMessage insertCash(CashPO cash) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(cash.getNumber().equals("0001")){
-			result = ResultMessage.add_success ;
-		}else{
-			result = ResultMessage.add_failure ;
-		}
-		return result ;
+		cashReceipts.add(cash) ;
+		save() ;
+		return ResultMessage.add_success ;
 	}
 
 	@Override
@@ -239,5 +236,7 @@ public class FinanceController implements FinanceDataService {
 		String date = String.valueOf(y)+month+day ;
 		return date ;
 	}
-
+public static void main(String[] args){
+	System.out.print(new FinanceController().cashReceipts.size());
+}
 }
