@@ -162,14 +162,11 @@ public class FinanceController implements FinanceDataService {
 	}
 
 	@Override
-	public ResultMessage insertCollectionOrPaymentPO(CollectionOrPaymentPO collection) throws RemoteException {
+	public ResultMessage insertCollectionOrPaymentPO(CollectionOrPaymentPO receipt) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(collection.getNumber().equals("0001")){
-			result = ResultMessage.add_success ;
-		}else{
-			result = ResultMessage.add_failure ;
-		}
-		return result ;
+		cpReceipts.add(receipt) ;
+		save() ;
+		return ResultMessage.add_success ;
 	}
 
 	@Override
@@ -194,7 +191,7 @@ public class FinanceController implements FinanceDataService {
 		// TODO Auto-generated method stub
 		int count = 1 ;
 		String number = "" ;
-		typeOfReceipt = typeOfReceipt+"-"+getDate()+"-";
+		String keyWord = typeOfReceipt+"-"+getDate()+"-";
 		if(typeOfReceipt.equals("SKD")||typeOfReceipt.equals("FKD")){
 			for(CollectionOrPaymentPO theReceipt:cpReceipts){
 				if(theReceipt.getNumber().contains(typeOfReceipt))
@@ -221,7 +218,7 @@ public class FinanceController implements FinanceDataService {
 		  		}
 			}
 		}
-		return typeOfReceipt+number ;
+		return keyWord+number ;
 	}
 	
 
@@ -242,8 +239,5 @@ public class FinanceController implements FinanceDataService {
 		String date = String.valueOf(y)+month+day ;
 		return date ;
 	}
-	public static void main(String[] args){
-		new FinanceController().save();
-	}
-}
 
+}

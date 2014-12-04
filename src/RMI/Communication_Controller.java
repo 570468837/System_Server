@@ -12,6 +12,7 @@ import DataService.PurchaseDataService.PurchaseController;
 import DataService.SalesDataService.SalesController;
 import DataService.UserDataService.UserController;
 import PO.AccountPO;
+import PO.CollectionOrPaymentPO;
 import PO.CustomerPO;
 import PO.PromotionPO;
 import PO.PurchaseReceiptPO;
@@ -59,6 +60,7 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("promotionDelete")){
 			return new PromotionController().delete((PromotionPO)PO);
 		}
+		
 		if(command.equals("accountAdd")){
 			return new FinanceController().insertAccount((AccountPO)PO) ;
 		}
@@ -67,6 +69,10 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}
 		if(command.equals("accountUpdate")){
 			return new FinanceController().update((AccountPO)PO);
+		}
+		if(command.equals("collectionOrPaymentAdd")){
+			return new FinanceController().insertCollectionOrPaymentPO((CollectionOrPaymentPO)PO) ;
+			
 		}
 
 		if(command.equals("addCustomer")){
@@ -179,12 +185,13 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(typeOfReceipt.equals("SKD")||typeOfReceipt.equals("FKD")){
 			return new FinanceController().getReceiptNumber(typeOfReceipt) ;
 		}
+		if(typeOfReceipt.equals("XJFYD")){
+			return new FinanceController().getReceiptNumber(typeOfReceipt);
+		}
 		else{
 	    	return "错误";
 		}
 	}
-
-
 	
 	
 	}

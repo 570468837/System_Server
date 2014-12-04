@@ -15,6 +15,7 @@ public class TransferListItemPO implements Serializable{
 		this.transferMoney = transferMoney;
 		this.remark = remark;
 	}
+	
 	public String getAccount() {
 		return account;
 	}
