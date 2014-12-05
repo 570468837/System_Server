@@ -123,6 +123,15 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("accountShow")){
 			return new FinanceController().show() ;
 		}
+		if(command.equals("showCustomer")){
+			return new CustomerController().show();
+		}
+		if(command.equals("showPurchaseReceipts")){
+			return new PurchaseController().show();
+		}
+		if(command.equals("showSalesReceipts")){
+			return new SalesController().show();
+		}
 		else{
 			return null;
 		}
