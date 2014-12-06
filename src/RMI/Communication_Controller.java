@@ -18,12 +18,12 @@ import ResultMessage.ResultMessage;
 
 
 public class Communication_Controller extends UnicastRemoteObject implements Communication{
-	GoodsController goodsController;
-	CommodityController commodityController;
+	public GoodsController goodsController;
+	public CommodityController commodityController;
 	protected Communication_Controller() throws RemoteException {
 		super();
 		goodsController = new GoodsController();
-		commodityController = new CommodityController();
+		commodityController = new CommodityController(this);
 		
 	}
 
