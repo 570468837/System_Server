@@ -33,6 +33,7 @@ public class GoodsController implements GoodsDataService{
 	
 	/**
 	 * 通过id获取新的商品对象
+	 * 在bl层也有实现
 	 */
 	@Override
 	public GoodsPO getGoodsByID(long id) {
@@ -48,6 +49,7 @@ public class GoodsController implements GoodsDataService{
 
 	/**
 	 * 通过名字和型号获取新的商品对象
+	 * 在bl层也有实现
 	 */
 	@Override
 	public GoodsPO getGoodsByInfo(String name, String model) {
@@ -77,6 +79,7 @@ public class GoodsController implements GoodsDataService{
 
 	/**
 	 * 通过商品分类id获取新的商品分类对象
+	 * 在bl层也有实现
 	 */
 	@Override
 	public GoodsClassPO getGoodsClassByID(long id) {
@@ -93,6 +96,7 @@ public class GoodsController implements GoodsDataService{
 
 	/**
 	 * 通过商品分类名获取商品分类对象
+	 * 在bl层也有实现
 	 */
 	@Override
 	public GoodsClassPO getGoodsClassByInfo(String name) {
@@ -222,6 +226,7 @@ public class GoodsController implements GoodsDataService{
 				hasFather = true;
 		}
 		if(hasFather) {
+			//TODO 编号
 			goodsClassList.add(goodsClassPO);
 			writeFile();
 			return ResultMessage.add_success;
