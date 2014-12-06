@@ -31,7 +31,7 @@ public class GoodsDataService_Driver {
     		System.out.println("Goods upd failure");
     	}
     	
-    	ArrayList<GoodsPO> GoodsPOList = goodsController.searchGoods(new String());
+    	ArrayList<Object> GoodsPOList = goodsController.searchGoods(new String());
     	if(GoodsPOList.size() != 0) {
     		System.out.println("Good shave searched");
     	}

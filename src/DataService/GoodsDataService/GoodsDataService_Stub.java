@@ -28,7 +28,7 @@ public class GoodsDataService_Stub implements GoodsDataService {
 	}
 
 	@Override
-	public ArrayList<GoodsPO> getGoodsPOList() {
+	public ArrayList<Object> getGoodsPOList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -46,7 +46,7 @@ public class GoodsDataService_Stub implements GoodsDataService {
 	}
 
 	@Override
-	public ArrayList<GoodsClassPO> getGoodsClassPOList() {
+	public ArrayList<Object> getGoodsClassPOList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -70,7 +70,7 @@ public class GoodsDataService_Stub implements GoodsDataService {
 	}
 
 	@Override
-	public ArrayList<GoodsPO> searchGoods(String info) {
+	public ArrayList<Object> searchGoods(String info) {
 		// TODO Auto-generated method stub
 		return null;
 	}

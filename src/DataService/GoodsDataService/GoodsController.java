@@ -66,8 +66,8 @@ public class GoodsController implements GoodsDataService{
 	 * 获取新的商品列表
 	 */
 	@Override
-	public ArrayList<GoodsPO> getGoodsPOList() {
-		ArrayList<GoodsPO> gl = new ArrayList<GoodsPO>();
+	public ArrayList<Object> getGoodsPOList() {
+		ArrayList<Object> gl = new ArrayList<Object>();
 		gIter = goodsList.iterator();
 		while(gIter.hasNext()) {
 			gl.add(new GoodsPO(gIter.next()));
@@ -111,8 +111,8 @@ public class GoodsController implements GoodsDataService{
 	 * 获取新的商品分类列表
 	 */
 	@Override
-	public ArrayList<GoodsClassPO> getGoodsClassPOList() {
-		ArrayList<GoodsClassPO> gcl = new ArrayList<GoodsClassPO>();
+	public ArrayList<Object> getGoodsClassPOList() {
+		ArrayList<Object> gcl = new ArrayList<Object>();
 		gcIter = goodsClassList.iterator();
 		while(gcIter.hasNext()) {
 			gcl.add(new GoodsClassPO(gcIter.next()));
@@ -201,7 +201,7 @@ public class GoodsController implements GoodsDataService{
 	 * 搜索商品
 	 */
 	@Override
-	public ArrayList<GoodsPO> searchGoods(String info) {
+	public ArrayList<Object> searchGoods(String info) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -245,7 +245,8 @@ public class GoodsController implements GoodsDataService{
 			
 		}
 		*/
-		return null;
+		System.out.println("goodsClass's del need to do");
+		return ResultMessage.delete_failure;
 		
 	}
 
@@ -254,8 +255,21 @@ public class GoodsController implements GoodsDataService{
 	 */
 	@Override
 	public synchronized ResultMessage updGoodsClass(GoodsClassPO goodsClassPO) {
-		// TODO Auto-generated method stub
-		return null;
+		gcIter = goodsClassList.iterator();
+		GoodsClassPO gcp;
+		while(gcIter.hasNext()) {
+			gcp = gcIter.next();
+			if(goodsClassPO.Num == gcp.Num) {
+				gcp.goodsClassName = new String(goodsClassPO.goodsClassName);
+				writeFile();
+				return ResultMessage.update_success;
+			}
+			
+		}
+		return ResultMessage.update_failure;
+		
+		
+		
 	}
 
 	private void readFile() {
