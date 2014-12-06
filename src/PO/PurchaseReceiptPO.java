@@ -23,6 +23,16 @@ public class PurchaseReceiptPO implements Serializable{
 	private boolean isApprovedByManager=false;
 	private boolean isApprovedByCommodity=false;
 	
+	public PurchaseReceiptPO(CustomerPO customerPO, String serialNumber,
+			UserPO userPO, String time, String comments, double totalPrice) {
+		this.customerPO=customerPO;
+		this.serialNumber=serialNumber;
+		this.userPO=userPO;
+		this.time=time;
+		this.comments=comments;
+		this.totalPrice=totalPrice;
+	}
+	
 	public boolean isApprovedByManager() {
 		return isApprovedByManager;
 	}
