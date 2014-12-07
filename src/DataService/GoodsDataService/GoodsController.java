@@ -72,7 +72,7 @@ public class GoodsController implements GoodsDataService{
 		ArrayList<Object> gl = new ArrayList<Object>();
 		gIter = goodsList.iterator();
 		while(gIter.hasNext()) {
-			gl.add(new GoodsPO(gIter.next()));
+			gl.add((Object)new GoodsPO(gIter.next()));
 		}
 		return gl;
 	}
