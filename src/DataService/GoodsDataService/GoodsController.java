@@ -214,19 +214,27 @@ public class GoodsController implements GoodsDataService{
 	 * 添加商品分类
 	 */
 	@Override
-	public synchronized ResultMessage addGoodsClass(GoodsClassPO goodsClassPO) {
+	public ResultMessage addGoodsClass(GoodsClassPO goodsClassPO) {
 		boolean hasFather = false;
 		gcIter = goodsClassList.iterator();
 		GoodsClassPO gcp;
+		System.out.println(goodsClassPO.fatherGoodsClassNum);
+		if(goodsClassPO.fatherGoodsClassNum == 0)
+			hasFather = true;
 		while(gcIter.hasNext()) {
 			gcp = gcIter.next();
 			if(gcp.goodsClassName.equals(goodsClassPO.goodsClassName))
 				return ResultMessage.add_failure;
-			if(gcp.goodsClassName.equals(Long.toString(goodsClassPO.fatherGoodsClassNum)))
-				hasFather = true;
+			hasFather = hasFather || gcp.goodsClassName.equals(Long.toString(goodsClassPO.fatherGoodsClassNum));
 		}
 		if(hasFather) {
-			//TODO 编号
+			System.out.println("ca");
+			if(goodsClassList.size() != 0) {
+				goodsClassPO.Num = goodsClassList.get(goodsClassList.size() - 1).Num + 1;
+			}
+			else {
+				goodsClassPO.Num = 1;
+			}
 			goodsClassList.add(goodsClassPO);
 			writeFile();
 			return ResultMessage.add_success;

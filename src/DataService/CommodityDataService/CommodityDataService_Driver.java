@@ -37,7 +37,7 @@ public class CommodityDataService_Driver {
 	
 	public static void main(String[] args) throws RemoteException {
 		CommodityDataService_Driver c = new CommodityDataService_Driver();
-		c.drive(new CommodityController());
+		//c.drive(new CommodityController());
 	}
 	
 	
