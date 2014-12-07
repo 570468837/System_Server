@@ -132,8 +132,16 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		ArrayList<CustomerPO> customerList=new ArrayList<CustomerPO>();
-		customerList.add(new CustomerPO());
-		System.out.println("find customer successfully");
+		ArrayList<Object> allCustomer=new ArrayList<Object>();
+		allCustomer=this.show();
+		//暂时只针对序列号和名字
+		for (Iterator iterator = allCustomer.iterator(); iterator.hasNext();) {
+			Object object = (Object) iterator.next();
+			CustomerPO temp=(CustomerPO)object;
+			if(temp.getNumber().contains(keyword)||temp.getName().contains(keyword)){
+				customerList.add(temp);
+			}
+		}
 		return customerList;
 	}
 
