@@ -237,7 +237,8 @@ public class FinanceController implements FinanceDataService {
 		return date ;
 	}
 public static void main(String[] args){
-	new FinanceController().save();
+	FinanceController f = new FinanceController() ;
+	f.save();
 }
 
 @Override

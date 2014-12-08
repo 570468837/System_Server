@@ -3,13 +3,14 @@ package PO;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
 public class CashPO implements Serializable{
 	String number ; 
 	String user ;
 	String account ;
-	ArrayList<CaseListItemPO> cases ;//条目清单
+	ArrayList<CaseListItemPO> cases = new ArrayList<CaseListItemPO>(); ;
 	double sum ;
-    public CashPO(String number, String user, String account,
+	public CashPO(String number, String user, String account,
 			ArrayList<CaseListItemPO> cases, double sum) {
 		super();
 		this.number = number;
@@ -18,16 +19,22 @@ public class CashPO implements Serializable{
 		this.cases = cases;
 		this.sum = sum;
 	}
-	double getTotal(){
-    	double total  = 0 ;
-    	for(CaseListItemPO theCase:cases){
-    		total += theCase.getCaseMoney() ;
-    	}
-    	return total ;
-    }
-    void addCase(CaseListItemPO theCase){
-    	this.cases.add(theCase) ;
-    }
+	public void addCase(CaseListItemPO theCase){
+		this.addCase(theCase);
+	}
+	public ArrayList<CaseListItemPO> getCases() {
+		return cases;
+	}
+	public void setCases(ArrayList<CaseListItemPO> cases) {
+		this.cases = cases;
+	}
+	public double getTotal(){
+		double total = 0 ;
+		for(CaseListItemPO theCase:cases){
+			total += theCase.getCaseMoney() ;
+		}
+		return total ;
+	}
 	public String getNumber() {
 		return number;
 	}
@@ -52,4 +59,5 @@ public class CashPO implements Serializable{
 	public void setSum(double sum) {
 		this.sum = sum;
 	}
+	
 }
