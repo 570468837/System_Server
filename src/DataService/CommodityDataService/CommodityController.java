@@ -1,10 +1,18 @@
 package DataService.CommodityDataService;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import DataService.GoodsDataService.GoodsController;
 import PO.CheckCommodityPO;
+import PO.GoodsClassPO;
 import PO.GoodsPO;
 import PO.InventoryCommodityPO;
 import PO.ReportCommodityPO;
@@ -18,10 +26,52 @@ import ResultMessage.ResultMessage;
  *
  */
 public class CommodityController implements CommodityDataService {
-	GoodsController goodsController;
+	public GoodsController goodsController;
+	public ArrayList<SendCommodityPO> sendList;
+	public ArrayList<ReportCommodityPO> reportList;
 	
 	public CommodityController(Communication_Controller communication_Controller) {
 		this.goodsController = communication_Controller.goodsController;
+		sendList = new ArrayList<SendCommodityPO>();
+		reportList = new ArrayList<ReportCommodityPO>();
+		readFile();
+		
+	}
+	
+	/**
+	 * TODO client相应接口
+	 * @return 待审批的赠送单
+	 */
+	public ArrayList<SendCommodityPO> showUncheckedSend() {
+		ArrayList<SendCommodityPO> unchecked = new ArrayList<SendCommodityPO>();
+		Iterator<SendCommodityPO> iter = sendList.iterator();
+		SendCommodityPO s;
+		while(iter.hasNext()) {
+			s = iter.next();
+			if(s.type == SendCommodityPO.UNCHECKED)
+				unchecked.add(new SendCommodityPO(s));
+		}
+		return unchecked;
+	}
+	/**TODO client相应接口
+	 * 审批赠送单
+	 * @param poList 待审批的赠送单
+	 */
+	public void updUncheckedSend(ArrayList<SendCommodityPO> poList) {
+		SendCommodityPO po;
+		for(int i = 0; i < poList.size(); i ++) {
+			po = poList.get(i);
+			Iterator<SendCommodityPO> iter = sendList.iterator();
+			SendCommodityPO s;
+			while(iter.hasNext()) {
+				s = iter.next();
+				if(po.date == s.date) {
+					s.type = po.type;
+					break;
+				}
+			}
+		}
+		writeSendFile();
 	}
 	
 	@Override
@@ -65,6 +115,62 @@ public class CommodityController implements CommodityDataService {
 		return icp;
 	}
 
+	@SuppressWarnings("unchecked")
+	private void readFile() {
+		FileInputStream 
+	        sfis = null,
+	        rfis = null;
+	    ObjectInputStream
+	        sois = null,
+	        rois = null;
+	    try {
+			sfis = new FileInputStream(sendURL);
+			rfis = new FileInputStream(reportURL);
+			if(sfis.available() > 0) sois = new ObjectInputStream(sfis);
+			if(rfis.available() > 0) rois = new ObjectInputStream(rfis);
+			sendList = (ArrayList<SendCommodityPO>) sois.readObject();
+			reportList = (ArrayList<ReportCommodityPO>) rois.readObject();
+			
+		} catch (FileNotFoundException e) {
+			System.out.println("sendCommodityPO or ReportCommodityPO.out not found");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			System.out.println(".out读取问题");
+		}
+		
+		
+	}
+	/**
+	 * 写入赠送单文件
+	 */
+	private void writeSendFile() {
+		try {
+			ObjectOutputStream soos = new ObjectOutputStream(new FileOutputStream(sendURL));
+			soos.writeObject(sendList);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	/**
+	 * 写入报单文件
+	 */
+	private void writeReportFile() {
+		try {
+			ObjectOutputStream roos = new ObjectOutputStream(new FileOutputStream(reportURL));
+			roos.writeObject(reportList);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
+	private final String sendURL = "Datas/SendCommodityPO";
+	private final String reportURL = "Datas/ReportCommodityPO";
+ 	
 }

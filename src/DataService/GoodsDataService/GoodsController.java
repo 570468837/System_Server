@@ -225,7 +225,7 @@ public class GoodsController implements GoodsDataService{
 			gcp = gcIter.next();
 			if(gcp.goodsClassName.equals(goodsClassPO.goodsClassName))
 				return ResultMessage.add_failure;
-			hasFather = hasFather || gcp.goodsClassName.equals(Long.toString(goodsClassPO.fatherGoodsClassNum));
+			hasFather = hasFather || (gcp.Num == goodsClassPO.fatherGoodsClassNum);
 		}
 		if(hasFather) {
 			System.out.println("ca");
@@ -267,13 +267,14 @@ public class GoodsController implements GoodsDataService{
 	 * 更新商品分类
 	 */
 	@Override
-	public synchronized ResultMessage updGoodsClass(GoodsClassPO goodsClassPO) {
+	public ResultMessage updGoodsClass(GoodsClassPO goodsClassPO) {
+		//TODO
 		gcIter = goodsClassList.iterator();
 		GoodsClassPO gcp;
 		while(gcIter.hasNext()) {
 			gcp = gcIter.next();
 			if(goodsClassPO.Num == gcp.Num) {
-				gcp.goodsClassName = new String(goodsClassPO.goodsClassName);
+				gcp.goodsClassName = goodsClassPO.goodsClassName;
 				writeFile();
 				return ResultMessage.update_success;
 			}
