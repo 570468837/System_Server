@@ -16,7 +16,7 @@ public class GoodsPO implements Serializable{
 	private String comment;
 	
 	
-	private String goodsClassName;
+	private long goodsClassNum;
 	private double salePrice;
 	private double latestPrice;
 	private double latestSalePrice;
@@ -29,7 +29,7 @@ public class GoodsPO implements Serializable{
 		this.price = -1;
 		this.totalPrice = -1;
 		this.comment = "/";
-		this.goodsClassName = "/";
+		this.goodsClassNum = -1;
 		this.salePrice = -1;
 		this.latestPrice = -1;
 		this.latestSalePrice = -1;
@@ -58,7 +58,7 @@ public class GoodsPO implements Serializable{
 		this.price = po.price;
 		this.totalPrice = po.totalPrice;
 		this.comment = po.comment;
-		this.goodsClassName = po.goodsClassName;
+		this.goodsClassNum = po.goodsClassNum;
 		this.salePrice = po.salePrice;
 		this.latestPrice = po.latestPrice;
 		this.latestSalePrice = po.latestSalePrice;
@@ -101,11 +101,11 @@ public class GoodsPO implements Serializable{
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public String getGoodsClassName() {
-		return goodsClassName;
+	public long getGoodsClassNum() {
+		return goodsClassNum;
 	}
-	public void setGoodsClassName(String goodsClassName) {
-		this.goodsClassName = goodsClassName;
+	public void setGoodsClassNum(long goodsClassNum) {
+		this.goodsClassNum = goodsClassNum;
 	}
 	public double getSalePrice() {
 		return salePrice;

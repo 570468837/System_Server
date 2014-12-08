@@ -27,6 +27,7 @@ public class GoodsController implements GoodsDataService{
 	public GoodsController() {
 		goodsList = new ArrayList<GoodsPO>();
 		goodsClassList = new ArrayList<GoodsClassPO>();
+		//!writeFile();
 		readFile();
 	}
 	
@@ -185,7 +186,7 @@ public class GoodsController implements GoodsDataService{
 				if(goodsPO.getPrice() != -1) g.setPrice(goodsPO.getPrice());
 				if(goodsPO.getTotalPrice() != -1) g.setTotalPrice(goodsPO.getTotalPrice());
 				if(goodsPO.getComment() != "/") g.setComment(goodsPO.getComment());
-				//if(goodsPO.getGoodsClassName() != "/") g.setGoodsClassName(goodsPO.getGoodsClassName());
+				//if(goodsPO.getGoodsClassNum() != -1) g.setGoodsClassNum(goodsPO.getGoodsClassNum());
 				if(goodsPO.getSalePrice() != -1) g.setSalePrice(goodsPO.getSalePrice());
 				if(goodsPO.getLatestPrice() != -1) g.setLatestPrice(goodsPO.getLatestPrice());
 				if(goodsPO.getLatestSalePrice() != -1) g.setLatestSalePrice(goodsPO.getLatestSalePrice());
