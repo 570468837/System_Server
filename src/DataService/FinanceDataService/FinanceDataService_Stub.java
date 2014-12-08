@@ -75,5 +75,17 @@ public class FinanceDataService_Stub implements FinanceDataService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ArrayList<Object> showCollectionOrPayment() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Object> showCash() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

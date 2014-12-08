@@ -17,5 +17,7 @@ public interface FinanceDataService {
 	public ResultMessage insertCash(CashPO cash) throws RemoteException ;
 	public void finish() ;
 	public ArrayList<Object> show() throws RemoteException ;
+	public ArrayList<Object> showCollectionOrPayment() throws RemoteException ;
+	public ArrayList<Object> showCash() throws RemoteException ;
 	public String getReceiptNumber(String typeOfReceipt) ;
 }

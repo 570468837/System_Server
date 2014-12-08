@@ -239,4 +239,18 @@ public class FinanceController implements FinanceDataService {
 public static void main(String[] args){
 	new FinanceController().save();
 }
+
+@Override
+public ArrayList<Object> showCollectionOrPayment() throws RemoteException {
+	// TODO Auto-generated method stub
+	ArrayList<Object> result = new ArrayList<>(cpReceipts) ;
+	return result ;
+}
+
+@Override
+public ArrayList<Object> showCash() throws RemoteException {
+	// TODO Auto-generated method stub
+	ArrayList<Object> result = new ArrayList<>(cashReceipts) ;
+	return result ;
+}
 }

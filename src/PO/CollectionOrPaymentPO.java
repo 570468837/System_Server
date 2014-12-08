@@ -26,6 +26,18 @@ public class CollectionOrPaymentPO implements Serializable{
 		trList = theTrList ;
 		total = theSum ;
 	}
+	public boolean isApprovedByManager() {
+		return isApprovedByManager;
+	}
+	public void setApprovedByManager(boolean isApprovedByManager) {
+		this.isApprovedByManager = isApprovedByManager;
+	}
+	public boolean isApprovedByFinancer() {
+		return isApprovedByFinancer;
+	}
+	public void setApprovedByFinancer(boolean isApprovedByFinancer) {
+		this.isApprovedByFinancer = isApprovedByFinancer;
+	}
 	public String getTypeOfCustomer() {
 		return typeOfCustomer;
 	}
