@@ -237,6 +237,6 @@ public class FinanceController implements FinanceDataService {
 		return date ;
 	}
 public static void main(String[] args){
-	System.out.print(new FinanceController().cashReceipts.size());
+	new FinanceController().save();
 }
 }
