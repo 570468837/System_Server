@@ -12,7 +12,6 @@ public class CollectionOrPaymentPO implements Serializable{
 	double total ;
 	boolean isApprovedByManager = false ;
 	boolean isApprovedByFinancer = false ;
-	
 	public CollectionOrPaymentPO(){
 		number = null ;
 		customer = null ;
