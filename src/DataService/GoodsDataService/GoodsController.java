@@ -137,19 +137,16 @@ public class GoodsController implements GoodsDataService{
 			if(g.getName().equals(goodsPO.getName()) && g.getModel().equals(goodsPO.getModel()))
 				return ResultMessage.add_failure;
 		}
-		if(g != null) {
-			if(goodsList.size() != 0) {
-				g.setSerialNumber(Long.toString(Long.parseLong(
-						goodsList.get(goodsList.size() - 1).getSerialNumber()) + 1));
-			}
-			else {
-				g.setSerialNumber("1000000000");
-			}
-			goodsList.add(g);
-			writeFile();
-			return ResultMessage.add_success;
+		if(goodsList.size() != 0) {
+			goodsPO.setSerialNumber(Long.toString(Long.parseLong(
+					goodsList.get(goodsList.size() - 1).getSerialNumber()) + 1));
 		}
-		return ResultMessage.add_failure;
+		else {
+			goodsPO.setSerialNumber("1000000000");
+		}
+		goodsList.add(goodsPO);
+		writeFile();
+		return ResultMessage.add_success;
 		
 	}
 
@@ -268,22 +265,27 @@ public class GoodsController implements GoodsDataService{
 	 */
 	@Override
 	public ResultMessage updGoodsClass(GoodsClassPO goodsClassPO) {
-		//TODO
 		gcIter = goodsClassList.iterator();
 		GoodsClassPO gcp;
+		GoodsClassPO toBeUpd = null;
+		boolean conflict = false;
 		while(gcIter.hasNext()) {
 			gcp = gcIter.next();
 			if(goodsClassPO.Num == gcp.Num) {
-				gcp.goodsClassName = goodsClassPO.goodsClassName;
-				writeFile();
-				return ResultMessage.update_success;
+				toBeUpd = gcp;
 			}
+			conflict = conflict || (goodsClassPO.goodsClassName.equals(gcp.goodsClassName));
 			
 		}
-		return ResultMessage.update_failure;
 		
-		
-		
+		if(!conflict && (toBeUpd != null)) {
+			toBeUpd.goodsClassName = goodsClassPO.goodsClassName;
+			writeFile();
+			return ResultMessage.update_success;
+		}
+		else {
+			return ResultMessage.update_failure;
+		}
 	}
 
 	private void readFile() {

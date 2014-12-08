@@ -40,7 +40,7 @@ public class GoodsPO implements Serializable{
 	//purchase 专用
 	public GoodsPO(String serialNumber, String name, String model, 
 		 double price, String comment) {
-
+		this();
 		this.serialNumber = serialNumber;
 		this.name = name;
 		this.model = model;
