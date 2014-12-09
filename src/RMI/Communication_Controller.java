@@ -245,5 +245,9 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}
 	}
 	
+	public Object someMethodForFinancer(String command,String time1,String time2){
+		
+		return null;
+	}
 	
 }
