@@ -10,6 +10,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import PO.CollectionOrPaymentPO;
 import PO.CustomerPO;
 import PO.PurchaseReceiptPO;
 import PO.SalesReceiptPO;
@@ -158,7 +159,47 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 		}
 		return customer;
 	}
+	public CustomerPO getCustomerPOByName(String name)throws RemoteException{
+		ArrayList<Object> customers=this.show();
+		CustomerPO customer=null;
+		for (Iterator iterator = customers.iterator(); iterator.hasNext();) {
+			CustomerPO customerPO = (CustomerPO) iterator.next();
+			if(customerPO.getNumber().equals(name)){
+				customer=customerPO;
+			}			
+		}
+		return customer;
+	}
 	
+	//收付款单修改应收应付
+	public ResultMessage collectionOrPaymentChangePayOrGetting(CollectionOrPaymentPO collectionOrPaymentPO){
+		//如果是收款单修改应付
+		CustomerPO customer;
+		try {
+			customer = this.getCustomerPOByName(collectionOrPaymentPO.getCustomer());
+			if(collectionOrPaymentPO.getNumber().substring(0, 3).equals("SKD")){
+				customer.setGetting(customer.getGetting()+collectionOrPaymentPO.getTotal());
+			}
+			else{
+				customer.setPay(customer.getPay()+collectionOrPaymentPO.getTotal());
+			}
+			
+			this.updateCustomer(customer);
+			return ResultMessage.update_success;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return ResultMessage.update_failure;
+		}
+		
+		
+		
+		
+	}
+	
+	
+	
+	//通过审批的进货单修改应付
 	public ResultMessage purchaseChangePay(PurchaseReceiptPO receipt){
 		//
 		CustomerPO customer;

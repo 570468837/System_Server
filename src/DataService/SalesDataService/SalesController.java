@@ -23,7 +23,7 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 	public void read(){
 		try {
 			FileInputStream fis;
-			fis = new FileInputStream("Datas\\SalesReceiptPO.out");
+			fis = new FileInputStream("Datas/SalesReceiptPO.out");
 			if(fis.available()>0){
 			ObjectInputStream oin;
 			oin = new ObjectInputStream(fis);
@@ -47,7 +47,7 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 		try {
 			FileOutputStream fos;
 			ObjectOutputStream oos;
-			fos = new FileOutputStream("Datas\\SalesReceiptPO.out");
+			fos = new FileOutputStream("Datas/SalesReceiptPO.out");
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(salesReceipts);
 		} catch (FileNotFoundException e) {
