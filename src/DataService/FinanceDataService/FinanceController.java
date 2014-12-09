@@ -187,17 +187,19 @@ public class FinanceController implements FinanceDataService {
 	public String getReceiptNumber(String typeOfReceipt) {
 		// TODO Auto-generated method stub
 		int count = 1 ;
+		
 		String number = "" ;
+		
 		String keyWord = typeOfReceipt+"-"+getDate()+"-";
 		if(typeOfReceipt.equals("SKD")||typeOfReceipt.equals("FKD")){
 			for(CollectionOrPaymentPO theReceipt:cpReceipts){
-				if(theReceipt.getNumber().contains(typeOfReceipt))
+				if(theReceipt.getNumber().contains(keyWord))
 					count++ ;
 			}
 		}else{
 			if(typeOfReceipt.equals("XJFYD")){
 				for(CashPO theCash: cashReceipts){
-					if(theCash.getNumber().contains(typeOfReceipt))
+					if(theCash.getNumber().contains(keyWord))
 						count++ ;
 				}
 			}
@@ -225,7 +227,7 @@ public class FinanceController implements FinanceDataService {
 	public String getDate(){//yyyymmdd
 		Calendar cal = Calendar.getInstance() ;
 		int y = cal.get(Calendar.YEAR) ;
-		int m = cal.get(Calendar.MARCH) ;
+		int m = cal.get(Calendar.MONTH) + 1 ;
 		int d = cal.get(Calendar.DAY_OF_MONTH) ;
 		String month = String.valueOf(m) ;
 		String day = String.valueOf(d) ;
@@ -238,7 +240,7 @@ public class FinanceController implements FinanceDataService {
 	}
 public static void main(String[] args){
 	FinanceController f = new FinanceController() ;
-	f.save();
+	System.out.print(f.getDate());
 }
 
 @Override
