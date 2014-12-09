@@ -39,11 +39,10 @@ public class CommodityController implements CommodityDataService {
 	}
 	
 	/**
-	 * TODO client相应接口
 	 * @return 待审批的赠送单
 	 */
-	public ArrayList<SendCommodityPO> showUncheckedSend() {
-		ArrayList<SendCommodityPO> unchecked = new ArrayList<SendCommodityPO>();
+	public ArrayList<Object> showUncheckedSend() {
+		ArrayList<Object> unchecked = new ArrayList<Object>();
 		Iterator<SendCommodityPO> iter = sendList.iterator();
 		SendCommodityPO s;
 		while(iter.hasNext()) {
@@ -53,11 +52,11 @@ public class CommodityController implements CommodityDataService {
 		}
 		return unchecked;
 	}
-	/**TODO client相应接口
+	/**
 	 * 审批赠送单
 	 * @param poList 待审批的赠送单
 	 */
-	public void updUncheckedSend(ArrayList<SendCommodityPO> poList) {
+	public ResultMessage updUncheckedSend(ArrayList<SendCommodityPO> poList) {
 		SendCommodityPO po;
 		for(int i = 0; i < poList.size(); i ++) {
 			po = poList.get(i);
@@ -72,6 +71,7 @@ public class CommodityController implements CommodityDataService {
 			}
 		}
 		writeSendFile();
+		return ResultMessage.update_success;
 	}
 	
 	@Override

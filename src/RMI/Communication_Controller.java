@@ -19,11 +19,11 @@ import ResultMessage.ResultMessage;
 
 public class Communication_Controller extends UnicastRemoteObject implements Communication{
 	public GoodsController goodsController;
-	//public CommodityController commodityController;
+	public CommodityController commodityController;
 	protected Communication_Controller() throws RemoteException {
 		super();
 		goodsController = new GoodsController();
-		//commodityController = new CommodityController(this);
+		commodityController = new CommodityController(this);
 		
 	}
 
@@ -109,6 +109,9 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("goodsClassUpd")) {
 			return goodsController.updGoodsClass((GoodsClassPO)PO);
 		}
+		if(command.equals("updUncheckedSend")) {
+			return commodityController.updUncheckedSend((ArrayList<SendCommodityPO>)PO);
+		}
 		
 		
 		return null;
@@ -162,7 +165,9 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("goodsClassListGet")) {
 			return goodsController.getGoodsClassPOList();
 		}
-		
+		if(command.equals("uncheckedSendShow")) {
+			return commodityController.showUncheckedSend();
+		}
 		
 		
 		
