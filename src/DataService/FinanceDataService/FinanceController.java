@@ -10,6 +10,7 @@ import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 
 import javax.print.CancelablePrintJob;
 
@@ -178,12 +179,6 @@ public class FinanceController implements FinanceDataService {
 	}
 
 	@Override
-	public void finish() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public String getReceiptNumber(String typeOfReceipt) {
 		// TODO Auto-generated method stub
 		int count = 1 ;
@@ -238,10 +233,7 @@ public class FinanceController implements FinanceDataService {
 		String date = String.valueOf(y)+month+day ;
 		return date ;
 	}
-public static void main(String[] args){
-	FinanceController f = new FinanceController() ;
-	System.out.print(f.getDate());
-}
+
 
 @Override
 public ArrayList<Object> showCollectionOrPayment() throws RemoteException {
@@ -255,5 +247,35 @@ public ArrayList<Object> showCash() throws RemoteException {
 	// TODO Auto-generated method stub
 	ArrayList<Object> result = new ArrayList<>(cashReceipts) ;
 	return result ;
+}
+
+@Override
+public ResultMessage updateCollectionOrPayment(CollectionOrPaymentPO po)
+		throws RemoteException {
+	// TODO Auto-generated method stub
+	result = ResultMessage.update_failure ;
+	for(CollectionOrPaymentPO theReceipt : cpReceipts){
+		if(theReceipt.getNumber().equals(po.getNumber())){
+			theReceipt.setCustomer(po.getCustomer());
+			theReceipt.setTypeOfCustomer(po.getTypeOfCustomer());
+			theReceipt.setUser(po.getUser());
+			theReceipt.setTrList(po.getTrList());
+			theReceipt.setTotal(po.getTotal());
+			theReceipt.setApprovedByManager(po.isApprovedByManager());
+			theReceipt.setApprovedByFinancer(po.isApprovedByFinancer());
+			result = ResultMessage.update_success ;
+		}
+	}
+	save() ;
+	return result;
+}
+@Override
+public void finish() {
+	// TODO Auto-generated method stub
+	
+}
+public static void main(String[] args){
+	FinanceController f = new FinanceController() ;
+	System.out.print(f.getDate());
 }
 }

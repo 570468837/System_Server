@@ -87,5 +87,12 @@ public class FinanceDataService_Stub implements FinanceDataService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public ResultMessage updateCollectionOrPayment(CollectionOrPaymentPO po)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

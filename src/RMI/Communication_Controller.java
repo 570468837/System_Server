@@ -72,6 +72,9 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("collectionOrPaymentAdd")){
 			return new FinanceController().insertCollectionOrPaymentPO((CollectionOrPaymentPO)PO) ;
 		}
+		if(command.equals("collectionOrPaymentUpdate")){
+			return new FinanceController().updateCollectionOrPayment((CollectionOrPaymentPO)PO) ;
+		}
 		if(command.equals("cashAdd")){
 			return new FinanceController().insertCash((CashPO)PO);
 		}
