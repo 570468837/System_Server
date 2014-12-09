@@ -19,8 +19,8 @@ import ResultMessage.ResultMessage;;
  *
  */
 public class GoodsController implements GoodsDataService{
-	ArrayList<GoodsPO> goodsList;
-	ArrayList<GoodsClassPO> goodsClassList;
+	public ArrayList<GoodsPO> goodsList;
+	public ArrayList<GoodsClassPO> goodsClassList;
 	Iterator<GoodsPO> gIter;
 	Iterator<GoodsClassPO> gcIter;
 	

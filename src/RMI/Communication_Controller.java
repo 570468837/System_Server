@@ -120,7 +120,6 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 
 	public ArrayList<Object> findObject(String command, String keywords)
 			throws RemoteException {
-		// TODO Auto-generated method stub
 		if(command.equals("userFind")){
 			return new UserController().find(keywords);
 		}
@@ -168,7 +167,9 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("uncheckedSendShow")) {
 			return commodityController.showUncheckedSend();
 		}
-		
+		if(command.equals("inventoryCommodity")) {
+			return commodityController.getInventoryCommodity().icInfo;
+		}
 		
 		
 		else{

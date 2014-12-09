@@ -76,15 +76,35 @@ public class CommodityController implements CommodityDataService {
 	
 	@Override
 	public ResultMessage insertSendCommodity(SendCommodityPO sendCommodityPO) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		sendList.add(sendCommodityPO);
+		writeSendFile();
+		return ResultMessage.add_success;
 	}
 
 	@Override
 	public ResultMessage insertReportCommodity(
 			ReportCommodityPO reportCommodityPO) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		Iterator<GoodsPO> gIter = goodsController.goodsList.iterator();
+		GoodsPO goods = null;
+		while(gIter.hasNext()) {
+			goods = gIter.next();
+			if(goods.getSerialNumber().equals(Long.toString(reportCommodityPO.goodsPOId))) {
+				break;
+			}
+			goods = null;
+		}
+		if(goods != null) {
+			if(goods.commodityQuantity + reportCommodityPO.num >= 0) {
+				goods.commodityQuantity += reportCommodityPO.num;
+				writeReportFile();
+				return ResultMessage.add_success;
+			}
+			else 
+				return ResultMessage.add_failure;
+		}
+		else {
+			return ResultMessage.add_failure;
+		}
 	}
 
 	@Override
@@ -97,18 +117,20 @@ public class CommodityController implements CommodityDataService {
 	public InventoryCommodityPO getInventoryCommodity() throws RemoteException {
 		InventoryCommodityPO icp = new InventoryCommodityPO();
 		ArrayList<Object> goodsList = goodsController.getGoodsPOList();
-		icp.icInfo = new String[goodsList.size()][8];
+		icp.icInfo = new ArrayList<Object>();
 		GoodsPO g;
 		for(int i = 0; i < goodsList.size(); i ++) {
+			String[] s = new String[8];
 			g = (GoodsPO)goodsList.get(i);
-			icp.icInfo[i][0] = (i + 1) + "";
-			icp.icInfo[i][1] = g.getName();
-			icp.icInfo[i][2] = g.getModel();
-			icp.icInfo[i][3] = g.getCommodityQuantity() + "";
-			icp.icInfo[i][4] = g.getSalePrice() + ""; //库存均价
-			icp.icInfo[i][5] = "/"; //批次
-			icp.icInfo[i][6] = "/"; //批号
-			icp.icInfo[i][7] = "/"; //出厂日期
+			s[0] = (i + 1) + "";
+			s[1] = g.getName();
+			s[2] = g.getModel();
+			s[3] = g.getCommodityQuantity() + "";
+			s[4] = g.getSalePrice() + ""; //库存均价
+			s[5] = "/"; //批次
+			s[6] = "/"; //批号
+			s[7] = "/"; //出厂日期
+			icp.icInfo.add(s);
 			
 		}
 		
