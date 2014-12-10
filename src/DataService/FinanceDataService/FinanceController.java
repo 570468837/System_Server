@@ -276,6 +276,6 @@ public void finish() {
 }
 public static void main(String[] args){
 	FinanceController f = new FinanceController() ;
-	System.out.print(f.getDate());
+	f.save();
 }
 }
