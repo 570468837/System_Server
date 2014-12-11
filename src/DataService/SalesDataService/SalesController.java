@@ -187,6 +187,44 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 		return totalDiscount;
 		
 	}
+	//一段时间进货退货差价
+	public double getDiffrence(String beginTime,String endTime){
+		double totalDeal=0.0;
+		ArrayList<Object> receipts=this.show();
+		
+		for (Iterator iterator = receipts.iterator(); iterator.hasNext();) {
+			SalesReceiptPO object = (SalesReceiptPO) iterator.next();
+			if(changeDateToInt(object.getTime())>=changeDateToInt(beginTime)&&changeDateToInt(object.getTime())<=changeDateToInt(endTime)){
+				if(object.getSerialNumber().substring(0, 3).equals("XSD")){
+					totalDeal+=object.getFinalprice();
+				}else{//销售退货单
+					totalDeal-=object.getFinalprice();
+				}
+				
+			}
+		}
+		
+		return totalDeal;
+		
+	}
+	
+	//代金券与实际收款差额
+	public double getDifferenceFromVocherInATime(String beginTime,String endTime){
+		double totalDiff=0.0;
+		
+		ArrayList<Object> receipts=this.show();
+		
+		for (Iterator iterator = receipts.iterator(); iterator.hasNext();) {
+			SalesReceiptPO object = (SalesReceiptPO) iterator.next();
+			if(changeDateToInt(object.getTime())>=changeDateToInt(beginTime)&&changeDateToInt(object.getTime())<=changeDateToInt(endTime)){
+				if(object.getSerialNumber().substring(0, 3).equals("XSD")&&(object.getVocher()>object.getFinalprice())){
+					totalDiff+=(object.getVocher()-object.getFinalprice());
+				}
+			}
+		}
+		return totalDiff;
+	}
+	
 
 	//将日期转换为可以比较大小的整数
 	public int changeDateToInt(String date){
