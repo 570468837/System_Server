@@ -8,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 
 import DataService.GoodsDataService.GoodsController;
@@ -47,7 +49,7 @@ public class CommodityController implements CommodityDataService {
 		SendCommodityPO s;
 		while(iter.hasNext()) {
 			s = iter.next();
-			if(s.type == SendCommodityPO.UNCHECKED)
+			if(s.checked == SendCommodityPO.UNCHECKED)
 				unchecked.add(new SendCommodityPO(s));
 		}
 		return unchecked;
@@ -65,7 +67,7 @@ public class CommodityController implements CommodityDataService {
 			while(iter.hasNext()) {
 				s = iter.next();
 				if(po.date == s.date) {
-					s.type = po.type;
+					s.checked = po.checked;
 					break;
 				}
 			}
@@ -73,6 +75,94 @@ public class CommodityController implements CommodityDataService {
 		writeSendFile();
 		return ResultMessage.update_success;
 	}
+	
+	/**
+	 * 库存赠送单的show方法
+	 * @return
+	 */
+	public ArrayList<Object> showSendCommodity() {
+		Iterator<SendCommodityPO> iter = sendList.iterator();
+		ArrayList<Object> show = new ArrayList<Object>();
+		SendCommodityPO po;
+		while(iter.hasNext()) {
+			po = iter.next();
+			if(po.checked == SendCommodityPO.PASS)
+				show.add(new SendCommodityPO(po));
+		}
+		return show;
+	}
+	
+	/**
+	 * 库存报单show方法
+	 * @return
+	 */
+	public ArrayList<Object> showReportCommodity() {
+		Iterator<ReportCommodityPO> iter = reportList.iterator();
+		ArrayList<Object> show = new ArrayList<Object>();
+		ReportCommodityPO po;
+		while(iter.hasNext()) {
+			po = iter.next();
+			show.add(new ReportCommodityPO(po));
+		}
+		return show;
+	}
+	
+	/**
+	 * 
+	 * @return 一段时间的报溢收入，默认正值
+	 */
+	public Object reportIncome(String d1, String d2) {
+		Date date1 = changeToDate(d1);
+		Date date2 = changeToDate(d2);
+		double sum = 0;
+		Iterator<ReportCommodityPO> iter = reportList.iterator();
+		ReportCommodityPO po;
+		while(iter.hasNext()) {
+			po = iter.next();
+			if(po.date.getTime() > date1.getTime() && po.date.getTime() < date2.getTime() && po.num > 0)
+				sum += po.num * po.price;
+		}
+		return new Double(sum);
+	}
+	/**
+	 * 
+	 * @return 一段时间的报损支出，默认负值
+	 */
+	public Object reportOutcome(String d1, String d2) {
+		Date date1 = changeToDate(d1);
+		Date date2 = changeToDate(d2);
+		double sum = 0;
+		Iterator<ReportCommodityPO> iter = reportList.iterator();
+		ReportCommodityPO po;
+		while(iter.hasNext()) {
+			po = iter.next();
+			if(po.date.getTime() > date1.getTime() && po.date.getTime() < date2.getTime() && po.num < 0)
+				sum += po.num * po.price;
+		}
+		return new Double(sum);
+	}
+	
+	/**
+	 * 
+	 * @return 一段时间的赠送支出，默认正值
+	 */
+	public Object sendOutCome(String d1, String d2) {
+		Date date1 = changeToDate(d1);
+		Date date2 = changeToDate(d2);
+		double sum = 0;
+		Iterator<SendCommodityPO> iter = sendList.iterator();
+		SendCommodityPO po;
+		while(iter.hasNext()) {
+			po = iter.next();
+			if(po.date.getTime() > date1.getTime() && po.date.getTime() < date2.getTime())
+				sum += po.price * po.num;
+		}
+		return new Double(sum);
+	}
+	
+	
+	
+	
 	
 	@Override
 	public ResultMessage insertSendCommodity(SendCommodityPO sendCommodityPO) throws RemoteException {
@@ -163,6 +253,23 @@ public class CommodityController implements CommodityDataService {
 		
 		
 	}
+	
+	@SuppressWarnings("deprecation")
+	private Date changeToDate(String d) {
+		String[] s = d.split("/");
+		Date date = null;
+		try {
+			date = new Date(
+					Integer.parseInt(s[0]) - 1900, 
+					Integer.parseInt(s[1]) - 1,
+					Integer.parseInt(s[2]));
+		}catch(Exception e) {}
+		return date;
+		
+	}
+	
+	
+	
 	/**
 	 * 写入赠送单文件
 	 */
