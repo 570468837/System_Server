@@ -258,10 +258,19 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 	public Object someMethodForFinancer(String command,String time1,String time2){
 		if(command.equals("showIncomeInATime")){
 			return new SalesController().getTotalIncomeInATime(time1, time2);
-			
-		}else{
+		}
+		if(command.equals("showCostInATime")){
+			return new SalesController().getTotalCostInATime(time1, time2);
+		}if(command.equals("showDiscountInATime")){
+			return new SalesController().getTotalDiscountInAtime(time1, time2);
+		}
+		
+		
+		else{
 			return null;
 		}
 	}
+	
+	
 	
 }

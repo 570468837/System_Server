@@ -140,7 +140,10 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 		for (Iterator iterator = receipts.iterator(); iterator.hasNext();) {
 			SalesReceiptPO object = (SalesReceiptPO) iterator.next();
 			if(changeDateToInt(object.getTime())>=changeDateToInt(beginTime)&&changeDateToInt(object.getTime())<=changeDateToInt(endTime)){
-				totalIncome+=object.getFinalprice();
+				//判断是否为销售单,如果是就加入总和
+				if(object.getSerialNumber().substring(0, 3).equals("XSD")){
+					totalIncome+=object.getFinalprice();
+				}
 			}
 			
 		}
@@ -150,22 +153,41 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 	}
 	//一段时间内的销售成本 TODO 未完成 因为商品的销售价格并不是price，而是salesPrice,需要改动所有和sales有关的goods的属性
 	public double getTotalCostInATime(String beginTime,String endTime){
-double totalCost=0.0;
 		
+		double totalCost=0.0;
 		ArrayList<Object> receipts=this.show();
 		for (Iterator iterator = receipts.iterator(); iterator.hasNext();) {
 			SalesReceiptPO object = (SalesReceiptPO) iterator.next();
 			if(changeDateToInt(object.getTime())>=changeDateToInt(beginTime)&&changeDateToInt(object.getTime())<=changeDateToInt(endTime)){
-				for(int i=0;i<object.getSalesList().size();i++){
-					totalCost+=object.getSalesList().get(i).getGoodsPO().getPrice();//获得所有进价之和
+				//判断单据类型
+				if(object.getSerialNumber().substring(0, 3).equals("XSD")){
+					for(int i=0;i<object.getSalesList().size();i++){
+						totalCost+=object.getSalesList().get(i).getGoodsPO().getPrice();//获得所有进价之和
+					}
 				}
 			}			
 		}
 		
 		return totalCost;
 	}
-	
-	
+	//一段时间的折让总和
+	public double getTotalDiscountInAtime(String beginTime,String endTime){
+		double totalDiscount=0.0;
+		ArrayList<Object> receipts=this.show();
+		
+		for (Iterator iterator = receipts.iterator(); iterator.hasNext();) {
+			SalesReceiptPO object = (SalesReceiptPO) iterator.next();
+			if(changeDateToInt(object.getTime())>=changeDateToInt(beginTime)&&changeDateToInt(object.getTime())<=changeDateToInt(endTime)){
+				if(object.getSerialNumber().substring(0, 3).equals("XSD")){
+					totalDiscount+=object.getDiscout();
+				}
+			}
+		}
+		
+		return totalDiscount;
+		
+	}
+
 	//将日期转换为可以比较大小的整数
 	public int changeDateToInt(String date){
 		int result=new Integer(0).parseInt(date.replaceAll("-", ""));
