@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import PO.PurchaseReceiptPO;
 import PO.SalesReceiptPO;
@@ -130,4 +131,48 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 		
 		return salesReceipts_2;
 	}
+	
+	//给财务人员查看一段时间的总收入,日期的格式统一为XXXX-XX-XX
+	public double getTotalIncomeInATime(String beginTime,String endTime){
+		double totalIncome=0.0;
+		
+		ArrayList<Object> receipts=this.show();
+		for (Iterator iterator = receipts.iterator(); iterator.hasNext();) {
+			SalesReceiptPO object = (SalesReceiptPO) iterator.next();
+			if(changeDateToInt(object.getTime())>=changeDateToInt(beginTime)&&changeDateToInt(object.getTime())<=changeDateToInt(endTime)){
+				totalIncome+=object.getFinalprice();
+			}
+			
+		}
+		
+		return totalIncome;
+		
+	}
+	//一段时间内的销售成本 TODO 未完成 因为商品的销售价格并不是price，而是salesPrice,需要改动所有和sales有关的goods的属性
+	public double getTotalCostInATime(String beginTime,String endTime){
+double totalCost=0.0;
+		
+		ArrayList<Object> receipts=this.show();
+		for (Iterator iterator = receipts.iterator(); iterator.hasNext();) {
+			SalesReceiptPO object = (SalesReceiptPO) iterator.next();
+			if(changeDateToInt(object.getTime())>=changeDateToInt(beginTime)&&changeDateToInt(object.getTime())<=changeDateToInt(endTime)){
+				for(int i=0;i<object.getSalesList().size();i++){
+					totalCost+=object.getSalesList().get(i).getGoodsPO().getPrice();//获得所有进价之和
+				}
+			}			
+		}
+		
+		return totalCost;
+	}
+	
+	
+	//将日期转换为可以比较大小的整数
+	public int changeDateToInt(String date){
+		int result=new Integer(0).parseInt(date.replaceAll("-", ""));
+		
+		return result;
+		
+	}
+	
+	
 }

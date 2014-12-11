@@ -87,7 +87,14 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}
 		if(command.equals("updateCustomer")){
 			return new CustomerController().updateCustomer((CustomerPO)PO);
+		}if(command.equals("collection_payment_change_pay_getting")){
+			return new CustomerController().collectionOrPaymentChangePayOrGetting((CollectionOrPaymentPO)PO);
+		}if(command.equals("purchase_change_pay")){
+			return new CustomerController().purchaseChangePay((PurchaseReceiptPO)PO);
+		}if(command.equals("sales_change_getting")){
+			return new CustomerController().salesChangeGetting((SalesReceiptPO)PO);
 		}
+		
 		if(command.equals("creat_purchase_receipt")){
 			 return new PurchaseController().addReceipt((PurchaseReceiptPO)PO);
 		}
@@ -249,8 +256,12 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 	}
 	
 	public Object someMethodForFinancer(String command,String time1,String time2){
-		
-		return null;
+		if(command.equals("showIncomeInATime")){
+			return new SalesController().getTotalIncomeInATime(time1, time2);
+			
+		}else{
+			return null;
+		}
 	}
 	
 }
