@@ -276,6 +276,8 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}
 		if(command.equals("showDifferenceFromVocherInATime")){
 			return new SalesController().getDifferenceFromVocherInATime(time1, time2);
+		}if(command.equals("showAllPurchaseReceiptsInATime")){
+			return new PurchaseController().getReceiptsInATime(time1, time2);
 		}
 		if(command.equals("reportIncome")){
 			return commodityController.reportIncome(time1, time2);

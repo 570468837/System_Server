@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import PO.CustomerPO;
 import PO.PurchaseReceiptPO;
@@ -136,5 +137,39 @@ ArrayList<PurchaseReceiptPO> purchaseReceipts=new ArrayList<PurchaseReceiptPO>()
 		
 		return purchaseReceipts_2;
 	}
+	
+	//获得一段时间的进货单和进货退货单
+	public ArrayList<Object> getReceiptsInATime(String beginTime,String endTime){
+		ArrayList<Object> result=new ArrayList<Object>();//第一个元素是进货单的list，第二个元素是进货退货单的list
+		ArrayList<PurchaseReceiptPO> purchaseReceipts=new ArrayList<PurchaseReceiptPO>();
+		ArrayList<PurchaseReceiptPO> purchaseOutReceipts=new ArrayList<PurchaseReceiptPO>();
+		
+		result=this.show();
+		
+		for (Iterator iterator = result.iterator(); iterator.hasNext();) {
+			PurchaseReceiptPO purchaseReceiptPO = (PurchaseReceiptPO) iterator
+					.next();
+		if(changeDateToInt(purchaseReceiptPO.getTime())>=changeDateToInt(beginTime)&&changeDateToInt(purchaseReceiptPO.getTime())<=changeDateToInt(endTime)){
+			if(purchaseReceiptPO.getSerialNumber().substring(0, 3).equals("JHD")){
+				purchaseReceipts.add(purchaseReceiptPO);
+			}else{
+				purchaseOutReceipts.add(purchaseReceiptPO);
+			}
+		}
+		}
+		
+		result.add(purchaseReceipts);
+		result.add(purchaseOutReceipts);
+		
+		return result;
+	}
+	
+	//将日期转换为可以比较大小的整数
+		public int changeDateToInt(String date){
+			int result=new Integer(0).parseInt(date.replaceAll("-", ""));
+			
+			return result;
+			
+		}
 
 }
