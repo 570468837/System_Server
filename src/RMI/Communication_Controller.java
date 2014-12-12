@@ -180,6 +180,12 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("inventoryCommodity")) {
 			return commodityController.getInventoryCommodity().icInfo;
 		}
+		if(command.equals("showSendCommodity")) {
+			return commodityController.showSendCommodity();
+		}
+		if(command.equals("showReportCommodity")) {
+			return commodityController.showReportCommodity();
+		}
 		
 		
 		else{
@@ -261,14 +267,25 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}
 		if(command.equals("showCostInATime")){
 			return new SalesController().getTotalCostInATime(time1, time2);
-		}if(command.equals("showDiscountInATime")){
+		}
+		if(command.equals("showDiscountInATime")){
 			return new SalesController().getTotalDiscountInAtime(time1, time2);
-		}if(command.equals("showDifferenceInATime")){
+		}
+		if(command.equals("showDifferenceInATime")){
 			return new SalesController().getDiffrence(time1, time2);
-		}if(command.equals("showDifferenceFromVocherInATime")){
+		}
+		if(command.equals("showDifferenceFromVocherInATime")){
 			return new SalesController().getDifferenceFromVocherInATime(time1, time2);
 		}
-		
+		if(command.equals("reportIncome")){
+			return commodityController.reportIncome(time1, time2);
+		}
+		if(command.equals("reportOutcome")){
+			return commodityController.reportOutcome(time1, time2);
+		}
+		if(command.equals("sendOutcome")){
+			return commodityController.sendOutcome(time1, time2);
+		}
 		
 		else{
 			return null;

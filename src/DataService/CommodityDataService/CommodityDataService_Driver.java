@@ -12,7 +12,7 @@ import ResultMessage.ResultMessage;
  */
 public class CommodityDataService_Driver {
 	public void drive(CommodityDataService commodityController) throws RemoteException {
-		ResultMessage resultMessage = commodityController.insertReportCommodity(new ReportCommodityPO());
+		ResultMessage resultMessage = commodityController.insertReportCommodity(new ReportCommodityPO(null));
 	    if(resultMessage == ResultMessage.add_success) {
 	    	System.out.println("reportCommodity add succcess");
 	    }
@@ -20,7 +20,7 @@ public class CommodityDataService_Driver {
 	    	System.out.println("reportCommodity add failure");
 	    }
 		
-	    resultMessage = commodityController.insertSendCommodity(new SendCommodityPO());
+	    resultMessage = commodityController.insertSendCommodity(new SendCommodityPO(null));
 	    if(resultMessage == ResultMessage.add_success) {
 	    	System.out.println("sendCommodity add succcess");
 	    }

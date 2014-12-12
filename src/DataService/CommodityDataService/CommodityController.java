@@ -146,7 +146,7 @@ public class CommodityController implements CommodityDataService {
 	 * 
 	 * @return 一段时间的赠送支出，默认正值
 	 */
-	public Object sendOutCome(String d1, String d2) {
+	public Object sendOutcome(String d1, String d2) {
 		Date date1 = changeToDate(d1);
 		Date date2 = changeToDate(d2);
 		double sum = 0;
