@@ -166,6 +166,7 @@ public class CommodityController implements CommodityDataService {
 	
 	@Override
 	public ResultMessage insertSendCommodity(SendCommodityPO sendCommodityPO) throws RemoteException {
+		//客户的判定 TODO
 		sendList.add(sendCommodityPO);
 		writeSendFile();
 		return ResultMessage.add_success;

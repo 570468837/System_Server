@@ -131,6 +131,7 @@ public class GoodsController implements GoodsDataService{
 	 */
 	@Override
 	public synchronized ResultMessage addGoods(GoodsPO goodsPO) {
+		if(goodsPO.getName().equals("") || goodsPO.getModel().equals("")) return ResultMessage.add_failure;
 		gIter = goodsList.iterator();
 		GoodsPO g = null;
 		while(gIter.hasNext()) {
@@ -213,6 +214,7 @@ public class GoodsController implements GoodsDataService{
 	 */
 	@Override
 	public ResultMessage addGoodsClass(GoodsClassPO goodsClassPO) {
+		if(goodsClassPO.goodsClassName.equals("")) return ResultMessage.add_failure;
 		boolean hasFather = false;
 		gcIter = goodsClassList.iterator();
 		GoodsClassPO gcp;
@@ -247,17 +249,39 @@ public class GoodsController implements GoodsDataService{
 	 */
 	@Override
 	public synchronized ResultMessage delGoodsClass(long id) {
-		/* TODO
+		
 		ArrayList<GoodsClassPO> child = new ArrayList<GoodsClassPO>();
 		gcIter = goodsClassList.iterator();
-		GoodsClassPO g;
+		GoodsClassPO gc;
+		GoodsClassPO thisPO = null;
 		while(gcIter.hasNext()) {
-			g = gcIter.next();
-			
+			gc = gcIter.next();
+			if(gc.fatherGoodsClassNum == id)
+				child.add(gc);
+			if(gc.Num == id) {
+				thisPO = gc;
+				gcIter.remove();
+			}
 		}
-		*/
-		System.out.println("goodsClass's del need to do");
-		return ResultMessage.delete_failure;
+		if(thisPO == null) return ResultMessage.delete_failure;
+		if(child.size() == 0) {
+			gIter = goodsList.iterator();
+			while(gIter.hasNext()) {
+				if(gIter.next().getGoodsClassNum() == id)
+					gIter.remove();
+			}
+		}
+		else {
+			Iterator<GoodsClassPO> childIter = child.iterator();
+			while(childIter.hasNext()) {
+				delGoodsClass(childIter.next().Num);
+				childIter.remove();
+			}
+		}
+		
+		
+		
+		return ResultMessage.delete_success;
 		
 	}
 
