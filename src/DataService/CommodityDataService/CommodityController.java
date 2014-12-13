@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.Iterator;
 
 import DataService.GoodsDataService.GoodsController;
-import PO.CheckCommodityPO;
 import PO.GoodsClassPO;
 import PO.GoodsPO;
 import PO.InventoryCommodityPO;
@@ -198,11 +197,6 @@ public class CommodityController implements CommodityDataService {
 		}
 	}
 
-	@Override
-	public CheckCommodityPO getCheckCommodity(String time1, String time2) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public InventoryCommodityPO getInventoryCommodity() throws RemoteException {
