@@ -299,13 +299,14 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}
 		if(command.equals("sendOutcome")){//赠送支出
 			return commodityController.sendOutcome(time1, time2);
-		}if(command.equals("showDiffCostInATime")){
+		}if(command.equals("showDiffCostInATime")){//成本调价
 			return new PurchaseController().getDiffCostInATime(time1, time2);
 		}
 		
 		else{
 			return null;
 		}
+		
 	}
 	
 	
