@@ -19,6 +19,6 @@ public class ReportCommodityPO {
 		this.price = po.price;
 		this.date = po.date;
 	}
-	
+	public ReportCommodityPO() {}
 	
 }
