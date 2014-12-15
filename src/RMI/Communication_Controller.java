@@ -144,6 +144,12 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}
 		if(command.equals("accountFind")){
 			return new FinanceController().find(keywords) ;
+		}if(command.equals("getCustomer")){
+			ArrayList<Object> list=new ArrayList<Object>();
+			list.add(new CustomerController().getCustomerPOById(keywords));
+			return list;
+		}if(command.equals("findCustomer")){
+			return new CustomerController().findCustomer(keywords);
 		}
 		else{
 			return null;

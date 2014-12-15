@@ -16,12 +16,16 @@ public class PurchaseDataService_Driver {
 	public PurchaseDataService_Driver(PurchaseDataService purchaseController){
 		try {
 			CustomerPO customer=new CustomerPO("001", Sort.importer,Level.firstClass, "gaoyang", "12345","hunan", "413000","@", "hutao");
-			UserPO po=new UserPO("gaoyang","123",UserSort.Admin, 0);
-			purchaseController.addReceipt(new PurchaseReceiptPO(customer, "JHD-YYMMDD-00001",po, "2014-12-11", "", 1000));
+			UserPO user=new UserPO("gaoyang","123",UserSort.Admin, 0);
 			ArrayList<PurchaseListItemPO> list=new ArrayList<PurchaseListItemPO>();
 			GoodsPO goods=new GoodsPO("009","hutao", "DF", 100, "HEHE");
-			
+			PurchaseListItemPO item=new PurchaseListItemPO(goods, 10);
+			PurchaseReceiptPO receipt=new PurchaseReceiptPO("JHD-120101-00001", list, user, "2014-12-12","HAHA",10000);
+			receipt.setCustomerPO(customer);
+			purchaseController.addReceipt(receipt);
+
 			System.out.println("添加成功");
+			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

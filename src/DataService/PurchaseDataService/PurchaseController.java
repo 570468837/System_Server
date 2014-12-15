@@ -94,9 +94,16 @@ ArrayList<PurchaseReceiptPO> purchaseReceipts=new ArrayList<PurchaseReceiptPO>()
 		return ResultMessage.add_failure;
 	}
 
+	//经过经理审批
 	@Override
 	public ResultMessage updateReceipt(PurchaseReceiptPO po) throws RemoteException {
 		// TODO Auto-generated method stub
+		ArrayList<Object> list=this.show();
+		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+			PurchaseReceiptPO object = (PurchaseReceiptPO) iterator.next();
+			
+		}
+		
 		System.out.println("update successful");
 		return null;
 
@@ -185,6 +192,8 @@ ArrayList<PurchaseReceiptPO> purchaseReceipts=new ArrayList<PurchaseReceiptPO>()
 		}		
 		return result;		
 	}
+	
+	
 	
 	//将日期转换为可以比较大小的整数
 		public int changeDateToInt(String date){

@@ -129,10 +129,10 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 	}
 
 	@Override
-	public ArrayList<CustomerPO> findCustomer(String keyword)
+	public ArrayList<Object> findCustomer(String keyword)
 			throws RemoteException {
 		// TODO Auto-generated method stub
-		ArrayList<CustomerPO> customerList=new ArrayList<CustomerPO>();
+		ArrayList<Object> customerList=new ArrayList<Object>();
 		ArrayList<Object> allCustomer=new ArrayList<Object>();
 		allCustomer=this.show();
 		//暂时只针对序列号和名字
