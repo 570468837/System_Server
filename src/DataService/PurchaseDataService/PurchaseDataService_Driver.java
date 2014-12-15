@@ -2,12 +2,19 @@ package DataService.PurchaseDataService;
 
 import java.rmi.RemoteException;
 
+import Config.Level;
+import Config.Sort;
+import Config.UserSort;
+import PO.CustomerPO;
 import PO.PurchaseReceiptPO;
+import PO.UserPO;
 
 public class PurchaseDataService_Driver {
 	public PurchaseDataService_Driver(PurchaseDataService purchaseController){
 		try {
-			purchaseController.addReceipt(new PurchaseReceiptPO(null, "JHD-YYMMDD-00001",null, "12-11", "", 1000));
+			CustomerPO customer=new CustomerPO("001", Sort.importer,Level.firstClass, "gaoyang", "12345","hunan", "413000","@", "hutao");
+			UserPO po=new UserPO("gaoyang","123",UserSort.Admin, 0);
+			purchaseController.addReceipt(new PurchaseReceiptPO(customer, "JHD-YYMMDD-00001",po, "2014-12-11", "", 1000));
 			System.out.println("添加成功");
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
