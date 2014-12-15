@@ -271,19 +271,19 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 	}
 	
 	public Object someMethodForFinancer(String command,String time1,String time2){
-		if(command.equals("showIncomeInATime")){
+		if(command.equals("showIncomeInATime")){//销售收入
 			return new SalesController().getTotalIncomeInATime(time1, time2);
 		}
-		if(command.equals("showCostInATime")){
+		if(command.equals("showCostInATime")){//销售支出
 			return new SalesController().getTotalCostInATime(time1, time2);
 		}
-		if(command.equals("showDiscountInATime")){
+		if(command.equals("showDiscountInATime")){//折扣
 			return new SalesController().getTotalDiscountInAtime(time1, time2);
 		}
-		if(command.equals("showDifferenceInATime")){
+		if(command.equals("showDifferenceInATime")){//进退货差价
 			return new SalesController().getDiffrence(time1, time2);
 		}
-		if(command.equals("showDifferenceFromVocherInATime")){
+		if(command.equals("showDifferenceFromVocherInATime")){//代金券与实际收款差额
 			return new SalesController().getDifferenceFromVocherInATime(time1, time2);
 		}if(command.equals("showAllPurchaseReceiptsInATime")){
 			return new PurchaseController().getReceiptsInATime(time1, time2);
@@ -291,13 +291,13 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("showAllSalesReceiptsInATime")){
 			return new SalesController().getReceiptsInATime(time1, time2);
 		}
-		if(command.equals("reportIncome")){
+		if(command.equals("reportIncome")){//报溢收入
 			return commodityController.reportIncome(time1, time2);
 		}
-		if(command.equals("reportOutcome")){
+		if(command.equals("reportOutcome")){//报损支出
 			return commodityController.reportOutcome(time1, time2);
 		}
-		if(command.equals("sendOutcome")){
+		if(command.equals("sendOutcome")){//赠送支出
 			return commodityController.sendOutcome(time1, time2);
 		}if(command.equals("showDiffCostInATime")){
 			return new PurchaseController().getDiffCostInATime(time1, time2);
