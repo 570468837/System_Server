@@ -299,6 +299,8 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}
 		if(command.equals("sendOutcome")){
 			return commodityController.sendOutcome(time1, time2);
+		}if(command.equals("showDiffCostInATime")){
+			return new PurchaseController().getDiffCostInATime(time1, time2);
 		}
 		
 		else{

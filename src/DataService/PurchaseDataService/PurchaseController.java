@@ -10,9 +10,10 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import PO.CustomerPO;
+import DataService.GoodsDataService.GoodsController;
+import PO.GoodsPO;
+import PO.PurchaseListItemPO;
 import PO.PurchaseReceiptPO;
-import PO.UserPO;
 import ResultMessage.ResultMessage;
 
 public class PurchaseController implements PurchaseDataService{
@@ -162,6 +163,27 @@ ArrayList<PurchaseReceiptPO> purchaseReceipts=new ArrayList<PurchaseReceiptPO>()
 		result.add(purchaseOutReceipts);
 		
 		return result;
+	}
+	
+	//成本调价
+	public double getDiffCostInATime(String beginTime,String endTime){
+		ArrayList<Object> receipts=this.show();
+		double result=0;
+		for (Iterator iterator = receipts.iterator(); iterator.hasNext();) {
+			PurchaseReceiptPO object = (PurchaseReceiptPO) iterator.next();
+			if(changeDateToInt(object.getTime())>=changeDateToInt(beginTime)&&changeDateToInt(object.getTime())<=changeDateToInt(endTime)){
+				ArrayList<PurchaseListItemPO> listItem=object.getPurchaseList();
+				for (Iterator iterator2 = listItem.iterator(); iterator2
+						.hasNext();) {
+					PurchaseListItemPO purchaseListItemPO = (PurchaseListItemPO) iterator2
+							.next();
+					GoodsPO good=new GoodsController().getGoodsByID(new Long(0).parseLong(purchaseListItemPO.getGoodsPO().getSerialNumber()));
+					
+					result+=(good.getPrice()-purchaseListItemPO.getGoodsPO().getPrice())*good.getCommodityQuantity();
+				}
+			}			
+		}		
+		return result;		
 	}
 	
 	//将日期转换为可以比较大小的整数
