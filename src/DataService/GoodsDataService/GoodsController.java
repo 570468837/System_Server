@@ -337,7 +337,7 @@ public class GoodsController implements GoodsDataService{
 		}
 	}
 	
-	private void writeFile() {
+	public void writeFile() {
 		try {
 			ObjectOutputStream goos = new ObjectOutputStream(new FileOutputStream(goodsURL));
 			ObjectOutputStream gcoos = new ObjectOutputStream(new FileOutputStream(goodsClassURL));

@@ -165,7 +165,7 @@ public class CommodityController implements CommodityDataService {
 	
 	@Override
 	public ResultMessage insertSendCommodity(SendCommodityPO sendCommodityPO) throws RemoteException {
-		//客户的判定 TODO
+		//客户的判定 TODO 库存数量变化
 		sendList.add(sendCommodityPO);
 		writeSendFile();
 		return ResultMessage.add_success;
@@ -186,6 +186,9 @@ public class CommodityController implements CommodityDataService {
 		if(goods != null) {
 			if(goods.commodityQuantity + reportCommodityPO.num >= 0) {
 				goods.commodityQuantity += reportCommodityPO.num;
+				
+				reportList.add(reportCommodityPO);
+				goodsController.writeFile();
 				writeReportFile();
 				return ResultMessage.add_success;
 			}
@@ -294,7 +297,7 @@ public class CommodityController implements CommodityDataService {
 	}
 	
 	
-	private final String sendURL = "Datas/SendCommodityPO";
-	private final String reportURL = "Datas/ReportCommodityPO";
+	private final String sendURL = "Datas/SendCommodityPO.out";
+	private final String reportURL = "Datas/ReportCommodityPO.out";
  	
 }
