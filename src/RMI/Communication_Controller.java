@@ -122,6 +122,15 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("updUncheckedSend")) {
 			return commodityController.updUncheckedSend((ArrayList<SendCommodityPO>)PO);
 		}
+		if(command.equals("commodityReport")) {
+			System.out.println("aaaaa");
+			return commodityController.insertReportCommodity((ReportCommodityPO)PO);
+		}
+		if(command.equals("commoditySend")) {
+			return commodityController.insertSendCommodity((SendCommodityPO)PO);
+		}
+		
+		
 		
 		
 		return null;
