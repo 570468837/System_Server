@@ -225,6 +225,32 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 		return totalDiff;
 	}
 	
+	//获得一段时间的销售和销售退货单
+		public ArrayList<Object> getReceiptsInATime(String beginTime,String endTime){
+			ArrayList<Object> result=new ArrayList<Object>();//第一个元素是进货单的list，第二个元素是进货退货单的list
+			ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
+			ArrayList<SalesReceiptPO> salesBackReceipts=new ArrayList<SalesReceiptPO>();
+			
+			result=this.show();
+			
+			for (Iterator iterator = result.iterator(); iterator.hasNext();) {
+				SalesReceiptPO salesReceiptPO = (SalesReceiptPO) iterator
+						.next();
+			if(changeDateToInt(salesReceiptPO.getTime())>=changeDateToInt(beginTime)&&changeDateToInt(salesReceiptPO.getTime())<=changeDateToInt(endTime)){
+				if(salesReceiptPO.getSerialNumber().substring(0, 3).equals("XSD")){
+					salesReceipts.add(salesReceiptPO);
+				}else{
+					salesBackReceipts.add(salesReceiptPO);
+				}
+			}
+			}
+			
+			result.add(salesReceipts);
+			result.add(salesBackReceipts);
+			
+			return result;
+		}
+	
 
 	//将日期转换为可以比较大小的整数
 	public int changeDateToInt(String date){
