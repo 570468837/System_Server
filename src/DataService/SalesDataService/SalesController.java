@@ -78,7 +78,7 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 					return ResultMessage.add_success;
 				}
 				else
-					return ResultMessage.create_purchasereceipt_failure;
+					return ResultMessage.add_failure;
 	
 	}
 

@@ -80,7 +80,7 @@ ArrayList<PurchaseReceiptPO> purchaseReceipts=new ArrayList<PurchaseReceiptPO>()
 					return ResultMessage.add_success;
 				}
 				else
-					return ResultMessage.create_purchasereceipt_failure;
+					return ResultMessage.add_failure;
 	
 	}
 
@@ -90,7 +90,7 @@ ArrayList<PurchaseReceiptPO> purchaseReceipts=new ArrayList<PurchaseReceiptPO>()
 	public ResultMessage deleteReceipt(PurchaseReceiptPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("delete successful");
-		return ResultMessage.create_purchasereceipt_failure;
+		return ResultMessage.add_failure;
 	}
 
 	@Override
