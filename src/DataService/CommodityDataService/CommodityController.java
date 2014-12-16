@@ -166,9 +166,10 @@ public class CommodityController implements CommodityDataService {
 	@Override
 	public ResultMessage insertSendCommodity(SendCommodityPO sendCommodityPO) throws RemoteException {
 		//客户的判定 TODO 库存数量变化
-		sendList.add(sendCommodityPO);
-		writeSendFile();
-		return ResultMessage.add_success;
+		//sendList.add(sendCommodityPO);
+		//writeSendFile();
+		//return ResultMessage.add_success;
+		return ResultMessage.add_failure;
 	}
 
 	@Override
@@ -261,7 +262,9 @@ public class CommodityController implements CommodityDataService {
 					Integer.parseInt(s[0]) - 1900, 
 					Integer.parseInt(s[1]) - 1,
 					Integer.parseInt(s[2]));
-		}catch(Exception e) {}
+		}catch(Exception e) {
+			System.out.println("date change problem");
+		}
 		return date;
 		
 	}
