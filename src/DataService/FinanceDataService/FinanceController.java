@@ -266,6 +266,7 @@ public ResultMessage updateCollectionOrPayment(CollectionOrPaymentPO po)
 			result = ResultMessage.update_success ;
 		}
 	}
+	
 	save() ;
 	return result;
 }
