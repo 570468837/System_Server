@@ -165,11 +165,21 @@ public class CommodityController implements CommodityDataService {
 	
 	@Override
 	public ResultMessage insertSendCommodity(SendCommodityPO sendCommodityPO) throws RemoteException {
-		//客户的判定 TODO 库存数量变化
-		//sendList.add(sendCommodityPO);
-		//writeSendFile();
-		//return ResultMessage.add_success;
-		return ResultMessage.add_failure;
+		GoodsPO gp;
+		gp = this.goodsController.getGoodsByID(sendCommodityPO.goodsPOId);
+		if(gp.getCommodityQuantity() - sendCommodityPO.num < 0) return ResultMessage.add_failure;
+		
+		gp = new GoodsPO();
+		gp.setSerialNumber(Long.toString(sendCommodityPO.goodsPOId));
+		gp.setCommodityQuantity(gp.getCommodityQuantity() - sendCommodityPO.num);
+		if(this.goodsController.updGoods(gp) == ResultMessage.update_failure) {
+			System.out.println("商品属性修改失败");
+			return ResultMessage.add_failure;
+		}
+		
+		sendList.add(sendCommodityPO);
+		writeSendFile();
+		return ResultMessage.add_success;
 	}
 
 	@Override
@@ -302,5 +312,10 @@ public class CommodityController implements CommodityDataService {
 	
 	private final String sendURL = "Datas/SendCommodityPO.out";
 	private final String reportURL = "Datas/ReportCommodityPO.out";
- 	
+ 	/*
+	public static void main(String[] args) {
+		CommodityController cc = new CommodityController(null);
+		cc.reportIncome("2014/12/10", "2014/12/20");
+	}
+	*/
 }
