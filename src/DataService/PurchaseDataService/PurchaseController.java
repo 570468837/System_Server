@@ -97,15 +97,19 @@ ArrayList<PurchaseReceiptPO> purchaseReceipts=new ArrayList<PurchaseReceiptPO>()
 	//经过经理审批
 	@Override
 	public ResultMessage updateReceipt(PurchaseReceiptPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		ArrayList<Object> list=this.show();
-		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-			PurchaseReceiptPO object = (PurchaseReceiptPO) iterator.next();
-			
+		//构造器中已read
+		for (Iterator iterator = purchaseReceipts.iterator(); iterator
+				.hasNext();) {
+			PurchaseReceiptPO purchaseReceiptPO = (PurchaseReceiptPO) iterator
+					.next();
+			if(purchaseReceiptPO.getSerialNumber().equals(po.getSerialNumber())){
+				purchaseReceiptPO.setApprovedByManager(po.isApprovedByManager());
+			}
 		}
 		
-		System.out.println("update successful");
-		return null;
+		save();
+		return ResultMessage.update_success;
+		
 
 	}
 	

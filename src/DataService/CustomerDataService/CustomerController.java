@@ -90,16 +90,17 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 		for(CustomerPO p:customers){
 			if(p.getNumber().equals(po.getNumber())){
 				exist=true;
-				break;
+				customers.remove(p);
+				save();
+				return ResultMessage.delete_success;
 				}
 			}
 		if(!exist){
-			customers.remove(po);
-			save();
-			return ResultMessage.add_success;
+			System.out.println("查无此人");
+			return ResultMessage.delete_success;
 		}
 		else
-			return ResultMessage.add_failure;
+			return ResultMessage.delete_failure;
 	}
 
 	@Override
