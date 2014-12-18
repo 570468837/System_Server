@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
 import PO.GoodsClassPO;
@@ -200,13 +202,63 @@ public class GoodsController implements GoodsDataService{
 		
 	}
 
-	/**
+	/** 
 	 * 搜索商品
 	 */
 	@Override
 	public ArrayList<Object> searchGoods(String info) {
-		// TODO Auto-generated method stub
-		return null;
+		class SearchUnit implements Comparator<Object>{
+			int sum = 0;
+			final int num;
+			public SearchUnit(int i) {
+				this.num = i;
+			}
+			public void plus() {
+				sum ++;
+			}
+			@Override
+			public int compare(Object o1, Object o2) {
+				if(((SearchUnit)o1).sum > ((SearchUnit)o2).sum)
+					return -1;
+				if(((SearchUnit)o1).sum < ((SearchUnit)o2).sum)
+					return 1;
+				return 0;
+			}
+		}
+		
+		char[] infoCharList = info.toCharArray();
+		ArrayList<SearchUnit> suList = new ArrayList<SearchUnit>();
+		for (int i = 0; i < goodsList.size(); i ++) {
+			suList.add(new SearchUnit(i));
+		}
+		
+		char c;
+		String s;
+		for (int i = 0; i < infoCharList.length; i ++) {
+			c = infoCharList[i];
+			if(c == ' ') continue; //空字符跳过
+			
+			s = "" + c;
+			for (int j = 0; j < suList.size(); j ++) {
+				if(goodsList.get(j).getName().contains(s))
+					suList.get(j).plus();
+			}
+			
+		}
+		
+	    suList.sort(new SearchUnit(-1));
+	    
+	    
+	    ArrayList<Object> gpl = new ArrayList<Object>();
+		for (int i = 0; i < suList.size(); i ++) {
+			if(suList.get(i).sum != 0)
+				gpl.add(new GoodsPO(goodsList.get(suList.get(i).num)));
+			else
+				break;
+		}
+		
+		
+		return gpl;
 	}
 
 	/**

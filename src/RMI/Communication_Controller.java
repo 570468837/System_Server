@@ -155,6 +155,11 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		}if(command.equals("findCustomer")){
 			return new CustomerController().findCustomer(keywords);
 		}
+		if (command.equals("findGoods")) {
+			return goodsController.searchGoods(keywords);
+		}
+		
+		
 		else{
 			return null;
 		}
