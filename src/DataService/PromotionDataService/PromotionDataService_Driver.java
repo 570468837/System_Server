@@ -18,12 +18,7 @@ public class PromotionDataService_Driver {
 		PromotionPO po2 = new PromotionPO(PromotionSort.Package, "003", new ArrayList<GoodsPO>() , 0, 100, null, 0, "20141111", "20141201", Level.firstClass);
 		PromotionPO po3 = new PromotionPO(PromotionSort.Package, "004", g , 0, 100, null, 0, "20141111", "20141201", Level.firstClass);
 		
-		System.out.println(new PromotionController().addVoucher(po));
-		System.out.println((new PromotionController().addGift(po1)));
-		System.out.println((new PromotionController().addPackage(po2)));
-		//System.out.println((new PromotionController().delete(po3)));
-		System.out.println((new PromotionController().addPackage(po3)));
-		System.out.println(new PromotionController().show().size());
+		System.out.println(new PromotionController().delete(po));
 	}
 	
 	public static void main(String[] args){
