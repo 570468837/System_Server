@@ -8,12 +8,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 
 import DataService.GoodsDataService.GoodsController;
-import PO.GoodsClassPO;
 import PO.GoodsPO;
 import PO.InventoryCommodityPO;
 import PO.ReportCommodityPO;
@@ -56,25 +54,7 @@ public class CommodityController implements CommodityDataService {
 		return finished;
 	}
 	
-	/**
-	 * 删除一条赠送单
-	 * @param po
-	 * @return 
-	 */
-	public ResultMessage delCanceledSend(SendCommodityPO po) {
-		Iterator<SendCommodityPO> iter = sendList.iterator();
-		SendCommodityPO sp;
-		while(iter.hasNext()) {
-			sp = iter.next();
-			if(sp.date.getTime() == po.date.getTime()) {
-				iter.remove();
-				writeSendFile();
-				return ResultMessage.delete_success;
-			}
-		}
-		
-		return ResultMessage.delete_failure;
-	}
+	
 	
 	
 	
@@ -104,7 +84,7 @@ public class CommodityController implements CommodityDataService {
 			SendCommodityPO s;
 			while(iter.hasNext()) {
 				s = iter.next();
-				if(po.date == s.date) {
+				if(po.date.getTime() == s.date.getTime()) {
 					s.checked = po.checked;
 					break;
 				}
@@ -124,7 +104,7 @@ public class CommodityController implements CommodityDataService {
 		SendCommodityPO po;
 		while(iter.hasNext()) {
 			po = iter.next();
-			if(po.checked == SendCommodityPO.PASS)
+			if(po.checked == SendCommodityPO.PASS || po.checked == SendCommodityPO.FINISH)
 				show.add(new SendCommodityPO(po));
 		}
 		return show;

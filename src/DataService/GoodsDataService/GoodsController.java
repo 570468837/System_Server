@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 
@@ -153,7 +152,8 @@ public class GoodsController implements GoodsDataService{
 		return ResultMessage.add_success;
 		
 	}
-
+	
+	
 	/**
 	 * 删除商品
 	 */
@@ -164,6 +164,7 @@ public class GoodsController implements GoodsDataService{
 		while(gIter.hasNext()) {
 			g = gIter.next();
 			if(g.getSerialNumber().equals(Long.toString(id))) {
+				if(!this.goodsCanDel(g)) return ResultMessage.delete_failure;
 				goodsList.remove(g);
 				writeFile();
 				return ResultMessage.delete_success;
@@ -301,6 +302,7 @@ public class GoodsController implements GoodsDataService{
 	 */
 	@Override
 	public synchronized ResultMessage delGoodsClass(long id) {
+		if(!this.goodsClassCanDel(id)) return ResultMessage.delete_failure;
 		
 		ArrayList<GoodsClassPO> child = new ArrayList<GoodsClassPO>();
 		gcIter = goodsClassList.iterator();
@@ -365,6 +367,54 @@ public class GoodsController implements GoodsDataService{
 		}
 	}
 
+	
+	
+	
+	private boolean goodsCanDel(GoodsPO gp) {
+		if(gp.commodityQuantity == -1) return true;
+		return false;
+	}
+	
+	private boolean goodsClassCanDel(long id) {
+		ArrayList<GoodsClassPO> classChildClass = new ArrayList<GoodsClassPO>();
+		gcIter = goodsClassList.iterator();
+		GoodsClassPO gcp;
+		while(gcIter.hasNext()) {
+			gcp = gcIter.next();
+			if(gcp.fatherGoodsClassNum == id)
+				classChildClass.add(new GoodsClassPO(gcp));
+		}
+		if(classChildClass.size() != 0) {
+			for (int i = 0; i < classChildClass.size(); i ++) {
+				if(!goodsClassCanDel(classChildClass.get(i).Num))
+					return false;
+			}
+			return true;
+		}
+		else {
+			ArrayList<GoodsPO> childClass = new ArrayList<GoodsPO>();
+			gIter = goodsList.iterator();
+			GoodsPO gp;
+			while(gIter.hasNext()) {
+				gp = gIter.next();
+				if(gp.getGoodsClassNum() == id)
+					childClass.add(gp);
+			}
+			if(childClass.size() == 0)
+				return true;
+			else {
+				for (int i = 0; i < childClass.size(); i ++) {
+					if(!goodsCanDel(childClass.get(i)))
+						return false;
+				}
+				return true;
+			}
+		}
+	}
+	
+	
+	
+	@SuppressWarnings("unchecked")
 	private void readFile() {
 		FileInputStream 
 		    gfis = null,
@@ -389,6 +439,7 @@ public class GoodsController implements GoodsDataService{
 		}
 	}
 	
+	@SuppressWarnings("resource")
 	public void writeFile() {
 		try {
 			ObjectOutputStream goos = new ObjectOutputStream(new FileOutputStream(goodsURL));
