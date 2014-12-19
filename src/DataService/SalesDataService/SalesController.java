@@ -89,10 +89,16 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 		return ResultMessage.delete_success;
 	}
 
-	@Override
+	@Override//暂只针对经理的审查
 	public ResultMessage updateReceipt(SalesReceiptPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		System.out.println("update successful");
+		for(int i=0;i<salesReceipts.size();i++){
+			if(salesReceipts.get(i).getSerialNumber().equals(po.getSerialNumber())){
+				salesReceipts.get(i).setApprovedByManager(po.isApprovedByManager());
+			}
+		}
+		save();
+		
 		return ResultMessage.update_success;
 	}
 

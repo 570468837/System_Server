@@ -89,6 +89,8 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 			return new CustomerController().updateCustomer((CustomerPO)PO);
 		}if(command.equals("updatePurchaseReceipt")){
 			return new PurchaseController().updateReceipt((PurchaseReceiptPO)PO);
+		}if(command.equals("udpateSalesReceipt")){
+			return new SalesController().updateReceipt((SalesReceiptPO)PO);
 		}
 		
 		if(command.equals("collection_payment_change_pay_getting")){

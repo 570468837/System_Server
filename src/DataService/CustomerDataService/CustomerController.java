@@ -147,18 +147,19 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 		return customerList;
 	}
 
+	//
 	@Override
 	public CustomerPO getCustomerPOById(String serialnumber)
 			throws RemoteException {
-		ArrayList<Object> customers=this.show();
-		CustomerPO customer=null;
 		for (Iterator iterator = customers.iterator(); iterator.hasNext();) {
 			CustomerPO customerPO = (CustomerPO) iterator.next();
-			if(customerPO.getNumber().equals(serialnumber)){
-				customer=customerPO;
+			//by name or id
+			
+			if(customerPO.getName().equals(serialnumber)||customerPO.getNumber().equals(serialnumber)){
+				return customerPO;
 			}			
 		}
-		return customer;
+		return null;
 	}
 	public CustomerPO getCustomerPOByName(String name)throws RemoteException{
 		ArrayList<Object> customers=this.show();

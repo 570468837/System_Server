@@ -39,6 +39,18 @@ public class PurchaseReceiptPO implements Serializable {
 		this.totalPrice=totalPrice;
 	}
 	
+	public PurchaseReceiptPO(PurchaseReceiptPO po){
+		this.setApprovedByCommodity(po.isApprovedByCommodity());
+		this.setApprovedByManager(po.isApprovedByManager());
+		this.setComments(po.getComments());
+		this.setCustomerPO(po.getCustomerPO());
+		this.setPurchaseList(po.getPurchaseList());
+		this.setSerialNumber(po.getSerialNumber());
+		this.setTime(po.getTime());
+		this.setTotalPrice(po.getTotalPrice());
+		this.setUserPO(po.getUserPO());
+	}
+	
 	public boolean isApprovedByManager() {
 		return isApprovedByManager;
 	}
