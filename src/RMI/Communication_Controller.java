@@ -66,9 +66,6 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("accountDelete")){
 			return new FinanceController().delet((AccountPO)PO);
 		}
-		if(command.equals("accountUpdate")){
-			return new FinanceController().update((AccountPO)PO);
-		}
 		if(command.equals("collectionOrPaymentAdd")){
 			return new FinanceController().insertCollectionOrPaymentPO((CollectionOrPaymentPO)PO) ;
 		}

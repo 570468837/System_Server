@@ -25,12 +25,6 @@ public class FinanceDataService_Stub implements FinanceDataService{
 		
 	}
 
-	@Override
-	public ResultMessage update(AccountPO account) throws RemoteException {
-		// TODO Auto-generated method stub
-		System.out.println("update success") ;
-		return null ;
-	}
 
 	@Override
 	public ArrayList<Object> find(String keyword) throws RemoteException {
@@ -90,6 +84,13 @@ public class FinanceDataService_Stub implements FinanceDataService{
 
 	@Override
 	public ResultMessage updateCollectionOrPayment(CollectionOrPaymentPO po)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage changeAccount(AccountPO account, double sum)
 			throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;

@@ -11,7 +11,6 @@ import ResultMessage.ResultMessage;
 public interface FinanceDataService {
 	public ResultMessage insertAccount(AccountPO account) throws RemoteException;
 	public ResultMessage delet(AccountPO account) throws RemoteException;
-	public ResultMessage update(AccountPO account) throws RemoteException;
 	public ArrayList<Object> find(String keyword) throws RemoteException;
 	public ResultMessage insertCollectionOrPaymentPO(CollectionOrPaymentPO payment) throws RemoteException ;
 	public ResultMessage updateCollectionOrPayment(CollectionOrPaymentPO po)throws RemoteException ;
@@ -21,4 +20,5 @@ public interface FinanceDataService {
 	public ArrayList<Object> showCollectionOrPayment() throws RemoteException ;
 	public ArrayList<Object> showCash() throws RemoteException ;
 	public String getReceiptNumber(String typeOfReceipt) ;
+	public ResultMessage changeAccount(AccountPO account,double sum) throws RemoteException;
 }

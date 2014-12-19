@@ -17,9 +17,11 @@ import javax.print.CancelablePrintJob;
 import com.mysql.fabric.xmlrpc.base.Data;
 
 import PO.AccountPO;
+import PO.CaseListItemPO;
 import PO.CashPO;
 import PO.CollectionOrPaymentPO;
 import PO.AccountPO;
+import PO.TransferListItemPO;
 import ResultMessage.ResultMessage;
 
 public class FinanceController implements FinanceDataService {
@@ -131,13 +133,16 @@ public class FinanceController implements FinanceDataService {
 	}
 
 	@Override
-	public ResultMessage update(AccountPO account) throws RemoteException {
+	public ResultMessage changeAccount(AccountPO account,double sum) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(account.getName().equals("0001")){
-			result = ResultMessage.update_success ;
-		}else{
-			result = ResultMessage.update_failure ;
+		result = ResultMessage.update_failure ;
+		for(AccountPO theAccount :accounts){
+			if(theAccount.getName().equals(theAccount.getName())){
+				theAccount.changeBalance(sum);
+				result = ResultMessage.update_success ;
+			}
 		}
+		save();
 		return result ;
 	}
 
@@ -165,6 +170,20 @@ public class FinanceController implements FinanceDataService {
 	@Override
 	public ResultMessage insertCollectionOrPaymentPO(CollectionOrPaymentPO receipt) throws RemoteException {
 		// TODO Auto-generated method stub
+    	boolean isGet = false ;
+    	int i = -1 ;
+    	if(receipt.getNumber().substring(0,3).equals("XSD") ) 
+    		i = 1 ;
+	    for(TransferListItemPO theItem:receipt.getTrList()){
+		   for(AccountPO account : accounts){
+		    	if(theItem.getAccount().equals(account.getName())){
+		    		account.changeBalance(i * theItem.getTransferMoney());
+		    		isGet = true ;
+		    	}
+		   }
+			if(!isGet)
+				return ResultMessage.add_failure ;
+   		}
 		cpReceipts.add(receipt) ;
 		save() ;
 		return ResultMessage.add_success ;
@@ -173,6 +192,20 @@ public class FinanceController implements FinanceDataService {
 	@Override
 	public ResultMessage insertCash(CashPO cash) throws RemoteException {
 		// TODO Auto-generated method stub
+		boolean isGet = false ;
+		double sum = 0 ;
+		for(CaseListItemPO theItem : cash.getCases()){
+			sum += theItem.getCaseMoney() ;
+		}
+		for(AccountPO account :accounts){
+			if(account.getName().equals(cash.getAccount())){
+				account.changeBalance(-sum);
+				isGet = true ;
+			}
+		}
+		if(!isGet){
+			return ResultMessage.add_failure ;
+		}
 		cashReceipts.add(cash) ;
 		save() ;
 		return ResultMessage.add_success ;
@@ -279,4 +312,5 @@ public static void main(String[] args){
 	FinanceController f = new FinanceController() ;
 	f.save();
 }
+
 }
