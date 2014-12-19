@@ -105,6 +105,8 @@ public class SalesReceiptPO implements Serializable {
 		this.setTime(po.getTime());
 		this.setSerialNumber(po.getSerialNumber());
 	}
+	
+
 
 	
 
