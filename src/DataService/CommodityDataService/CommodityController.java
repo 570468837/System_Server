@@ -40,6 +40,45 @@ public class CommodityController implements CommodityDataService {
 	}
 	
 	/**
+	 * 
+	 * @return 审批不通过的赠送单
+	 */
+	public ArrayList<Object> showCanceledSend() {
+		ArrayList<Object> canceled = new ArrayList<Object>();
+		Iterator<SendCommodityPO> iter = sendList.iterator();
+		SendCommodityPO sp;
+		while(iter.hasNext()) {
+			sp = iter.next();
+			if(sp.checked == SendCommodityPO.CANCEL) {
+				canceled.add(new SendCommodityPO(sp));
+			}
+		}
+		return canceled;
+	}
+	
+	/**
+	 * 删除一条赠送单
+	 * @param po
+	 * @return 
+	 */
+	public ResultMessage delCanceledSend(SendCommodityPO po) {
+		Iterator<SendCommodityPO> iter = sendList.iterator();
+		SendCommodityPO sp;
+		while(iter.hasNext()) {
+			sp = iter.next();
+			if(sp.date.getTime() == po.date.getTime()) {
+				iter.remove();
+				writeSendFile();
+				return ResultMessage.delete_success;
+			}
+		}
+		
+		return ResultMessage.delete_failure;
+	}
+	
+	
+	
+	/**
 	 * @return 待审批的赠送单
 	 */
 	public ArrayList<Object> showUncheckedSend() {
