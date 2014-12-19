@@ -132,9 +132,6 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("commoditySend")) {
 			return commodityController.insertSendCommodity((SendCommodityPO)PO);
 		}
-		if(command.equals("delCanceledSend")) {
-			return commodityController.delCanceledSend((SendCommodityPO)PO);
-		}
 		
 		
 		
@@ -211,8 +208,8 @@ public class Communication_Controller extends UnicastRemoteObject implements Com
 		if(command.equals("showReportCommodity")) {
 			return commodityController.showReportCommodity();
 		}
-		if(command.equals("showCanceledSend")) {
-			return commodityController.showCanceledSend();
+		if(command.equals("showPassedSend")) {
+			return commodityController.showPassSend();
 		}
 		
 		
