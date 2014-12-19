@@ -42,7 +42,7 @@ public class FinanceController implements FinanceDataService {
 			FileInputStream fis2  = new FileInputStream("Datas/CollectionOrPaymentPO.out") ;
 			FileInputStream fis3 = new FileInputStream("Datas/CashPO.out");
 			
-			if(fis1.available()>0&&fis2.available()>0&&fis3.available()>0){
+			if(fis1.available()>0 ){
 			ObjectInputStream oin1 ;
 			oin1 = new ObjectInputStream(fis1);
 			accounts=(ArrayList<AccountPO>)oin1.readObject();
@@ -316,7 +316,7 @@ public void finish() {
 }
 public static void main(String[] args){
 	FinanceController f = new FinanceController() ;
-	f.save();
+	System.out.println(f.accounts.size()) ;
 }
 
 }
