@@ -150,12 +150,18 @@ public class FinanceController implements FinanceDataService {
 	public ArrayList<Object> find(String keyword) throws RemoteException {
 		// TODO Auto-generated method stub
 		ArrayList<Object> findAccounts = new ArrayList<Object>() ;
+		boolean isGet = false ;
 		for(AccountPO theAccount:accounts){
 			if(theAccount.getName().contains(keyword)){
 				findAccounts.add(theAccount) ;
+				isGet = true ;
 			}
 		}
+		if(isGet){
 		return findAccounts ;
+		}else{
+			return null;
+		}
 	}
 	
 
