@@ -41,19 +41,19 @@ public class CommodityController implements CommodityDataService {
 	
 	/**
 	 * 
-	 * @return 审批不通过的赠送单
+	 * @return 审批通过的赠送单
 	 */
-	public ArrayList<Object> showCanceledSend() {
-		ArrayList<Object> canceled = new ArrayList<Object>();
+	public ArrayList<Object> showPassSend() {
+		ArrayList<Object> finished = new ArrayList<Object>();
 		Iterator<SendCommodityPO> iter = sendList.iterator();
 		SendCommodityPO sp;
 		while(iter.hasNext()) {
 			sp = iter.next();
-			if(sp.checked == SendCommodityPO.CANCEL) {
-				canceled.add(new SendCommodityPO(sp));
+			if(sp.checked == SendCommodityPO.PASS) {
+				finished.add(new SendCommodityPO(sp));
 			}
 		}
-		return canceled;
+		return finished;
 	}
 	
 	/**
