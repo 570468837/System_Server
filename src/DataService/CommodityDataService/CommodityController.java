@@ -210,7 +210,7 @@ public class CommodityController implements CommodityDataService {
 		
 		gp = new GoodsPO();
 		gp.setSerialNumber(Long.toString(sendCommodityPO.goodsPOId));
-		gp.setCommodityQuantity(gp.getCommodityQuantity() - sendCommodityPO.num);
+		gp.setCommodityQuantity(this.goodsController.getGoodsByID(sendCommodityPO.goodsPOId).getCommodityQuantity() - sendCommodityPO.num);
 		if(this.goodsController.updGoods(gp) == ResultMessage.update_failure) {
 			System.out.println("商品属性修改失败");
 			return ResultMessage.add_failure;
