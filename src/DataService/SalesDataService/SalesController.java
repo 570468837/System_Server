@@ -65,20 +65,20 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 	@Override
 	public ResultMessage addReceipt(SalesReceiptPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-				boolean exist=false;
-				for(SalesReceiptPO p:salesReceipts){
-					if(p.getSerialNumber().equals(p.getSerialNumber())){
-						exist=true;
-						break;
-						}
-					}
-				if(!exist){
+//				boolean exist=false;
+//				for(SalesReceiptPO p:salesReceipts){
+//					if(p.getSerialNumber().equals(p.getSerialNumber())){
+//						exist=true;
+//						break;
+//						}
+//					}
+//				if(!exist){
 					salesReceipts.add(po);
 					save();
 					return ResultMessage.add_success;
-				}
-				else
-					return ResultMessage.add_failure;
+//				}
+//				else
+//					return ResultMessage.add_failure;
 	
 	}
 
