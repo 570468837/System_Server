@@ -76,7 +76,6 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 				if(!exist){
 					customers.add(po);
 					save();
-					System.out.println("添加客户成功");
 					return ResultMessage.add_success;
 				}
 				else
