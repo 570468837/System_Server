@@ -182,8 +182,10 @@ ArrayList<PromotionPO> promotions=new ArrayList<PromotionPO>();
 		String[] splitString=receiptNum.split("-");
 		String receiptDate=splitString[1];
 		int date=Integer.parseInt(receiptDate);
-		int startDate=Integer.parseInt(po.getStartTime());
-		int endDate=Integer.parseInt(po.getEndTime());
+		String startTime=po.getStartTime();
+		String endTime=po.getEndTime();
+		int startDate=Integer.parseInt(startTime.substring(0,4)+startTime.substring(5,7)+startTime.substring(8));
+		int endDate=Integer.parseInt(endTime.substring(0,4)+endTime.substring(5,7)+endTime.substring(8));
 		if(date>=startDate&&date<=endDate)
 			return true;
 		else
