@@ -33,6 +33,7 @@ public class CommodityController implements CommodityDataService {
 		this.goodsController = communication_Controller.goodsController;
 		sendList = new ArrayList<SendCommodityPO>();
 		reportList = new ArrayList<ReportCommodityPO>();
+		//!writeSendFile();
 		readFile();
 		
 	}
@@ -78,24 +79,15 @@ public class CommodityController implements CommodityDataService {
 	 */
 	public ResultMessage updUncheckedSend(ArrayList<SendCommodityPO> poList) {
 		SendCommodityPO po;
-		System.out.println(sendList.size());
 		for(int i = 0; i < poList.size(); i ++) {
 			po = poList.get(i);
 			Iterator<SendCommodityPO> iter = sendList.iterator();
 			SendCommodityPO s;
-			p:
 			while(iter.hasNext()) {
 				s = iter.next();
-				
-				if(po.date.getTime() == s.date.getTime() && 
-						po.customerPOName.equals(s.customerPOName)&&
-						po.goodsPOId==s.goodsPOId&&
-						po.num==s.num&&
-						po.price==s.price&&
-						s.checked==SendCommodityPO.UNCHECKED) {
-					System.out.println(s.checked+","+s.date.getTime()+","+po.checked+","+po.date.getTime());
+				if(po.date.getTime() == s.date.getTime()) {
 					s.checked = po.checked;
-					break p;
+					break;
 				}
 			}
 		}
