@@ -268,8 +268,14 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 	
 	public static void main(String [] args){
 		SalesController salesController=new SalesController();
+		System.out.println(salesController.salesReceipts);
 		for(int i=0;i<salesController.salesReceipts.size();i++){
-			System.out.println(salesController.salesReceipts.get(i).getSalesList().get(0).getTotalPrice());
+			if(!salesController.salesReceipts.get(i).isApprovedByManager()){
+				System.out.println(salesController.salesReceipts.get(i).getPriceBefore());
+				System.out.println(salesController.salesReceipts.get(i).getPriceBefore());
+				System.out.println("____________");
+			}
+				
 		}
 	}
 	
