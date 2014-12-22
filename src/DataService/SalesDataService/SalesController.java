@@ -134,7 +134,7 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		System.out.println(salesReceipts_2);
 		return salesReceipts_2;
 	}
 	

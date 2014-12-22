@@ -6,19 +6,13 @@ import PO.SalesReceiptPO;
 
 public class SalesDataService_Driver {
 	
-	public SalesDataService_Driver(SalesDataService salesController){
-		try {
-			salesController.addReceipt(new SalesReceiptPO());
-			
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public SalesDataService_Driver(SalesController salesController){
+		salesController.show();
 		
 	}
 	
 	public static void main(String [] args){
-		SalesDataService salesController=new SalesController();
+		SalesController salesController=new SalesController();
 		new SalesDataService_Driver(salesController);
 	}
 
