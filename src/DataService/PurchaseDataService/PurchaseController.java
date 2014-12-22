@@ -104,6 +104,7 @@ ArrayList<PurchaseReceiptPO> purchaseReceipts=new ArrayList<PurchaseReceiptPO>()
 					.next();
 			if(purchaseReceiptPO.getSerialNumber().equals(po.getSerialNumber())){
 				purchaseReceiptPO.setApprovedByManager(po.isApprovedByManager());
+				purchaseReceiptPO.setApprovedByCommodity(po.isApprovedByCommodity());
 			}
 		}
 		
