@@ -266,5 +266,12 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 		
 	}
 	
+	public static void main(String [] args){
+		SalesController salesController=new SalesController();
+		for(int i=0;i<salesController.salesReceipts.size();i++){
+			System.out.println(salesController.salesReceipts.get(i).getSalesList().get(0).getTotalPrice());
+		}
+	}
+	
 	
 }
