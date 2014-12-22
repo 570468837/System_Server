@@ -89,12 +89,13 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 		return ResultMessage.delete_success;
 	}
 
-	@Override//暂只针对经理的审查
+	@Override//只针对经理和库存管理人员的审批
 	public ResultMessage updateReceipt(SalesReceiptPO po) throws RemoteException {
 		// TODO Auto-generated method stub
 		for(int i=0;i<salesReceipts.size();i++){
 			if(salesReceipts.get(i).getSerialNumber().equals(po.getSerialNumber())){
 				salesReceipts.get(i).setApprovedByManager(po.isApprovedByManager());
+				salesReceipts.get(i).setApprovedByCommodity(po.isApprovedByCommodity());
 			}
 		}
 		save();
@@ -134,7 +135,6 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(salesReceipts_2);
 		return salesReceipts_2;
 	}
 	
