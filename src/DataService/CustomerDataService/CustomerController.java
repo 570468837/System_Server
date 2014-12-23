@@ -215,11 +215,11 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 		//判断进货单还是进货退货单
 		//进货单
 		if(receipt.getSerialNumber().substring(0, 3).equals("JHD")){
-			customer.setGetting(customer.getPay()+receipt.getTotalPrice());
+			customer.setPay(customer.getPay()+receipt.getTotalPrice());
 		}
 		//进货退货单
 		else{
-			customer.setGetting(customer.getPay()-receipt.getTotalPrice());
+			customer.setPay(customer.getPay()-receipt.getTotalPrice());
 		}
 		
 			this.updateCustomer(customer);
