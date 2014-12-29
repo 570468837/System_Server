@@ -99,7 +99,8 @@ public class SalesReceiptPO implements Serializable {
 		this.setPriceBefore(po.getPriceBefore());
 		this.setPromotionPO(po.getPromotionPO());
 		this.setRetailer(po.getRetailer());
-		this.setSalesList(po.getSalesList());
+		ArrayList<SalesListItemPO>  newSalesList=new ArrayList<SalesListItemPO>(po.getSalesList());
+		this.setSalesList(newSalesList);
 		this.setVocher(po.getVocher());
 		this.setUserPO(po.getUserPO());
 		this.setTime(po.getTime());
