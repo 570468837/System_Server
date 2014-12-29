@@ -238,7 +238,7 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 			ArrayList<SalesReceiptPO> salesBackReceipts=new ArrayList<SalesReceiptPO>();
 			
 			//TODO 不明觉厉的show
-			result=this.show();
+//			result=this.show();
 			
 			for (Iterator iterator = result.iterator(); iterator.hasNext();) {
 				SalesReceiptPO salesReceiptPO = (SalesReceiptPO) iterator

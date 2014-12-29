@@ -157,7 +157,7 @@ ArrayList<PurchaseReceiptPO> purchaseReceipts=new ArrayList<PurchaseReceiptPO>()
 		ArrayList<PurchaseReceiptPO> purchaseReceipts=new ArrayList<PurchaseReceiptPO>();
 		ArrayList<PurchaseReceiptPO> purchaseOutReceipts=new ArrayList<PurchaseReceiptPO>();
 		//TODO 下面这句是什么。。。。
-		result=this.show();
+//		result=this.show();
 		
 		for (Iterator iterator = result.iterator(); iterator.hasNext();) {
 			PurchaseReceiptPO purchaseReceiptPO = (PurchaseReceiptPO) iterator
