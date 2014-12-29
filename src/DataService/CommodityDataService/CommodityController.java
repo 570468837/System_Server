@@ -85,7 +85,7 @@ public class CommodityController implements CommodityDataService {
 			SendCommodityPO s;
 			while(iter.hasNext()) {
 				s = iter.next();
-				if(po.date.getTime() == s.date.getTime()) {
+				if(po.date.getTime() == s.date.getTime() && po.num == s.num && s.checked != po.checked) {
 					s.checked = po.checked;
 					break;
 				}
