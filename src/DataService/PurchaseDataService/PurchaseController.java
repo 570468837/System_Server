@@ -156,7 +156,7 @@ ArrayList<PurchaseReceiptPO> purchaseReceipts=new ArrayList<PurchaseReceiptPO>()
 		ArrayList<Object> result=new ArrayList<Object>();//第一个元素是进货单的list，第二个元素是进货退货单的list
 		ArrayList<PurchaseReceiptPO> purchaseReceipts=new ArrayList<PurchaseReceiptPO>();
 		ArrayList<PurchaseReceiptPO> purchaseOutReceipts=new ArrayList<PurchaseReceiptPO>();
-		
+		//TODO 下面这句是什么。。。。
 		result=this.show();
 		
 		for (Iterator iterator = result.iterator(); iterator.hasNext();) {
