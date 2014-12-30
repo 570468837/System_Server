@@ -165,7 +165,7 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 		CustomerPO customer=null;
 		for (Iterator iterator = customers.iterator(); iterator.hasNext();) {
 			CustomerPO customerPO = (CustomerPO) iterator.next();
-			if(customerPO.getNumber().equals(name)){
+			if(customerPO.getName().equals(name)){
 				customer=customerPO;
 			}			
 		}
@@ -296,7 +296,12 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 
 	public static void main(String []args){
 		
-		System.out.println(new CustomerController().show());
+		try {
+			System.out.println(new CustomerController().getCustomerPOByName("hutao"));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	
