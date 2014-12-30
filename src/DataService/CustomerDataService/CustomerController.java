@@ -116,6 +116,9 @@ ArrayList<CustomerPO> customers=new ArrayList<CustomerPO>();
 				p.setPhone(po.getPhone());
 				p.setSort(po.getSort());
 				p.setZipCode(po.getZipCode());
+				p.setPay(po.getPay());
+				p.setGetting(po.getGetting());
+				p.setDebt_upper_limit(po.getDebt_upper_limit());
 				exist=true;
 				break;
 				}
