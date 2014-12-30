@@ -178,7 +178,7 @@ public class FinanceController implements FinanceDataService {
 		// TODO Auto-generated method stub
     	boolean isGet = false ;
     	int i = -1 ;
-    	if(receipt.getNumber().substring(0,3).equals("XSD") ) 
+    	if(receipt.getNumber().substring(0,3).equals("SKD") ) 
     		i = 1 ;
 	    for(TransferListItemPO theItem:receipt.getTrList()){
 		   for(AccountPO account : accounts){
