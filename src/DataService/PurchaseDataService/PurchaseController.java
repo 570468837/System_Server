@@ -158,8 +158,9 @@ ArrayList<PurchaseReceiptPO> purchaseReceipts=new ArrayList<PurchaseReceiptPO>()
 		ArrayList<PurchaseReceiptPO> purchaseOutReceipts=new ArrayList<PurchaseReceiptPO>();
 		//TODO 下面这句是什么。。。。
 //		result=this.show();
-		
-		for (Iterator iterator = result.iterator(); iterator.hasNext();) {
+		ArrayList<Object> temp=new ArrayList<Object>();
+		temp=this.show();
+		for (Iterator iterator = temp.iterator(); iterator.hasNext();) {
 			PurchaseReceiptPO purchaseReceiptPO = (PurchaseReceiptPO) iterator
 					.next();
 		if(changeDateToInt(purchaseReceiptPO.getTime())>=changeDateToInt(beginTime)&&changeDateToInt(purchaseReceiptPO.getTime())<=changeDateToInt(endTime)){

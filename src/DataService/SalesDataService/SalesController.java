@@ -239,8 +239,9 @@ ArrayList<SalesReceiptPO> salesReceipts=new ArrayList<SalesReceiptPO>();
 			
 			//TODO 不明觉厉的show
 //			result=this.show();
-			
-			for (Iterator iterator = result.iterator(); iterator.hasNext();) {
+			ArrayList<Object> temp=new ArrayList<Object>();
+			temp=this.show();
+			for (Iterator iterator = temp.iterator(); iterator.hasNext();) {
 				SalesReceiptPO salesReceiptPO = (SalesReceiptPO) iterator
 						.next();
 			if(changeDateToInt(salesReceiptPO.getTime())>=changeDateToInt(beginTime)&&changeDateToInt(salesReceiptPO.getTime())<=changeDateToInt(endTime)){
