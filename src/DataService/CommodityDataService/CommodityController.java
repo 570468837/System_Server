@@ -33,7 +33,7 @@ public class CommodityController implements CommodityDataService {
 		this.goodsController = communication_Controller.goodsController;
 		sendList = new ArrayList<SendCommodityPO>();
 		reportList = new ArrayList<ReportCommodityPO>();
-		//!writeSendFile();
+		//writeSendFile(); writeReportFile();
 		readFile();
 		
 	}
