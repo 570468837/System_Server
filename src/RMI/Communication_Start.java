@@ -23,7 +23,7 @@ public class Communication_Start {
 			Communication server=new Communication_Controller(); 
 			LocateRegistry.createRegistry(8888);
 			 try {
-				Naming.bind("rmi://localhost:8888/MyServer",server);
+				Naming.bind("rmi://192.168.1.100/MyServer",server);
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				System.out.println("发生URL畸形异常！"); 
